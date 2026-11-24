@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
 <title>EPS-TOPIK 반대말 + 비슷한 말 Quiz — Choose a Section</title>
-<style>body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:#0b0b16;color:#f2f1fa;margin:0;padding:0}
+<style>
+body{font-family:"Plus Jakarta Sans","Noto Sans KR",system-ui,sans-serif;background:#0b0b16;color:#f2f1fa;margin:0;padding:0}
 header{background:#312e81;padding:26px 16px 22px;text-align:center}
 header h1{font-size:1.55rem;font-weight:800;line-height:1.25;margin:0;color:#fff}
 header p{color:#c7d2fe;margin:8px 0 0;font-size:.95rem}
 .wrap{max-width:760px;margin:0 auto;padding:28px 16px 40px}
 p.lead{color:#9d9db4;text-align:center;margin:0 0 22px}
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-a.card{display:block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:26px 22px;text-decoration:none;color:#f2f1fa;box-shadow:0 2px 8px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);transition:transform .15s,border-color .15s}
+a.card{display:block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:24px 22px 22px;text-decoration:none;color:#f2f1fa;box-shadow:0 2px 8px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);transition:transform .15s,border-color .15s}
 a.card:hover{transform:translateY(-2px);border-color:#4f46e5}
+a.card .icon{width:46px;height:46px;border-radius:14px;background:rgba(79,70,229,.25);border:1px solid rgba(165,180,252,.35);display:flex;align-items:center;justify-content:center;color:#a5b4fc;margin-bottom:14px}
+a.card .icon svg{width:26px;height:26px}
 a.card .ko{font-size:1.7rem;font-weight:800;color:#a5b4fc}
 a.card .en{font-size:1.05rem;font-weight:700;margin-top:4px}
 a.card .count{color:#9d9db4;font-weight:600;margin-top:6px}
+a.card .pbar{height:7px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden;margin-top:16px}
+a.card .pbar>i{display:block;height:100%;background:#a5b4fc;width:0%;border-radius:999px;transition:width .3s}
+a.card .ptext{font-size:.85rem;font-weight:700;margin-top:7px;color:#c7d2fe}
 a.card .go{display:inline-block;background:#4f46e5;color:#fff;font-weight:800;padding:10px 20px;border-radius:999px;margin-top:16px}
 .more{margin-top:30px;border-top:1px solid rgba(255,255,255,.09);padding-top:18px}
 .more h2{font-size:1rem;color:#a5b4fc;margin:0 0 10px}
@@ -44,36 +50,71 @@ a.card .ko{font-size:1.45rem}
 <p>Choose a section &mdash; whichever you pick starts from question 1.</p>
 </header>
 <div class="wrap">
-<p class="lead">Opposite words (반대말) or similar words (비슷한 말) &mdash; 200 questions each.</p>
+<p class="lead">Opposite words (반대말) or similar words (비슷한 말) &mdash; 200 questions each, in sets of 50.</p>
 <div class="cards">
 <a class="card" href="antonym.html">
+<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
 <div class="ko">반대말</div>
 <div class="en">Opposite Words</div>
-<div class="count">200 questions</div>
-<span class="go">Start from Q1 &rarr;</span>
+<div class="count">200 questions &middot; 4 sets of 50</div>
+<div class="pbar"><i id="bar-ant"></i></div>
+<div class="ptext" id="txt-ant">Not started yet</div>
+<span class="go" id="go-ant">Start from Q1 &rarr;</span>
 </a>
 <a class="card" href="synonym.html">
+<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></div>
 <div class="ko">비슷한 말</div>
 <div class="en">Similar Words</div>
-<div class="count">200 questions</div>
-<span class="go">Start from Q1 &rarr;</span>
+<div class="count">200 questions &middot; 4 sets of 50</div>
+<div class="pbar"><i id="bar-syn"></i></div>
+<div class="ptext" id="txt-syn">Not started yet</div>
+<span class="go" id="go-syn">Start from Q1 &rarr;</span>
 </a>
 </div>
 <div class="more">
 <h2>More ways to practise</h2>
 <a href="full-quiz.html">All 400 questions (full quiz)</a>
 <div class="sets">
-<a href="set-01-q1-50.html">Set 01 · Q1–50</a>
-<a href="set-02-q51-100.html">Set 02 · Q51–100</a>
-<a href="set-03-q101-150.html">Set 03 · Q101–150</a>
-<a href="set-04-q151-200.html">Set 04 · Q151–200</a>
-<a href="set-05-q201-250.html">Set 05 · Q201–250</a>
-<a href="set-06-q251-300.html">Set 06 · Q251–300</a>
-<a href="set-07-q301-350.html">Set 07 · Q301–350</a>
-<a href="set-08-q351-400.html">Set 08 · Q351–400</a>
+<a href="set-01-q1-50.html">Set 01 &middot; Q1–50</a>
+<a href="set-02-q51-100.html">Set 02 &middot; Q51–100</a>
+<a href="set-03-q101-150.html">Set 03 &middot; Q101–150</a>
+<a href="set-04-q151-200.html">Set 04 &middot; Q151–200</a>
+<a href="set-05-q201-250.html">Set 05 &middot; Q201–250</a>
+<a href="set-06-q251-300.html">Set 06 &middot; Q251–300</a>
+<a href="set-07-q301-350.html">Set 07 &middot; Q301–350</a>
+<a href="set-08-q351-400.html">Set 08 &middot; Q351–400</a>
 </div>
 </div>
 <p class="note">This book has NO printed answer key &mdash; all answers and explanations are AI-researched in Nepali. Book defect corrected: in the antonym section the book prints 마르다 as number 66, but the book skipped 65 &mdash; 마르다 is book 65 and 입구 (printed 66) is book 66; each section numbers its questions sequentially from 1. Each question shows its section (반대말 / 비슷한 말) and book number.</p>
 </div>
 </body>
+<script>
+const KEYS_ANT = ['eps-quiz-eps-antonym-set-01','eps-quiz-eps-antonym-set-02','eps-quiz-eps-antonym-set-03','eps-quiz-eps-antonym-set-04'];
+const KEYS_SYN = ['eps-quiz-eps-antonym-set-05','eps-quiz-eps-antonym-set-06','eps-quiz-eps-antonym-set-07','eps-quiz-eps-antonym-set-08'];
+function answered(key){
+  try{
+    const raw = localStorage.getItem(key);
+    if(!raw) return 0;
+    const d = JSON.parse(raw);
+    if(!d || !d.answers) return 0;
+    return Math.min(50, Object.keys(d.answers).length);
+  }catch(e){ return 0; }
+}
+function render(keys, barId, txtId, goId){
+  let total = 0;
+  keys.forEach(function(k){ total += answered(k); });
+  const bar = document.getElementById(barId);
+  const txt = document.getElementById(txtId);
+  const go = document.getElementById(goId);
+  if(bar) bar.style.width = (total / 2) + '%';
+  if(txt) txt.textContent = total === 0 ? 'Not started yet' : total + '/200 answered';
+  if(go) go.textContent = total === 0 ? 'Start from Q1 \u2192' : 'Continue \u2192';
+}
+function refresh(){
+  render(KEYS_ANT, 'bar-ant', 'txt-ant', 'go-ant');
+  render(KEYS_SYN, 'bar-syn', 'txt-syn', 'go-syn');
+}
+document.addEventListener('DOMContentLoaded', refresh);
+window.addEventListener('pageshow', refresh);
+</script>
 </html>

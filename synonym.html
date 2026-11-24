@@ -6,458 +6,97 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
-<title>EPS-TOPIK 비슷한 말 Quiz — Similar Words (200 Questions)</title>
+<title>EPS-TOPIK 비슷한 말 &mdash; Similar Words &middot; Sets of 50</title>
 <style>
-  :root {
-    --primary: #a78bfa;
-    --primary-dark: #c4b5fd;
-    --primary-soft: rgba(124,58,237,.22);
-    --accent: #6366f1;
-    --accent-soft: rgba(99,102,241,.18);
-    --green: #34d399;
-    --green-bg: rgba(16,185,129,.16);
-    --red: #fb7185;
-    --red-bg: rgba(244,63,94,.14);
-    --bg: #0b0b16;
-    --card: #171725;
-    --text: #f2f1fa;
-    --muted: #9d9db4;
-    --border: rgba(255,255,255,.09);
-    --shadow: 0 2px 8px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.35);
-    --shadow-lg: 0 10px 30px rgba(0,0,0,.5);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Plus Jakarta Sans", "Noto Sans KR", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); background-image: radial-gradient(700px 340px at 50% -5%, rgba(99,102,241,.14), transparent 60%); background-attachment: fixed; color: var(--text); line-height: 1.6; }
-  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); color: #d6c9ff; font-weight: 800; font-size: .92rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; border: 1px solid rgba(255,255,255,.12); margin-bottom: 14px; transition: all .15s; }
-  .back-btn:hover { background: rgba(255,255,255,.14); transform: translateY(-1px); }
-  header { background: #312e81; color: #fff; padding: 20px 16px 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 4px 20px rgba(0,0,0,.35); }
-  .header-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
-  header h1 { font-size: 1.4rem; line-height: 1.25; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
-  header p { opacity: .92; font-size: .9rem; margin-top: 4px; }
-  .progress-wrap { margin-top: 14px; background: rgba(0,0,0,.35); border-radius: 999px; height: 10px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,.4); }
-  .progress-bar { height: 100%; background: #a5b4fc; width: 0%; transition: width .3s; border-radius: 999px; box-shadow: 0 0 12px rgba(165,180,252,.6); }
-  .progress-text { font-size: .85rem; font-weight: 700; margin-top: 8px; opacity: .97; }
-  .autosave-note { font-size: .78rem; margin-top: 3px; opacity: .8; }
-  main { max-width: 760px; margin: 0 auto; padding: 22px 16px 90px; }
-  .q-card { position: relative; background: #1a1a2c; border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px 24px; margin-bottom: 18px; box-shadow: var(--shadow); transition: box-shadow .2s; }
-  .q-card::before { content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 4px; background: #6366f1; border-radius: 0 0 6px 6px; }
-  .q-card:hover { box-shadow: var(--shadow-lg); }
-  .q-card.answered { border-color: rgba(167,139,250,.55); }
-  .q-card.answered::after { content: "✓"; position: absolute; top: 16px; right: 16px; width: 28px; height: 28px; border-radius: 50%; background: #059669; color: #fff; font-weight: 800; font-size: .95rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,.45); }
-  .q-num { display: inline-block; font-size: .92rem; font-weight: 800; color: #fff; background: #4f46e5; padding: 7px 18px; border-radius: 999px; letter-spacing: .04em; box-shadow: 0 2px 10px rgba(79,70,229,.4); }
-  .q-label { display: inline-block; font-size: .82rem; font-weight: 700; color: #c4b5fd; background: rgba(99,102,241,.18); border: 1px solid rgba(167,139,250,.4); padding: 6px 12px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
-  .q-text { font-size: 1.16rem; white-space: pre-line; margin: 14px 0 18px; line-height: 1.85; font-weight: 500; color: #f2f1fa; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.06); border-radius: 14px; padding: 16px 18px; }
-  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .options label { display: flex; align-items: flex-start; gap: 12px; padding: 13px 15px; border: 2px solid rgba(255,255,255,.09); border-radius: 14px; margin-bottom: 0; cursor: pointer; transition: all .15s; font-size: 1.04rem; font-weight: 500; background: #1e1e30; color: #f2f1fa; }
-  .options label:hover { border-color: #8b5cf6; background: #232338; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(99,102,241,.3); }
-  .options label::before { content: ""; flex: none; width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; border: 2px solid #7c7ca0; background: transparent; transition: all .15s; }
-  .options label.selected { background: var(--accent-soft); border-color: #a78bfa; box-shadow: 0 4px 18px rgba(99,102,241,.4); }
-  .options label.selected::before { border-color: #a78bfa; background: #a78bfa; box-shadow: inset 0 0 0 4px #1e1e30; }
-  .options input { position: absolute; opacity: 0; pointer-events: none; }
-  .ul { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; text-decoration-color: #a5b4fc; }
-  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
-  .pager .page-info { font-weight: 700; color: var(--muted); }
-  button { font: inherit; cursor: pointer; border: none; border-radius: 999px; padding: 12px 24px; font-weight: 700; }
-  .btn-primary { background: #4f46e5; color: #fff; box-shadow: 0 4px 18px rgba(79,70,229,.4); transition: transform .15s, box-shadow .15s, filter .15s; }
-  .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.1); box-shadow: 0 8px 24px rgba(79,70,229,.45); }
-  .btn-primary:disabled { background: #2a2a3d; color: #77778e; cursor: not-allowed; box-shadow: none; }
-  .btn-ghost { background: rgba(255,255,255,.06); color: #d6c9ff; border: 2px solid rgba(255,255,255,.12); }
-  .btn-ghost:hover { border-color: #8b5cf6; background: rgba(124,58,237,.2); }
-  .submit-bar { position: sticky; bottom: 0; background: rgba(11,11,22,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 16px; display: flex; justify-content: center; box-shadow: 0 -4px 24px rgba(0,0,0,.5); }
-  .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .submit-bar .hint { color: var(--muted); font-size: .9rem; }
-  /* Results */
-  .score-card { background: #1e1b3a; border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: 34px 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow-lg); }
-  .score-card .big { font-size: 3rem; font-weight: 800; line-height: 1.05; color: #a5b4fc; }
-  .score-card .pct { font-size: 1.15rem; color: #c9c6e0; margin-top: 6px; font-weight: 700; }
-  .score-card .msg { margin-top: 10px; font-size: 1rem; color: #e6e4f5; }
-  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-  .filters button { padding: 9px 18px; }
-  .filters button.active { background: #4f46e5; color: #fff; border-color: transparent; box-shadow: 0 2px 12px rgba(79,70,229,.35); }
-  .review-card { background: #1a1a2c; border: 1px solid var(--border); border-radius: 20px; padding: 22px; margin-bottom: 14px; box-shadow: var(--shadow); }
-  .review-card.correct { border-left: 5px solid #10b981; }
-  .review-card.wrong { border-left: 5px solid #f43f5e; }
-  .verdict { display: inline-block; font-weight: 800; font-size: .9rem; margin-bottom: 8px; padding: 4px 14px; border-radius: 999px; color: #fff; }
-  .verdict.ok { background: #059669; }
-  .verdict.no { background: #e11d48; }
-  .review-card .ans-line { margin: 4px 0; }
-  .review-card .ans-line b { font-weight: 700; }
-  .review-card .ans-line .mine-wrong { color: var(--red); }
-  .review-card .ans-line .right { color: var(--green); }
-  .rev-opts { margin: 10px 0 4px; }
-  .rev-opt { display: flex; align-items: flex-start; gap: 8px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.09); border-radius: 12px; margin-bottom: 6px; font-size: .98rem; line-height: 1.6; background: #1e1e30; }
-  .rev-opt-correct { background: var(--green-bg); border-color: #10b981; }
-  .rev-opt-mine-wrong { background: var(--red-bg); border-color: #f43f5e; }
-  .rev-opt .rev-text { flex: 1; }
-  .rev-opt .badge { flex: none; font-size: .78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
-  .badge-correct { background: #059669; color: #fff; }
-  .badge-mine { background: #059669; color: #fff; }
-  .badge-mine-wrong { background: #e11d48; color: #fff; }
-  .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
-  .explain { background: #12101f; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px 18px; margin-top: 14px; font-size: .97rem; color: #d9d7ea; }
-  .explain b { color: #d6c9ff; }
-  .explain-label { font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #a78bfa; margin-bottom: 10px; }
-  .explain-stem { background: rgba(99,102,241,.18); border-left: 4px solid #a78bfa; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; line-height: 1.75; color: #f2f1fa; }
-  .exp-line { padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.07); line-height: 1.75; border-radius: 8px; }
-  .exp-line:first-of-type { border-top: none; }
-  .exp-line.exp-ok { background: var(--green-bg); border-top: none; }
-  .exp-mark { font-weight: 800; margin-left: 4px; }
-  .exp-mark.ok { color: #34d399; }
-  .exp-mark.no { color: #fb7185; }
-  .exp-note { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.4); border-left: 4px solid #f59e0b; border-radius: 10px; padding: 12px 14px; margin-top: 12px; line-height: 1.75; color: #fde9c8; }
-  .hidden { display: none; }
-  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
-  @media (max-width: 520px) {
-    header h1 { font-size: 1.1rem; }
-    .q-text { font-size: 1.05rem; }
-    .submit-bar .hint { display: none; }
-    .score-card .big { font-size: 2.4rem; }
-  }
-  @media (max-width: 600px) {
-    header { padding: 12px 12px 10px; }
-    .back-btn { padding: 6px 12px; font-size: .82rem; margin-bottom: 8px; }
-    header h1 { font-size: 1.08rem; line-height: 1.25; }
-    header p { font-size: .75rem; line-height: 1.35; }
-    .progress-wrap { margin-top: 8px; height: 6px; }
-    .progress-text { font-size: .74rem; margin-top: 5px; }
-    .autosave-note { font-size: .68rem; margin-top: 2px; }
-    main { padding: 16px 12px 80px; }
-    .q-card { padding: 18px; border-radius: 16px; }
-    .options label { padding: 11px 12px; font-size: 1rem; }
-  }
-
+body{font-family:"Plus Jakarta Sans","Noto Sans KR",system-ui,sans-serif;background:#0b0b16;color:#f2f1fa;margin:0}
+header{background:#312e81;padding:22px 16px 20px}
+.header-inner{max-width:760px;margin:0 auto}
+.back{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);color:#e0e7ff;font-weight:700;font-size:.88rem;padding:8px 16px;border-radius:999px;text-decoration:none;border:1px solid rgba(255,255,255,.14);margin-bottom:14px}
+.back:hover{background:rgba(255,255,255,.18)}
+header h1{font-size:1.5rem;font-weight:800;margin:0;line-height:1.25}
+header p{color:#c7d2fe;margin:6px 0 0;font-size:.93rem}
+.summary{max-width:760px;margin:0 auto;padding:20px 16px 0}
+.summary-row{display:flex;justify-content:space-between;font-size:.88rem;font-weight:700;color:#a5b4fc}
+.pbar{height:8px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden;margin-top:8px}
+.pbar>i{display:block;height:100%;background:#a5b4fc;width:0%;border-radius:999px;transition:width .3s}
+.wrap{max-width:760px;margin:0 auto;padding:18px 16px 40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+a.set{display:block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:20px;text-decoration:none;color:#f2f1fa;transition:transform .15s,border-color .15s}
+a.set:hover{transform:translateY(-2px);border-color:#4f46e5}
+.set-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chip{font-size:.75rem;font-weight:800;letter-spacing:.04em;color:#fff;background:#4f46e5;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.range{font-size:1.3rem;font-weight:800}
+.overall{color:#9d9db4;font-size:.84rem;font-weight:600;margin-top:3px}
+a.set .pbar{margin-top:16px}
+.ptext{font-size:.85rem;font-weight:700;margin-top:7px;color:#c7d2fe}
+.cta{display:inline-block;background:#4f46e5;color:#fff;font-weight:800;padding:9px 18px;border-radius:999px;margin-top:14px;font-size:.92rem}
+.cta.done{background:rgba(255,255,255,.12);color:#e0e7ff;border:1px solid rgba(255,255,255,.16)}
+.foot{margin-top:28px;border-top:1px solid rgba(255,255,255,.09);padding-top:16px;color:#9d9db4;font-size:.88rem;line-height:1.55}
+.foot a{color:#c7d2fe}
+footer{text-align:center;color:#9d9db4;font-size:.82rem;padding:20px}
+@media (max-width:600px){
+header{padding:18px 12px 16px}
+header h1{font-size:1.25rem}
+.grid{grid-template-columns:1fr;gap:12px}
+a.set{padding:18px}
+.summary{padding:16px 12px 0}
+.wrap{padding:14px 12px 32px}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="back-btn">&larr; Back to Home</a>
-    <h1>비슷한 말 — Similar Words</h1>
-    <p>200 questions &bull; EPS-TOPIK 비슷한 말 &mdash; choose the similar word &bull; Answers are AI-researched (the book has no answer key) &bull; Explanations in Nepali</p>
-    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-    <div class="progress-text" id="progressText">0 / 200 answered</div>
-    <div class="autosave-note">Progress will be auto-saved.</div>
-  </div>
-</header>
-
-<main id="quizView">
-  <div id="questionList"></div>
-  <div class="pager">
-    <button class="btn-ghost" id="prevBtn">&larr; Previous</button>
-    <span class="page-info" id="pageInfo"></span>
-    <button class="btn-ghost" id="nextBtn">Next &rarr;</button>
-  </div>
-</main>
-
-<div class="submit-bar" id="submitBar">
-  <div class="inner">
-    <span class="hint" id="submitHint">Answer all 200, then submit.</span>
-    <div style="display:flex; gap:8px; flex:none;">
-      <button class="btn-ghost" id="clearBtn" style="padding:11px 16px;">Clear all</button>
-      <button class="btn-primary" id="submitBtn">Submit Quiz</button>
-    </div>
-  </div>
+<header><div class="header-inner">
+<a class="back" href="index.html">&larr; Back to Home</a>
+<h1>비슷한 말 &mdash; Similar Words</h1>
+<p>200 questions &middot; 4 sets of 50 &mdash; pick a set to start.</p>
+</div></header>
+<div class="summary">
+<div class="summary-row"><span>Section progress</span><span id="sumText">0/200 answered</span></div>
+<div class="pbar"><i id="sumBar"></i></div>
 </div>
-
-<main id="resultView" class="hidden">
-  <div class="score-card">
-    <div class="big" id="scoreBig"></div>
-    <div class="pct" id="scorePct"></div>
-    <div class="msg" id="scoreMsg"></div>
-    <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-      <button class="btn-primary" id="retryBtn">Try Again</button>
-      <button class="btn-ghost" id="reviewTopBtn">Back to top</button>
-    </div>
-  </div>
-  <div class="filters">
-    <button class="btn-ghost active" data-filter="all">All questions</button>
-    <button class="btn-ghost" data-filter="wrong">Wrong only</button>
-    <button class="btn-ghost" data-filter="correct">Correct only</button>
-  </div>
-  <div id="reviewList"></div>
-</main>
-
+<div class="wrap">
+<div class="grid">
+<a class="set" href="set-05-q201-250.html"><div class="set-top"><span class="range">Q1&ndash;50</span><span class="chip">Set 1</span></div><div class="overall">Questions 201&ndash;250 overall</div><div class="pbar"><i id="bar-0"></i></div><div class="ptext" id="txt-0">Not started</div><span class="cta" id="cta-0">Start &rarr;</span></a>
+<a class="set" href="set-06-q251-300.html"><div class="set-top"><span class="range">Q51&ndash;100</span><span class="chip">Set 2</span></div><div class="overall">Questions 251&ndash;300 overall</div><div class="pbar"><i id="bar-1"></i></div><div class="ptext" id="txt-1">Not started</div><span class="cta" id="cta-1">Start &rarr;</span></a>
+<a class="set" href="set-07-q301-350.html"><div class="set-top"><span class="range">Q101&ndash;150</span><span class="chip">Set 3</span></div><div class="overall">Questions 301&ndash;350 overall</div><div class="pbar"><i id="bar-2"></i></div><div class="ptext" id="txt-2">Not started</div><span class="cta" id="cta-2">Start &rarr;</span></a>
+<a class="set" href="set-08-q351-400.html"><div class="set-top"><span class="range">Q151&ndash;200</span><span class="chip">Set 4</span></div><div class="overall">Questions 351&ndash;400 overall</div><div class="pbar"><i id="bar-3"></i></div><div class="ptext" id="txt-3">Not started</div><span class="cta" id="cta-3">Start &rarr;</span></a>
+</div>
+<div class="foot">Each set has 50 questions, 20 per page &mdash; your answers save automatically on this device, so you can stop mid-set and continue later. This book has NO printed answer key &mdash; all answers and explanations are AI-researched in Nepali. <a href="full-quiz.html">All 400 questions (full quiz)</a></div>
+</div>
+<footer>EPS-TOPIK Opposite + Similar Words Quiz</footer>
 <script>
-const QUESTIONS = [{"n": "1", "q": "이용", "options": ["허용", "보통", "사용", "이익"], "answer": 2, "explain": "प्रश्नको अर्थ: 이용 भनेको प्रयोग गर्नु वा उपयोग गर्नु हो।\n① 허용 भनेको अनुमति दिनु हो ✗\n② 보통 भनेको साधारणतया हो ✗\n③ 사용 भनेको प्रयोग गर्नु हो र यो 이용 को एकदम मिल्दो अर्थ हो ✓\n④ 이익 भनेको नाफा हो ✗", "label": "비슷한 말 · 책 1"}, {"n": "2", "q": "부치다", "options": ["붙이다", "고치다", "보내다", "마치다"], "answer": 2, "explain": "प्रश्नको अर्थ: 부치다 भनेको पठाउनु वा पत्र आदि पोस्ट गर्नु भन्ने हो।\n① 붙이다 भनेको टाँस्नु हो र यो 부치다 को मिल्दो शब्द होइन ✗\n② 고치다 भनेको मर्मत गर्नु वा सुधार गर्नु हो र यो मिलेन ✗\n③ 보내다 भनेको पठाउनु हो र यो 부치다 सँग एकदम मिल्दो शब्द हो ✓\n④ 마치다 भनेको समाप्त गर्नु वा सिध्याउनु हो र यो मिलेन ✗", "label": "비슷한 말 · 책 2"}, {"n": "3", "q": "물어보다", "options": ["상담하다", "문의하다", "예약하다", "안내하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 물어보다 भनेको सोध्नु हो।\n① 상담하다 भनेको परामर्श गर्नु हो ✗\n② 문의하다 भनेको सोधपुछ गर्नु हो र यो 물어보다 को एकदम मिल्दो अर्थ हो ✓\n③ 예약하다 भनेको रिजर्भ गर्नु हो ✗\n④ 안내하다 भनेको जानकारी दिनु हो ✗", "label": "비슷한 말 · 책 3"}, {"n": "4", "q": "환송하다", "options": ["갈아타다", "환불하다", "송별하다", "교환하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 환송하다 भनेको बिदाइ गर्नु हो।\n① 갈아타다 भनेको गाडी फेर्नु हो ✗\n② 환불하다 भनेको पैसा फिर्ता लिनु हो ✗\n③ 송별하다 भनेको बिदाइ गर्नु हो र यो 환송하다 को एकदम मिल्दो अर्थ हो ✓\n④ 교환하다 भनेको साटासाट गर्नु हो ✗", "label": "비슷한 말 · 책 4"}, {"n": "5", "q": "떠들다", "options": ["더럽다", "어지럽다", "가렵다", "시끄럽다"], "answer": 3, "explain": "प्रश्नको अर्थ: 떠들다 भनेको हल्ला गर्नु हो।\n① 더럽다 भनेको फोहोर हुनु हो ✗\n② 어지럽다 भनेको अस्तव्यस्त हुनु हो ✗\n③ 가렵다 भनेको चिलाउनु हो ✗\n④ 시끄럽다 भनेको कोलाहलपूर्ण वा हल्ला हुनु हो र यो 떠들다 को अर्थसँग मिल्छ ✓", "label": "비슷한 말 · 책 5"}, {"n": "6", "q": "멈추다", "options": ["중단", "거절", "충전", "표면"], "answer": 0, "explain": "प्रश्नको अर्थ: 멈추다 भनेको रोक्नु वा अडकिनु हो।\n① 중단 भनेको कार्य स्थगित गर्नु वा रोक्नु हो र यो 멈추다 सँग मिल्छ ✓\n② 거절 भनेको अस्वीकार गर्नु हो ✗\n③ 충전 भनेको चार्ज गर्नु हो ✗\n④ 표면 भनेको सतह हो ✗", "label": "비슷한 말 · 책 6"}, {"n": "7", "q": "부족하다", "options": ["넘어가다", "충분하다", "잊어먹다", "모자라다"], "answer": 3, "explain": "प्रश्नको अर्थ: 부족하다 भनेको अपुग हुनु वा नपुग्नु हो।\n① 넘어가다 भनेको पार गर्नु हो ✗\n② 충분하다 भनेको पुग्दो हुनु हो (यो उल्टो अर्थ हो) ✗\n③ 잊어먹다 भनेको बिर्सनु हो ✗\n④ 모자라다 भनेको पनि नपुग्नु वा कमी हुनु हो र यो 부족하다 को एकदम मिल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 7"}, {"n": "8", "q": "떠나다", "options": ["그만하다", "출발하다", "뛰어가다", "도착하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 떠나다 भनेको प्रस्थान गर्नु वा छाडेर जानु हो।\n① 그만하다 भनेको रोक्नु हो ✗\n② 출발하다 भनेको प्रस्थान गर्नु वा छुट्नु हो र यो 떠나다 को एकदम मिल्दो अर्थ हो ✓\n③ 뛰어가다 भनेको दगुरेर जानु हो ✗\n④ 도착하다 भनेको पुग्नु हो ✗", "label": "비슷한 말 · 책 8"}, {"n": "9", "q": "실수하다", "options": ["번거롭다", "불쾌하다", "잘못하다", "피곤하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 실수하다 भनेको गलती गर्नु हो।\n① 번거롭다 भनेको झन्झटिलो हुनु हो ✗\n② 불쾌하다 भनेको असन्तुष्ट हुनु हो ✗\n③ 잘못하다 भनेको गल्ती गर्नु हो र यो 실수하다 को एकदम मिल्दो अर्थ हो ✓\n④ 피곤하다 भनेको थाक्नु हो ✗", "label": "비슷한 말 · 책 9"}, {"n": "10", "q": "답변하다", "options": ["질문하다", "궁금하다", "대답하다", "통역하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 답변하다 भनेको उत्तर दिनु वा जवाफ दिनु भन्ने हो।\n① 질문하다 भनेको प्रश्न गर्नु हो र यो यसको उल्टो अर्थ दिने शब्द हो, मिल्दो होइन ✗\n② 궁금하다 भनेको जिज्ञासा हुनु वा मनमा कौतुहल हुनु हो र यो मिलेन ✗\n③ 대답하다 भनेको जवाफ दिनु हो र यो 답변하다 सँग एकदम मिल्दो शब्द हो ✓\n④ 통역하다 भनेको दोभाषे हुनु वा भाषा अनुवाद गर्नु हो र यो मिलेन ✗", "label": "비슷한 말 · 책 10"}, {"n": "11", "q": "선발하다", "options": ["다르다", "고르다", "바르다", "마르다"], "answer": 1, "explain": "प्रश्नको अर्थ: 선발하다 भनेको छान्नु वा चयन गर्नु हो।\n① 다르다 भनेको फरक हुनु हो, त्यसैले मिल्दैन ✗\n② 고르다 भनेको छान्नु वा रोज्नु हो, जुन 선발하다 सँग एकदम मिल्छ ✓\n③ 바르다 भनेको सही हुनु वा लगाउनु हो, त्यसैले मिल्दैन ✗\n④ 마르다 भनेको सुक्नु वा पातलो हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 11"}, {"n": "12", "q": "건너편", "options": ["똑바로", "오른쪽", "맞은편", "우회전"], "answer": 2, "explain": "प्रश्नको अर्थ: 건너편 भनेको पारिपट्टि वा तिल्लो छेउ हो।\n① 똑바로 भनेको सिधा हुनु हो, त्यसैले मिल्दैन ✗\n② 오른쪽 भनेको दाहिनेतिर हो, त्यसैले मिल्दैन ✗\n③ 맞은편 भनेको पारिपट्टि वा सामनेको भाग हो, जुन 건너편 सँग एकदम मिल्छ ✓\n④ 우회전 भनेको दाहिनेतिर मोडिनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 12"}, {"n": "13", "q": "계획", "options": ["예정", "예약", "관심", "결정"], "answer": 0, "explain": "प्रश्नको अर्थ: 계획 भनेको योजना हो।\n① 예정 भनेको पूर्वयोजना वा तालिका हो, जुन 계획 सँग एकदम मिल्छ ✓\n② 예약 भनेको बुकिङ वा रिजर्भेसन गर्नु हो, त्यसैले मिल्दैन ✗\n③ 관심 भनेको चासो वा ध्यान दिनु हो, त्यसैले मिल्दैन ✗\n④ 결정 भनेको निर्णय गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 13"}, {"n": "14", "q": "시키다", "options": ["명령", "제안", "주문", "규칙"], "answer": 2, "explain": "प्रश्नको अर्थ: 시키다 भनेको आदेश दिनु वा अर्डर गर्नु हो।\n① 명령 भनेको आदेश हो, तर यो संज्ञा हो र अर्थमा फरक छ ✗\n② 제안 भनेको प्रस्ताव गर्नु हो, त्यसैले मिल्दैन ✗\n③ 주문 भनेको अर्डर गर्नु हो, जुन 시키다 को अर्डर गर्ने अर्थसँग एकदम मिल्छ ✓\n④ 규칙 भनेको नियम हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 14"}, {"n": "15", "q": "당기다", "options": ["열다", "끌다", "밀다", "물다"], "answer": 1, "explain": "प्रश्नको अर्थ: 당기다 भनेको तान्नु हो।\n① 열다 भनेको खोल्नु हो, त्यसैले मिल्दैन ✗\n② 끌다 भनेको तान्नु वा खिच्नु हो, जुन 당기다 सँग एकदम मिल्छ ✓\n③ 밀다 भनेको धकेल्नु हो, त्यसैले मिल्दैन ✗\n④ 물다 भनेको टोक्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 15"}, {"n": "16", "q": "느끼다", "options": ["권하다", "슬프다", "정하다", "깨닫다"], "answer": 3, "explain": "प्रश्नको अर्थ: 느끼다 भनेको महसुस गर्नु हो।\n① 권하다 भनेको सल्लाह दिनु वा सुझाउनु हो, त्यसैले मिल्दैन ✗\n② 슬프다 भनेको दुखी हुनु हो, त्यसैले मिल्दैन ✗\n③ 정하다 भनेको निश्चित गर्नु हो, त्यसैले मिल्दैन ✗\n④ 깨닫다 भनेको महसुस गर्नु वा बुझ्नु हो, जुन 느끼다 सँग मिल्छ ✓", "label": "비슷한 말 · 책 16"}, {"n": "17", "q": "만들다", "options": ["제작하다", "마련하다", "치료하다", "장만하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 만들다 भनेको बनाउनु हो।\n① 제작하다 भनेको उत्पादन गर्नु वा बनाउनु हो, जुन 만들다 सँग एकदम मिल्छ ✓\n② 마련하다 भनेको जुटाउनु वा तयार पार्नु हो, त्यसैले मिल्दैन ✗\n③ 치료하다 भनेको उपचार गर्नु हो, त्यसैले मिल्दैन ✗\n④ 장만하다 भनेको जोहो गर्नु वा किन्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 17"}, {"n": "18", "q": "친하다", "options": ["친절하다", "가깝다", "건강하다", "원하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 친하다 भनेको घनिष्ठ वा साथी हुनु हो।\n① 친절하다 भनेको दयालु हुनु हो, त्यसैले मिल्दैन ✗\n② 가깝다 भनेको नजिक हुनु हो, जसले घनिष्ठ सम्बन्धलाई बुझाउँछ र 친하다 सँग एकदम मिल्छ ✓\n③ 건강하다 भनेको स्वस्थ हुनु हो, त्यसैले मिल्दैन ✗\n④ 원하다 भनेको चाहनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 18"}, {"n": "19", "q": "막히다", "options": ["떨어지다", "밀폐되다", "불편하다", "정지되다"], "answer": 3, "explain": "प्रश्नको अर्थ: 막히다 भनेको बन्द हुनु वा जाम हुनु हो।\n① 떨어지다 भनेको खस्नु वा सकिनु हो, त्यसैले मिल्दैन ✗\n② 밀폐되다 भनेको बन्द हुनु हो, तर यो हावा नछिर्ने अर्थमा हुन्छ ✗\n③ 불편하다 भनेको असहज हुनु हो, त्यसैले मिल्दैन ✗\n④ 정지되다 भनेको रोकिनु वा बन्द हुनु हो, जुन 막히다 सँग मिल्छ ✓", "label": "비슷한 말 · 책 19"}, {"n": "20", "q": "지각하다", "options": ["낫다", "빠르다", "늦다", "느리다"], "answer": 2, "explain": "प्रश्नको अर्थ: 지각하다 भनेको ढिलो गर्नु हो।\n① 낫다 भनेको निको हुनु वा राम्रो हुनु हो, त्यसैले मिल्दैन ✗\n② 빠르다 भनेको छिटो हुनु हो, त्यसैले मिल्दैन ✗\n③ 늦다 भनेको ढिलो हुनु हो, जुन 지각하다 सँग एकदम मिल्छ ✓\n④ 느리다 भनेको सुस्त हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 20"}, {"n": "21", "q": "감소하다", "options": ["줄다", "졸다", "늘다", "적다"], "answer": 0, "explain": "प्रश्नको अर्थ: 감소하다 भनेको घट्नु हो।\n① 줄다 भनेको घट्नु वा कम हुनु हो, जुन 감소하다 सँग एकदम मिल्छ ✓\n② 졸다 भनेको उम्लनु वा निदामारिनु हो, त्यसैले मिल्दैन ✗\n③ 늘다 भनेको बढ्नु हो, त्यसैले मिल्दैन ✗\n④ 적다 भनेको थोरै हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 21"}, {"n": "22", "q": "포장하다", "options": ["묶다", "싸다", "사다", "팔다"], "answer": 1, "explain": "प्रश्नको अर्थ: 포장하다 भनेको प्याकिङ गर्नु हो।\n① 묶다 भनेको बाँध्नु हो, त्यसैले मिल्दैन ✗\n② 싸다 भनेको पोको पार्नु वा प्याक गर्नु हो, जुन 포장하다 सँग एकदम मिल्छ ✓\n③ 사다 भनेको किन्नु हो, त्यसैले मिल्दैन ✗\n④ 팔다 भनेको बेच्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 22"}, {"n": "23", "q": "늘어나다", "options": ["줄어들다", "넘어가다", "증가하다", "감소하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 늘어나다 भनेको बढ्नु वा फैलिँदै जानु हो।\n① 줄어들다 भनेको घट्नु हो, त्यसैले मिल्दैन ✗\n② 넘어가다 भनेको पार गर्नु हो, त्यसैले मिल्दैन ✗\n③ 증가하다 भनेको बृद्धि हुनु वा बढ्नु हो, जुन 늘어나다 सँग एकदम मिल्छ ✓\n④ 감소하다 भनेको घट्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 23"}, {"n": "24", "q": "추락하다", "options": ["넘어지다", "떨어지다", "부딪히다", "감전되다"], "answer": 1, "explain": "प्रश्नको अर्थ: 추락하다 भनेको तल खस्नु (पतन हुनु) हो।\n① 넘어지다 भनेको लड्नु हो, त्यसैले मिल्दैन ✗\n② 떨어지다 भनेको खस्नु वा झर्नु हो, जुन 추락하다 सँग एकदम मिल्छ ✓\n③ 부딪히다 भनेको ठोक्किनु हो, त्यसैले मिल्दैन ✗\n④ 감전되다 भनेको करेन्ट लाग्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 24"}, {"n": "25", "q": "보수하다", "options": ["필요하다", "수리하다", "준비하다", "정지하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 보수하다 भनेको मर्मत गर्नु हो।\n① 필요하다 भनेको आवश्यक हुनु हो, त्यसैले मिल्दैन ✗\n② 수리하다 भनेको मर्मत गर्नु हो, जुन 보수하다 सँग एकदम मिल्छ ✓\n③ 준비하다 भनेको तयारी गर्नु हो, त्यसैले मिल्दैन ✗\n④ 정지하다 भनेको रोक्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 25"}, {"n": "26", "q": "밉다", "options": ["맵다", "싫다", "입다", "끓다"], "answer": 1, "explain": "प्रश्नको अर्थ: 밉다 भनेको मन नपर्नु वा घृणा हुनु हो।\n① 맵다 भनेको पिरो हुनु हो, त्यसैले यो मिल्दैन ✗\n② 싫다 भनेको मन नपर्नु वा रिस उठ्नु हो, त्यसैले यो समान अर्थ दिने शब्द हो ✓\n③ 입다 भनेको लगाउनु हो, त्यसैले यो मिल्दैन ✗\n④ 끓다 भनेको उमाल्नु वा उम्लनु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 26"}, {"n": "27", "q": "개발", "options": ["수출", "노력", "발전", "결과"], "answer": 2, "explain": "प्रश्नको अर्थ: 개발 भनेको विकास गर्नु वा सुधार गर्नु हो।\n① 수출 भनेको निर्यात गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 노력 भनेको प्रयास गर्नु हो, विकाससँग यसको अर्थ फरक छ ✗\n③ 발전 भनेको पनि विकास वा उन्नति हुनु हो, त्यसैले यो मिल्दो शब्द हो ✓\n④ 결과 भनेको परिणाम हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 27"}, {"n": "28", "q": "허락", "options": ["체류", "거절", "거주", "승낙"], "answer": 3, "explain": "प्रश्नको अर्थ: 허락 भनेको अनुमति दिनु वा स्वीकृति दिनु हो।\n① 체류 भनेको बसोबास गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 거절 भनेको अस्वीकार गर्नु हो, यो त विपरीत अर्थ हो ✗\n③ 거주 भनेको पनि बसोबास गर्नु हो, त्यसैले यो मिल्दैन ✗\n④ 승낙 भनेको पनि अनुमति दिनु वा स्वीकार गर्नु हो, त्यसैले यो मिल्दो शब्द हो ✓", "label": "비슷한 말 · 책 28"}, {"n": "29", "q": "예방", "options": ["방지", "예정", "금지", "예약"], "answer": 0, "explain": "प्रश्नको अर्थ: 예방 भनेको रोकथाम गर्नु हो।\n① 방지 भनेको पनि कुनै कुरा हुनबाट रोक्नु वा रोकथाम गर्नु हो, त्यसैले यो मिल्दो शब्द हो ✓\n② 예정 भनेको योजना हुनु हो, त्यसैले यो मिल्दैन ✗\n③ 금지 भनेको प्रतिबन्ध लगाउनु हो, त्यसैले यो मिल्दैन ✗\n④ 예약 भनेको बुकिङ वा आरक्षित गर्नु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 29"}, {"n": "30", "q": "새로운", "options": ["자연적", "문화적", "대표적", "현대적"], "answer": 3, "explain": "प्रश्नको अर्थ: 새로운 भनेको नयाँ हो।\n① 자연적 भनेको प्राकृतिक हो, यो उस्तै अर्थ होइन ✗\n② 문화적 भनेको सांस्कृतिक हो, यो उस्तै अर्थ होइन ✗\n③ 대표적 भनेको प्रतिनिधिमूलक हो, यो उस्तै अर्थ होइन ✗\n④ 현대적 भनेको आधुनिक हो, जुन नयाँ भन्ने अर्थसँग मिल्दोजुल्दो हुन्छ ✓", "label": "비슷한 말 · 책 30"}, {"n": "31", "q": "드디어", "options": ["나중에", "우선", "마침내", "항상"], "answer": 2, "explain": "प्रश्नको अर्थ: 드디어 भनेको अन्त्यमा वा आखिरमा भन्ने हुन्छ।\n① 나중에 भनेको पछि हो, त्यसैले यो मिल्दैन ✗\n② 우선 भनेको पहिलो प्राथमिकतामा भन्ने बुझाउँछ ✗\n③ 마침내 भनेको पनि अन्त्यमा वा आखिरमा भन्ने अर्थ दिन्छ, त्यसैले यो मिल्दो शब्द हो ✓\n④ 항상 भनेको सधैँ हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 31"}, {"n": "32", "q": "경험", "options": ["보험", "구경", "체험", "입장"], "answer": 2, "explain": "प्रश्नको अर्थ: 경험 भनेको अनुभव हुनु हो।\n① 보험 भनेको बिमा हो, त्यसैले यो मिल्दैन ✗\n② 구경 भनेको अवलोकन गर्नु वा घुम्नु हो ✗\n③ 체험 भनेको प्रत्यक्ष अनुभव गर्नु वा अभ्यास गर्नु हो, त्यसैले यो मिल्दो शब्द हो ✓\n④ 입장 भनेको प्रवेश गर्नु वा दृष्टिकोण हो ✗", "label": "비슷한 말 · 책 32"}, {"n": "33", "q": "나이", "options": ["연간", "연령", "성명", "명령"], "answer": 1, "explain": "प्रश्नको अर्थ: 나이 भनेको उमेर हो।\n① 연간 भनेको वार्षिक वा वर्षभरि हो, त्यसैले यो मिल्दैन ✗\n② 연령 भनेको उमेरको समूह वा उमेर भन्ने बुझाउँछ, त्यसैले यो मिल्दो शब्द हो ✓\n③ 성명 भनेको नाम र थर हो, त्यसैले यो मिल्दैन ✗\n④ 명령 भनेको आदेश हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 33"}, {"n": "34", "q": "개다", "options": ["걷다", "깨다", "접다", "담다"], "answer": 2, "explain": "प्रश्नको अर्थ: 개다 भनेको कपडा वा ओछ्यान पट्याउनु हो।\n① 걷다 भनेको हिँड्नु वा बाटोमा हिँड्नु हो, यो मिल्दैन ✗\n② 깨다 भनेको तोड्नु वा ब्यूँझनु हो, यो मिल्दैन ✗\n③ 접다 भनेको पट्याउनु हो, यो 개다 सँग एकदम मिल्छ ✓\n④ 담다 भनेको राख्नु वा भर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 34"}, {"n": "35", "q": "바라다", "options": ["원하다", "이기다", "정하다", "버리다"], "answer": 0, "explain": "प्रश्नको अर्थ: 바라다 भनेको इच्छा गर्नु वा चाहनु हो।\n① 원하다 भनेको पनि चाहनु वा इच्छा गर्नु हो, त्यसैले यो मिल्दो शब्द हो ✓\n② 이기다 भनेको जित्नु हो, त्यसैले यो मिल्दैन ✗\n③ 정하다 भनेको निश्चित गर्नु हो, त्यसैले यो मिल्दैन ✗\n④ 버리다 भनेको फ्याँक्नु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 35"}, {"n": "36", "q": "키우다", "options": ["가르다", "마르다", "기르다", "거두다"], "answer": 2, "explain": "प्रश्नको अर्थ: 키우다 भनेको हुर्काउनु वा बढाउनु हो।\n① 가르다 भनेको छुट्याउनु वा बाँड्नु हो, त्यसैले यो मिल्दैन ✗\n② 마르다 भनेको सुक्नु हो, त्यसैले यो मिल्दैन ✗\n③ 기르다 भनेको हुर्काउनु वा पाल्नु हो, त्यसैले यो मिल्दो शब्द हो ✓\n④ 거두다 भनेको बाली भित्र्याउनु वा प्राप्त गर्नु हो ✗", "label": "비슷한 말 · 책 36"}, {"n": "37", "q": "힘들다", "options": ["노력하다", "복잡하다", "마련하다", "곤란하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 힘들다 भनेको गाह्रो हुनु वा कठिन हुनु हो।\n① 노력하다 भनेको प्रयास गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 복잡하다 भनेको जटिल वा भिडभाड हुनु हो ✗\n③ 마련하다 भनेको तयार पार्नु हो, त्यसैले यो मिल्दैन ✗\n④ 곤란하다 भनेको समस्यामा पर्नु वा गाह्रो हुनु हो, त्यसैले यो मिल्दो शब्द हो ✓", "label": "비슷한 말 · 책 37"}, {"n": "38", "q": "거두다", "options": ["관리하다", "수확하다", "기대하다", "재배하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 거두다 भनेको बाली भित्र्याउनु वा परिणाम प्राप्त गर्नु हो।\n① 관리하다 भनेको व्यवस्थापन गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 수확하다 भनेको बाली भित्र्याउनु वा काट्नु हो, त्यसैले यो मिल्दो शब्द हो ✓\n③ 기대하다 भनेको अपेक्षा गर्नु हो, त्यसैले यो मिल्दैन ✗\n④ 재배하다 भनेको खेती गर्नु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 38"}, {"n": "39", "q": "지키다", "options": ["보호하다", "포함하다", "빌려주다", "확인하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 지키다 भनेको पालना गर्नु वा बचाउनु हो।\n① 보호하다 भनेको संरक्षण गर्नु वा बचाउनु हो, त्यसैले यो मिल्दो शब्द हो ✓\n② 포함하다 भनेको समावेश गर्नु हो, त्यसैले यो मिल्दैन ✗\n③ 빌려주다 भनेको ऋण दिनु वा सापटी दिनु हो ✗\n④ 확인하다 भनेको पुष्टि गर्नु वा जाँच गर्नु हो ✗", "label": "비슷한 말 · 책 39"}, {"n": "40", "q": "생기다", "options": ["일어나다", "사라지다", "발생하다", "상상하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 생기다 भनेको उत्पन्न हुनु, बन्नु वा देखापर्नु हो।\n① 일어나다 भनेको उठ्नु वा घट्नु हो, तर यसको अर्थ अलि फरक हुन्छ ✗\n② 사라지다 भनेको हराउनु हो, यो त विपरीत हो ✗\n③ 발생하다 भनेको घटना घट्नु वा उत्पन्न हुनु हो, त्यसैले यो मिल्दो शब्द हो ✓\n④ 상상하다 भनेको कल्पना गर्नु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 40"}, {"n": "41", "q": "마련하다", "options": ["설명하다", "한가하다", "준비하다", "엄격하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 마련하다 भनेको व्यवस्था गर्नु वा तयार पार्नु हो।\n① 설명하다 भनेको स्पष्ट पार्नु वा बुझाउनु हो, यो मिल्दैन ✗\n② 한가하다 भनेको फुर्सदिलो हुनु हो, यो मिल्दैन ✗\n③ 준비하다 भनेको तयारी गर्नु हो, यो 마련하다 सँग मिल्दोजुल्दो अर्थ हो ✓\n④ 엄격하다 भनेको कडा हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 41"}, {"n": "42", "q": "매진되다", "options": ["팔리다", "보이다", "살리다", "열리다"], "answer": 0, "explain": "प्रश्नको अर्थ: 매진되다 भनेको टिकट वा सामान बिक्री भई सकिनु हो।\n① 팔리다 भनेको बिक्री हुनु हो, यो 매진되다 सँग मिल्दोजुल्दो अर्थ हो ✓\n② 보이다 भनेको देखिनु हो, यो मिल्दैन ✗\n③ 살리다 भनेको बचाउनु वा जोगाउनु हो, यो मिल्दैन ✗\n④ 열리다 भनेको खुल्नु वा आयोजना हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 42"}, {"n": "43", "q": "잃어버리다", "options": ["쓰러지다", "분실하다", "문의하다", "입실하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 잃어버리다 भनेको हराउनु हो।\n① 쓰러지다 भनेको लड्नु वा ढल्नु हो, यो मिल्दैन ✗\n② 분실하다 भनेको हराउनु वा गुमाउनु हो, यो 잃어버리다 सँग मिल्दोजुल्दो अर्थ हो ✓\n③ 문의하다 भनेको सोधपुछ गर्नु हो, यो मिल्दैन ✗\n④ 입실하다 भनेको कोठामा प्रवेश गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 43"}, {"n": "44", "q": "인기가 있다", "options": ["유명하다", "보호하다", "구경하다", "조용하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 인기가 있다 भनेको लोकप्रिय हुनु हो।\n① 유명하다 भनेको प्रसिद्ध वा चर्चित हुनु हो, यो 인기가 있다 सँग मिल्दोजुल्दो अर्थ हो ✓\n② 보호하다 भनेको संरक्षण गर्नु हो, यो मिल्दैन ✗\n③ 구경하다 भनेको अवलोकन गर्नु वा हेर्नु हो, यो मिल्दैन ✗\n④ 조용하다 भनेको शान्त हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 44"}, {"n": "45", "q": "헤어지다", "options": ["돌아오다", "환영하다", "갈아타다", "이별하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 헤어지다 भनेको छुटिनु वा छुट्टिनु हो।\n① 돌아오다 भनेको फर्केर आउनु हो, यो मिल्दैन ✗\n② 환영하다 भनेको स्वागत गर्नु हो, यो मिल्दैन ✗\n③ 갈아타다 भनेको गाडी फेर्नु हो, यो मिल्दैन ✗\n④ 이별하다 भनेको बिछोड हुनु वा छुट्टिनु हो, यो 헤어지다 सँग मिल्दोजुल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 45"}, {"n": "46", "q": "시원하다", "options": ["섭섭하다", "선선하다", "유실하다", "장만하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 시원하다 भनेको चिसो वा सितल हुनु हो।\n① 섭섭하다 भनेको नरमाइलो लाग्नु वा खल्लो महसुस हुनु हो। ✗\n② 선선하다 भनेको मौसम वा हावापानीको हिसाबले एकदम चिसो वा सितल हुनु हो, त्यसैले यो मिल्दो शब्द हो। ✓\n③ 유실하다 भनेको हराउनु वा नष्ट हुनु हो। ✗\n④ 장만하다 भनेको केही कुरा जुटाउनु वा तयार गर्नु हो। ✗", "label": "비슷한 말 · 책 46"}, {"n": "47", "q": "옮기다", "options": ["버리다", "고치다", "모으다", "치우다"], "answer": 3, "explain": "प्रश्नको अर्थ: 옮기다 भनेको सार्नु वा अर्को ठाउँमा पुर्याउनु हो।\n① 버리다 भनेको फाल्नु हो, यो मिल्दैन ✗\n② 고치다 भनेको मर्मत गर्नु वा सुधार्नु हो, यो मिल्दैन ✗\n③ 모으다 भनेको जम्मा गर्नु हो, यो मिल्दैन ✗\n④ 치우다 भनेको मिलाउनु वा सफा गर्नु/सार्नु हो, यो मिल्दो जुल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 47"}, {"n": "48", "q": "(애를) 쓰다", "options": ["노력하다", "주문하다", "모자라다", "착용하다"], "answer": 0, "explain": "प्रश्नको अर्थ: (애를) 쓰다 भनेको प्रयास गर्नु वा मेहनत गर्नु हो।\n① 노력하다 भनेको प्रयास गर्नु वा मेहनत गर्नु हो, यो 애를 쓰다 सँग मिल्दोजुल्दो अर्थ हो ✓\n② 주문하다 भनेको अर्डर गर्नु हो, यो मिल्दैन ✗\n③ 모자라다 भनेको नपुग्नु हो, यो मिल्दैन ✗\n④ 착용하다 भनेको लगाउनु वा पहिरिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 48"}, {"n": "49", "q": "냉수", "options": ["찬물", "음료", "온수", "금주"], "answer": 0, "explain": "प्रश्नको अर्थ: 냉수 भनेको चिसो पानी हो।\n① 찬물 भनेको चिसो पानी हो, यो 냉수 सँग मिल्दोजुल्दो अर्थ हो ✓\n② 음료 भनेको पेय पदार्थ हो, यो मिल्दैन ✗\n③ 온수 भनेको तातो पानी हो, यो मिल्दैन ✗\n④ 금주 भनेको मदिरा सेवन निषेध गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 49"}, {"n": "50", "q": "능력", "options": ["경험", "원문", "자격", "실력"], "answer": 3, "explain": "प्रश्नको अर्थ: 능력 भनेको क्षमता हो।\n① 경험 भनेको अनुभव हो, यो मिल्दैन ✗\n② 원문 भनेको मूल पाठ हो, यो मिल्दैन ✗\n③ 자격 भनेको योग्यता हो, यो मिल्दैन ✗\n④ 실력 भनेको वास्तविक क्षमता वा दक्षता हो, यो 능력 सँग मिल्दोजुल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 50"}, {"n": "51", "q": "월급", "options": ["월말", "연봉", "월봉", "연차"], "answer": 2, "explain": "प्रश्नको अर्थ: 월급 भनेको मासिक तलब हो।\n① 월말 भनेको महिनाको अन्त्य हो, यो मिल्दैन ✗\n② 연봉 भनेको वार्षिक तलब हो, यो मिल्दैन ✗\n③ 월봉 भनेको मासिक तलब वा पारिश्रमिक हो, यो 월급 सँग मिल्दोजुल्दो अर्थ हो ✓\n④ 연차 भनेको वार्षिक बिदा हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 51"}, {"n": "52", "q": "취직", "options": ["최선", "퇴직", "취업", "입장"], "answer": 2, "explain": "प्रश्नको अर्थ: 취직 भनेको जागिर खानु वा काम पाउनु हो।\n① 최선 भनेको सर्वोत्तम प्रयास हो, यो मिल्दैन ✗\n② 퇴직 भनेको जागिरबाट निवृत्त हुनु हो, यो मिल्दैन ✗\n③ 취업 भनेको रोजगारी पाउनु वा काममा लाग्नु हो, यो 취직 सँग मिल्दोजुल्दो अर्थ हो ✓\n④ 입장 भनेको प्रवेश गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 52"}, {"n": "53", "q": "세상", "options": ["이상", "세계", "상품", "시계"], "answer": 1, "explain": "प्रश्नको अर्थ: 세상 भनेको संसार वा दुनियाँ हो।\n① 이상 भनेको आदर्श वा भन्दा बढी हो, यो मिल्दैन ✗\n② 세계 भनेको संसार वा विश्व हो, यो 세상 सँग मिल्दोजुल्दो अर्थ हो ✓\n③ 상품 भनेको सामान वा वस्तु हो, यो मिल्दैन ✗\n④ 시계 भनेको घडी हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 53"}, {"n": "54", "q": "구입", "options": ["판매", "수입", "구매", "소득"], "answer": 2, "explain": "प्रश्नको अर्थ: 구입 भनेको खरिद गर्नु हो।\n① 판매 भनेको बिक्री गर्नु हो, यो मिल्दैन ✗\n② 수입 भनेको आयात गर्नु वा आम्दानी हो, यो मिल्दैन ✗\n③ 구매 भनेको किनमेल वा खरिद गर्नु हो, यो 구입 सँग मिल्दोजुल्दो अर्थ हो ✓\n④ 소득 भनेको आम्दानी हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 54"}, {"n": "55", "q": "결근", "options": ["결석", "출근", "입석", "퇴근"], "answer": 0, "explain": "प्रश्नको अर्थ: 결근 भनेको काममा अनुपस्थित हुनु (बिना जानकारी काममा नग जानु) हो।\n① 결석 भनेको विद्यालय वा कक्षमा अनुपस्थित हुनु हो, यो 결근 सँग मिल्दोजुल्दो अनुपस्थिति अर्थ हो ✓\n② 출근 भनेको काममा जानु हो, यो मिल्दैन ✗\n③ 입석 भनेको उभिएर यात्रा गर्नु हो, यो मिल्दैन ✗\n④ 퇴근 भनेको कामबाट छुट्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 55"}, {"n": "56", "q": "결혼", "options": ["이혼", "맞선", "혼인", "폐백"], "answer": 2, "explain": "प्रश्नको अर्थ: 결혼 भनेको विवाह गर्नु हो।\n① 이혼 भनेको सम्बन्धविच्छेद गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 맞선 भनेको विवाह गर्नुअघि हुने भेटघाट हो, त्यसैले यो मिलेन ✗\n③ 혼인 भनेको विवाह गर्नु हो र यो결혼 सँग एकदम मिल्छ ✓\n④ 폐백 भनेको विवाहमा गरिने एक प्रकारको चलन हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 56"}, {"n": "57", "q": "모든", "options": ["조금", "전부", "먼저", "일부"], "answer": 1, "explain": "प्रश्नको अर्थ: 모든 भनेको सबै भन्ने बुझाउँछ।\n① 조금 भनेको अलिकति हो, त्यसैले यो मिलेन ✗\n② 전부 भनेको सबै हो र यो모든 सँग एकदम मिल्छ ✓\n③ 먼저 भनेको पहिले हो, त्यसैले यो मिलेन ✗\n④ 일부 भनेको केही अंश हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 57"}, {"n": "58", "q": "규칙", "options": ["명령", "휴직", "숙식", "수칙"], "answer": 3, "explain": "प्रश्नको अर्थ: 규칙 भनेको नियम हो।\n① 명령 भनेको आदेश हो, त्यसैले यो मिलेन ✗\n② 휴직 भनेको बिदामा बस्नु हो, त्यसैले यो मिलेन ✗\n③ 숙식 भनेको बस्ने र खाने व्यवस्था हो, त्यसैले यो मिलेन ✗\n④ 수칙 भनेको पालना गर्नुपर्ने नियम वा आचारसंहिता हो र यो규칙 सँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 58"}, {"n": "59", "q": "근무지", "options": ["월급", "작업장", "수당", "체류지"], "answer": 1, "explain": "प्रश्नको अर्थ: 근무지 भनेको काम गर्ने ठाउँ हो।\n① 월급 भनेको तलब हो, त्यसैले यो मिलेन ✗\n② 작업장 भनेको काम गर्ने ठाउँ वा कार्यस्थल हो र यो근무지 सँग एकदम मिल्छ ✓\n③ 수당 भनेको भत्ता हो, त्यसैले यो मिलेन ✗\n④ 체류지 भनेको बस्ने ठाउँ हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 59"}, {"n": "60", "q": "옛날", "options": ["예약", "예전", "원래", "완전"], "answer": 1, "explain": "प्रश्नको अर्थ: 옛날 भनेको पुरानो समय वा भूतकाल हो।\n① 예약 भनेको बुकिङ वा आरक्षित गर्नु हो, त्यसैले यो मिलेन ✗\n② 예전 भनेको पहिलेको समय वा भूतकाल हो र यो옛날 सँग एकदम मिल्छ ✓\n③ 원래 भनेको मौलिक वा सुरुदेखिको हो, त्यसैले यो मिलेन ✗\n④ 완전 भनेको पूर्ण रूपमा हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 60"}, {"n": "61", "q": "무료", "options": ["유료", "벌금", "공짜", "용돈"], "answer": 2, "explain": "प्रश्नको अर्थ: 무료 भनेको निःशुल्क (पैसा नतिर्ने) हो।\n① 유료 भनेको शुल्क तिर्ने हो, त्यसैले यो मिलेन ✗\n② 벌금 भनेको जरिवाना हो, त्यसैले यो मिलेन ✗\n③ 공짜 भनेको निःशुल्क वा फोकटमा पाइने कुरा हो र यो무료 सँग एकदम मिल्छ ✓\n④ 용돈 भनेको खल्ती खर्च हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 61"}, {"n": "62", "q": "퇴직", "options": ["결근", "퇴근", "출근", "퇴임"], "answer": 3, "explain": "प्रश्नको अर्थ: 퇴직 भनेको जागिरबाट अवकाश लिनु वा छाड्नु हो।\n① 결근 भनेको अनुपस्थित हुनु हो, त्यसैले यो मिलेन ✗\n② 퇴근 भनेको कामबाट छुट्नु हो, त्यसैले यो मिलेन ✗\n③ 출근 भनेको काममा जानु हो, त्यसैले यो मिलेन ✗\n④ 퇴임 भनेको पदबाट अवकाश लिनु हो र यो퇴직 सँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 62"}, {"n": "63", "q": "부엌", "options": ["거실", "주방", "침실", "지방"], "answer": 1, "explain": "प्रश्नको अर्थ: 부엌 भनेको भान्सा कोठा हो।\n① 거실 भनेको बैठक कोठा हो, त्यसैले यो मिलेन ✗\n② 주방 भनेको भान्सा कोठा हो र यो부엌 सँग एकदम मिल्छ ✓\n③ 침실 भनेको सुत्ने कोठा हो, त्यसैले यो मिलेन ✗\n④ 지방 भनेको प्रान्त वा स्थानीय क्षेत्र हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 63"}, {"n": "64", "q": "채소", "options": ["야채", "고기", "과일", "음료"], "answer": 0, "explain": "प्रश्नको अर्थ: 채소 भनेको तरकारी हो।\n① 야채 भनेको पनि तरकारी हो र यो채소 सँग एकदम मिल्छ ✓\n② 고기 भनेको मासु हो, त्यसैले यो मिलेन ✗\n③ 과일 भनेको फलफूल हो, त्यसैले यो मिलेन ✗\n④ 음료 भनेको पेय पदार्थ हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 64"}, {"n": "65", "q": "저축", "options": ["저금", "임금", "출금", "송금"], "answer": 0, "explain": "प्रश्नको अर्थ: 저축 भनेको बचत गर्नु हो।\n① 저금 भनेको पैसा बचत गर्नु हो र यो저축 सँग एकदम मिल्छ ✓\n② 임금 भनेको ज्याला वा तलब हो, त्यसैले यो मिलेन ✗\n③ 출금 भनेको पैसा झिक्नु हो, त्यसैले यो मिलेन ✗\n④ 송금 भनेको पैसा पठाउनु हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 65"}, {"n": "66", "q": "몸무게", "options": ["신장", "손목", "체중", "몸살"], "answer": 2, "explain": "प्रश्नको अर्थ: 몸무게 भनेको शरीरको तौल हो।\n① 신장 भनेको उचाइ वा मिर्गौला हो, त्यसैले यो मिलेन ✗\n② 손목 भनेको नाडी हो, त्यसैले यो मिलेन ✗\n③ 체중 भनेको शरीरको तौल हो र यो몸무게 सँग एकदम मिल्छ ✓\n④ 몸살 भनेको थकाइ वा रुघाखोकीले शरीर दुख्नु हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 66"}, {"n": "67", "q": "배설물", "options": ["폐수", "분뇨", "폐유", "농가"], "answer": 1, "explain": "प्रश्नको अर्थ: 배설물 भनेको मलमूत्र वा निष्कासित पदार्थ हो।\n① 폐수 भनेको फोहोर पानी हो, त्यसैले यो मिलेन ✗\n② 분뇨 भनेको दिसापिसाब (मलमुत्र) हो र यो배설물 सँग एकदम मिल्छ ✓\n③ 폐유 भनेको प्रयोग गरेर फाल्ने तेल हो, त्यसैले यो मिलेन ✗\n④ 농가 भनेको कृषक परिवार वा किसानी घर हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 67"}, {"n": "68", "q": "꼭", "options": ["항상", "반드시", "약간", "드디어"], "answer": 1, "explain": "प्रश्नको अर्थ: 꼭 भनेको अवश्य नै हो।\n① 항상 भनेको सधैँ हो, त्यसैले यो मिलेन ✗\n② 반드시 भनेको अवश्य नै वा अनिवार्य रूपमा हो र यो꼭 सँग एकदम मिल्छ ✓\n③ 약간 भनेको अलिकति हो, त्यसैले यो मिलेन ✗\n④ 드디어 भनेको अन्ततः हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 68"}, {"n": "69", "q": "담다", "options": ["묶다", "싣다", "쌓다", "넣다"], "answer": 3, "explain": "प्रश्नको अर्थ: 담다 भनेको राख्नु वा हाल्नु (भाँडा आदिमा) हो।\n① 묶다 भनेको बाँध्नु हो, त्यसैले यो मिलेन ✗\n② 싣다 भनेको गाडीमा लोड गर्नु हो, त्यसैले यो मिलेन ✗\n③ 쌓다 भनेको थुपार्नु हो, त्यसैले यो मिलेन ✗\n④ 넣다 भनेको भित्र राख्नु वा हाल्नु हो र यो담다 सँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 69"}, {"n": "70", "q": "잡다", "options": ["매다", "집다", "재다", "접다"], "answer": 1, "explain": "प्रश्नको अर्थ: 잡다 भनेको समात्नु वा पक्रनु हो।\n① 매다 भनेको बाँध्नु हो, त्यसैले यो मिलेन ✗\n② 집다 भनेको औंलाले वा चिम्टीले उठाउनु हो र यो잡다 सँग नजिकको अर्थ राख्छ ✓\n③ 재다 भनेको नाप्नु हो, त्यसैले यो मिलेन ✗\n④ 접다 भनेको पट्याउनु हो, त्यसैले यो मिलेन ✗", "label": "비슷한 말 · 책 70"}, {"n": "71", "q": "벌다", "options": ["썰다", "얻다", "놓다", "묻다"], "answer": 1, "explain": "प्रश्नको अर्थ: 벌다 भनेको कमाउनु वा प्राप्त गर्नु हो।\n① 썰다 भनेको काट्नु वा चिर्नु हो र यो मिल्दैन ✗\n② 얻다 भनेको पाउनु वा प्राप्त गर्नु हो र यो벌다 सँग मिल्छ ✓\n③ 놓다 भनेको राख्नु हो र यो मिल्दैन ✗\n④ 묻다 भनेको सोध्नु वा गाड्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 71"}, {"n": "72", "q": "뜻하다", "options": ["포기하다", "문의하다", "특별하다", "의미하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 뜻하다 भनेको अर्थ लगाउनु वा बुझाउनु हो।\n① 포기하다 भनेको छाड्नु वा त्याग गर्नु हो, अर्थ लगाउनुसँग मिल्दैन। ✗\n② 문의하다 भनेको सोधपुछ गर्नु हो, अर्थ लगाउनुसँग मिल्दैन। ✗\n③ 특별하다 भनेको विशेष हुनु हो, अर्थ लगाउनुसँग मिल्दैन। ✗\n④ 의미하다 भनेको अर्थ हुनु वा मतलब राख्नु हो, जुन 뜻하다 सँग मिल्छ। ✓", "label": "비슷한 말 · 책 72"}, {"n": "73", "q": "편하다", "options": ["쉬다", "쉽다", "펴다", "낫다"], "answer": 3, "explain": "प्रश्नको अर्थ: 편하다 भनेको सहज वा आराम हुनु हो।\n① 쉬다 भनेको आराम गर्नु हो, सहज हुनुको ठ्याक्कै पर्यायवाची होइन। ✗\n② 쉽다 भनेको सजिलो हुनु हो, सहज हुनुसँग अर्थ फरक छ। ✗\n③ 펴다 भनेको खोल्नु वा तन्काउनु हो, 편하다 सँग मिल्दैन। ✗\n④ 낫다 भनेको निको हुनु वा राम्रो हुनु हो, र यो सहज हुनुसँग मिल्दोजुल्दो अर्थमा आउँछ। ✓", "label": "비슷한 말 · 책 73"}, {"n": "74", "q": "반갑다", "options": ["어둡다", "아쉽다", "즐겁다", "웃기다"], "answer": 2, "explain": "प्रश्नको अर्थ: 반갑다 भनेको खुसी हुनु वा स्वागतयोग्य हुनु हो।\n① 어둡다 भनेको अँध्यारो हुनु हो, खुसी हुनुसँग मिल्दैन। ✗\n② 아쉽다 भनेको खल्लो वा अपुरो महसुस हुनु हो, यसको मिल्दो अर्थ छैन। ✗\n③ 즐겁다 भनेको रमाइलो वा आनन्दित हुनु हो, जुन 반갑다 सँग मिल्छ। ✓\n④ 웃기다 भनेको हास्यास्पद हुनु वा हसाउनु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 74"}, {"n": "75", "q": "배우다", "options": ["복습하다", "졸업하다", "학습하다", "수료하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 배우다 भनेको सिक्नु हो।\n① 복습하다 भनेको पुनरावृत्ति गर्नु हो, सिक्नुको समानार्थक होइन। ✗\n② 졸업하다 भनेको स्नातक हुनु हो, सिक्नुसँग मिल्दैन। ✗\n③ 학습하다 भनेको अध्ययन गर्नु वा सिक्नु हो, जुन 배우다 सँग मिल्छ। ✓\n④ 수료하다 भनेको पाठ्यक्रम पूरा गर्नु हो, सिक्नुसँग ठ्याक्कै मिल्दैन। ✗", "label": "비슷한 말 · 책 75"}, {"n": "76", "q": "아쉽다", "options": ["외롭다", "아깝다", "무겁다", "어렵다"], "answer": 1, "explain": "प्रश्नको अर्थ: 아쉽다 भनेको अपुरो वा खल्लो लाग्नु हो।\n① 외롭다 भनेको एक्लो हुनु हो, अलिकति फरक छ। ✗\n② 아깝다 भनेको अमूल्य लाग्नु वा खेर गएकोमा पछुताउनु हो, जुन खल्लो लाग्नुसँग उस्तै अर्थ दिन्छ। ✓\n③ 무겁다 भनेको भारी हुनु हो, मिल्दैन। ✗\n④ 어렵다 भनेको गाह्रो हुनु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 76"}, {"n": "77", "q": "관람하다", "options": ["보다", "바라다", "웃다", "만나다"], "answer": 0, "explain": "प्रश्नको अर्थ: 관람하다 भनेको अवलोकन गर्नु वा हेर्नु हो।\n① 보다 भनेको हेर्नु हो, जुन अवलोकन गर्नुसँग मिल्छ। ✓\n② 바라다 भनेको चाहनु हो, हेर्नुसँग मिल्दैन। ✗\n③ 웃다 भनेको हास्नु हो, हेर्नुसँग मिल्दैन। ✗\n④ 만나다 भनेको भेट्नु हो, हेर्नुसँग मिल्दैन। ✗", "label": "비슷한 말 · 책 77"}, {"n": "78", "q": "추가하다", "options": ["넘기다", "더하다", "당하다", "빠지다"], "answer": 1, "explain": "प्रश्नको अर्थ: 추가하다 भनेको थप्नु हो।\n① 넘기다 भनेको कटाउनु वा पल्टाउनु हो, थप्नुसँग मिल्दैन। ✗\n② 더하다 भनेको जोड गर्नु वा थप्नु हो, जुन 추가하다 सँग मिल्छ। ✓\n③ 당하다 भनेको भोग्नु वा सिकार हुनु हो, मिल्दैन। ✗\n④ 빠지다 भनेको छुट्नु वा डुब्नु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 78"}, {"n": "79", "q": "한적하다", "options": ["복잡하다", "유명하다", "간단하다", "조용하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 한적하다 भनेको शान्त र एकान्त हुनु हो।\n① 복잡하다 भनेको भिडभाड भएको हुनु हो, विपरित अर्थ हो। ✗\n② 유명하다 भनेको प्रसिद्ध हुनु हो, मिल्दैन। ✗\n③ 간단하다 भनेको सामान्य हुनु हो, मिल्दैन। ✗\n④ 조용하다 भनेको शान्त हुनु हो, जुन 한적하다 सँग मिल्छ। ✓", "label": "비슷한 말 · 책 79"}, {"n": "80", "q": "변화하다", "options": ["달라지다", "변경하다", "어색하다", "진행하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 변화하다 भनेको परिवर्तन हुनु वा बद्लिनु हो।\n① 달라지다 भनेको बद्लिनु वा परिवर्तन हुनु हो र यो मिल्छ ✓\n② 변경하다 भनेको परिवर्तन गर्नु हो (यो क्रिया हो, 변화하다 जस्तै होइन तर अर्थ फरक हुन्छ) र यो मिल्दैन ✗\n③ 어색하다 भनेको असहज हुनु हो र यो मिल्दैन ✗\n④ 진행하다 भनेको अगाडि बढाउनु वा चालु राख्नु हो र यो मिल्दैन ✗\nशिक्षकको उत्तर-पत्र: 변화하다 शब्दको अर्थ परिवर्तन हुनु हो, जससँग 달라지다 र 변경하다 दुवै मिल्न सक्छन् तर 달라지다 नै एकदम मिल्छ।", "label": "비슷한 말 · 책 80"}, {"n": "81", "q": "제외하다", "options": ["빼다", "접다", "뽑다", "쓰다"], "answer": 0, "explain": "प्रश्नको अर्थ: 제외하다 भनेको बाहिर राख्नु वा हटाउनु हो।\n① 빼다 भनेको निकाल्नु वा हटाउनु हो, जुन 제외하다 सँग मिल्छ। ✓\n② 접다 भनेको पट्याउनु हो, मिल्दैन। ✗\n③ 뽑다 भनेको छान्नु वा उखेल्नु हो, मिल्दैन। ✗\n④ 쓰다 भनेको प्रयोग गर्नु वा लेख्नु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 81"}, {"n": "82", "q": "이어지다", "options": ["실천하다", "입고하다", "연결하다", "설명하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 이어지다 भनेको जोडिनु वा निरन्तर हुनु हो।\n① 실천하다 भनेको कार्यान्वयन गर्नु हो, मिल्दैन। ✗\n② 입고하다 भनेको गोदाममा सामान राख्नु हो, मिल्दैन। ✗\n③ 연결하다 भनेको जोड्नु वा सम्पर्क गर्नु हो, जुन 이어지다 सँग मिल्छ। ✓\n④ 설명하다 भनेको व्याख्या गर्नु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 82"}, {"n": "83", "q": "어지럽다", "options": ["행복하다", "피곤하다", "복잡하다", "오해하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 어지럽다 भनेको चक्कर लाग्नु वा अस्तव्यस्त हुनु हो।\n① 행복하다 भनेको खुसी हुनु हो, मिल्दैन। ✗\n② 피곤하다 भनेको थकिएको हुनु हो, मिल्दैन। ✗\n③ 복잡하다 भनेको जटिल वा भिडभाडयुक्त हुनु हो, जुन अस्तव्यस्त हुनुसँग मिल्छ। ✓\n④ 오해하다 भनेको गलत बुझ्नु हो, मिल्दैन। ✗", "label": "비슷한 말 · 책 83"}, {"n": "84", "q": "적재하다", "options": ["짓다", "걷다", "붓다", "싣다"], "answer": 3, "explain": "प्रश्नको अर्थ: 적재하다 भनेको सामान लोड गर्नु वा चढाउनु हो।\n① 짓다 भनेको घर बनाउनु हो, मिल्दैन। ✗\n② 걷다 भनेको हिँड्नु हो, मिल्दैन। ✗\n③ 붓다 भनेको सुन्निनु वा खन्याउनु हो, मिल्दैन। ✗\n④ 싣다 भनेको गाडीमा सामान लाद्नु हो, जुन 적재하다 सँग मिल्छ। ✓", "label": "비슷한 말 · 책 84"}, {"n": "85", "q": "청소하다", "options": ["쓸다", "빨다", "씻다", "벗다"], "answer": 0, "explain": "प्रश्नको अर्थ: 청소하다 भनेको सरसफाइ गर्नु हो।\n① 쓸다 भनेको कुचो लगाउनु वा बढार्नु हो र यो सरसफाइ गर्ने कामसँग मिल्छ ✓\n② 빨다 भनेको धुनु हो र यो लुगा धुने काममा प्रयोग हुन्छ ✗\n③ 씻다 भनेको पखाल्नु वा धुनु हो र यो शरीर वा हातखुट्टा धुने काममा प्रयोग हुन्छ ✗\n④ 벗다 भनेको खोल्नु हो र यो कपत्ता वा जुत्ता खोल्ने अर्थमा प्रयोग हुन्छ ✗", "label": "비슷한 말 · 책 85"}, {"n": "86", "q": "똑같다", "options": ["달라지다", "망가지다", "동일하다", "해당하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 똑같다 भनेको उस्तै हुनु वा एउटै हुनु हो।\n① 달라지다 भनेको फरक हुनु वा परिवर्तन हुनु हो, त्यसैले मिल्दैन ✗\n② 망가지다 भनेको बिग्रनु हो, त्यसैले मिल्दैन ✗\n③ 동일하다 भनेको उस्तै वा एउटै हुनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n④ 해당하다 भनेको सम्बन्धित हुनु वा लागू हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 86"}, {"n": "87", "q": "꾸미다", "options": ["단장하다", "첨부하다", "표시하다", "생산하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 꾸미다 भनेको सजाउनु वा सिँगार्नु हो।\n① 단장하다 भनेको सजाउनु वा सिंगार्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n② 첨부하다 भनेको थप्नु वा संलग्न गर्नु हो, त्यसैले मिल्दैन ✗\n③ 표시하다 भनेको संकेत गर्नु वा चिन्ह लगाउनु हो, त्यसैले मिल्दैन ✗\n④ 생산하다 भनेको उत्पादन गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 87"}, {"n": "88", "q": "숙이다", "options": ["훔치다", "굽히다", "만지다", "던지다"], "answer": 1, "explain": "प्रश्नको अर्थ: 숙이다 भनेको टाउको वा कम्मर झुकाउनु हो।\n① 훔치다 भनेको चोर्नु वा पुछ्नु हो, त्यसैले मिल्दैन ✗\n② 굽히다 भनेको झुकाउनु वा बंग्याउनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n③ 만지다 भनेको छुनु हो, त्यसैले मिल्दैन ✗\n④ 던지다 भनेको फाल्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 88"}, {"n": "89", "q": "정하다", "options": ["입장하다", "분명하다", "차별하다", "결정하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 정하다 भनेको निश्चित गर्नु वा तय गर्नु हो।\n① 입장하다 भनेको प्रवेश गर्नु हो, त्यसैले मिल्दैन ✗\n② 분명하다 भनेको स्पष्ट हुनु हो, त्यसैले मिल्दैन ✗\n③ 차별하다 भनेको भेदभाव गर्नु हो, त्यसैले मिल्दैन ✗\n④ 결정하다 भनेको निर्णय गर्नु वा तय गर्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 89"}, {"n": "90", "q": "우울하다", "options": ["슬프다", "외롭다", "기쁘다", "차갑다"], "answer": 0, "explain": "प्रश्नको अर्थ: 우울하다 भनेको खिन्न हुनु वा नरमाइलो हुनु हो।\n① 슬프다 भनेको दुखी हुनु वा नरमाइलो हुनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n② 외롭다 भनेको एक्लो महसुस हुनु हो, त्यसैले मिल्दैन ✗\n③ 기쁘다 भनेको खुसी हुनु हो, त्यसैले मिल्दैन ✗\n④ 차갑다 भनेको चिसो हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 90"}, {"n": "91", "q": "설명하다", "options": ["놓치다", "밝히다", "맡기다", "이기다"], "answer": 1, "explain": "प्रश्नको अर्थ: 설명하다 भनेको स्पष्ट पार्नु वा वर्णन गर्नु हो।\n① 놓치다 भनेको छुटाउनु हो, त्यसैले मिल्दैन ✗\n② 밝히다 भनेको उज्यालो पार्नु वा स्पष्ट पार्नु, खुलाउनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n③ 맡기다 भनेको जिम्मा लगाउनु हो, त्यसैले मिल्दैन ✗\n④ 이기다 भनेको जित्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 91"}, {"n": "92", "q": "잡수시다", "options": ["드리다", "맡기다", "드시다", "남기다"], "answer": 2, "explain": "प्रश्नको अर्थ: 잡수시다 भनेको खानु हो (आदरार्थी शब्द)।\n① 드리다 भनेको दिनु हो (आदरार्थी), त्यसैले मिल्दैन ✗\n② 맡기다 भनेको जिम्मा लगाउनु हो, त्यसैले मिल्दैन ✗\n③ 드시다 भनेको खानु हो (आदरार्थी), त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n④ 남기다 भनेको बाँकी राख्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 92"}, {"n": "93", "q": "연마하다", "options": ["도색하다", "재단하다", "도장하다", "샌딩하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 연마하다 भनेको घोटेर चिल्लो पार्नु वा पालिस गर्नु (स्यान्डिङ गर्नु) हो।\n① 도색하다 भनेको र रंग लगाउनु हो, त्यसैले मिल्दैन ✗\n② 재단하다 भनेको कपडा आदि काट्नु हो, त्यसैले मिल्दैन ✗\n③ 도장하다 भनेको रंगरोगन गर्नु हो, त्यसैले मिल्दैन ✗\n④ 샌딩하다 भनेको स्यान्डिङ गर्नु (पालिस गर्नु, चिल्लो पार्नु) हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓", "label": "비슷한 말 · 책 93"}, {"n": "94", "q": "보관하다", "options": ["저장하다", "관리하다", "제작하다", "유지하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 보관하다 भनेको सुरक्षित राख्नु वा भण्डारण गर्नु हो।\n① 저장하다 भनेको भण्डारण गर्नु वा सुरक्षित राख्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n② 관리하다 भनेको व्यवस्थापन गर्नु हो, त्यसैले मिल्दैन ✗\n③ 제작하다 भनेको उत्पादन गर्नु वा बनाउनु हो, त्यसैले मिल्दैन ✗\n④ 유지하다 भनेको कायम राख्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 94"}, {"n": "95", "q": "구분하다", "options": ["미루다", "오르다", "나누다", "꾸미다"], "answer": 2, "explain": "प्रश्नको अर्थ: 구분하다 भनेको छुट्याउनु वा वर्गीकरण गर्नु हो।\n① 미루다 भनेको पछि सार्नु हो, त्यसैले मिल्दैन ✗\n② 오르다 भनेको बढ्नु वा माथि जानु हो, त्यसैले मिल्दैन ✗\n③ 나누다 भनेको छुट्याउनु वा बाँड्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n④ 꾸미다 भनेको सजाउनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 95"}, {"n": "96", "q": "한가하다", "options": ["이용하다", "한가롭다", "무시하다", "번거롭다"], "answer": 1, "explain": "प्रश्नको अर्थ: 한가하다 भनेको फुर्सदिलो हुनु हो।\n① 이용하다 भनेको प्रयोग गर्नु हो, त्यसैले मिल्दैन ✗\n② 한가롭다 भनेको फुर्सदिलो र शान्त हुनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n③ 무시하다 भनेको बेवास्ता गर्नु हो, त्यसैले मिल्दैन ✗\n④ 번거롭다 भनेको झन्झटिलो हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 96"}, {"n": "97", "q": "편찮다", "options": ["수술하다", "주무르다", "진료하다", "불편하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 편찮다 भनेको अस्वस्थ हुनु वा बिरामी हुनु हो।\n① 수술하다 भनेको शल्यक्रिया गर्नु हो, यो मिल्दैन ✗\n② 주무르다 भनेको माड्नु वा थिच्नु हो, यो मिल्दैन ✗\n③ 진료하다 भनेको स्वास्थ्य परीक्षण गर्नु हो, यो मिल्दैन ✗\n④ 불편하다 भनेको असजिलो वा ठीक नहुनु हो, यो 편찮다 को अर्थसँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 97"}, {"n": "98", "q": "똑똑하다", "options": ["명령하다", "튼튼하다", "맹랑하다", "뚱뚱하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 똑똑하다 भनेको चलाख वा बुद्धिमानी हुनु हो।\n① 명령하다 भनेको आदेश दिनु हो, त्यसैले मिल्दैन ✗\n② 튼튼하다 भनेको बलियो हुनु हो, त्यसैले मिल्दैन ✗\n③ 맹랑하다 भनेको छरछरो, बाठो वा चलाख हुनु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n④ 뚱뚱하다 भनेको मोटू हुनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 98"}, {"n": "99", "q": "잊어버리다", "options": ["상실하다", "깜빡하다", "취득하다", "속상하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 잊어버리다 भनेको बिर्सनु हो।\n① 상실하다 भनेको गुमाउनु हो, त्यसैले मिल्दैन ✗\n② 깜빡하다 भनेको बिर्सनु वा झट्टै भुल्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n③ 취득하다 भनेको प्राप्त गर्नु हो, त्यसैले मिल्दैन ✗\n④ 속상하다 भनेको मन दुख्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 99"}, {"n": "100", "q": "애를 먹다", "options": ["고생하다", "어지럽다", "피곤하다", "칭찬하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 애를 먹다 भनेको कष्ट भोग्नु वा गाह्रो मान्नु हो।\n① 고생하다 भनेको कष्ट भोग्नु वा दुख्नु हो, त्यसैले यो मिल्दो जुल्दो अर्थ हो ✓\n② 어지럽다 भनेको रिँगटा लाग्नु वा अस्तव्यस्त हुनु हो, त्यसैले मिल्दैन ✗\n③ 피곤하다 भनेको थकाइ लाग्नु हो, त्यसैले मिल्दैन ✗\n④ 칭찬하다 भनेको प्रशंसा गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 100"}, {"n": "101", "q": "(머리를) 감다", "options": ["닦다", "씹다", "깎다", "씻다"], "answer": 3, "explain": "प्रश्नको अर्थ: (머리를) 감다 भनेको कपाल धुनु हो।\n① 닦다 भनेको पुछ्नु हो, त्यसैले यो मिल्दैन ✗\n② 씹다 भनेको चपाउनु हो, त्यसैले यो मिल्दैन ✗\n③ 깎다 भनेको काट्नु हो, त्यसैले यो मिल्दैन ✗\n④ 씻다 भनेको धुनु हो, जुन कपाल धुनु वा सफा गर्नुसँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 101"}, {"n": "102", "q": "(밥을) 짓다", "options": ["하다", "사다", "먹다", "넘다"], "answer": 0, "explain": "प्रश्नको अर्थ: (밥을) 짓다 भनेको भात पकाउनु हो।\n① 하다 भनेको बनाउनु वा गर्नु हो, भात बनाउने अर्थमा एकदम मिल्छ ✓\n② 사다 भनेको किन्नु हो, त्यसैले मिल्दैन ✗\n③ 먹다 भनेको खानु हो, त्यसैले मिल्दैन ✗\n④ 넘다 भनेको नाग्नु वा पार गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 102"}, {"n": "103", "q": "(돈을) 찾다", "options": ["입금하다", "검색하다", "출금하다", "대출하다"], "answer": 2, "explain": "प्रश्नको अर्थ: (돈을) 찾다 भनेको पैसा झिक्नु हो।\n① 입금하다 भनेको जम्मा गर्नु हो, त्यसैले मिल्दैन ✗\n② 검색하다 भनेको खोजी गर्नु हो, त्यसैले मिल्दैन ✗\n③ 출금하다 भनेको पैसा निकाल्नु वा झिक्नु हो, त्यसैले मिल्छ ✓\n④ 대출하다 भनेको ऋण लिनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 103"}, {"n": "104", "q": "(전기를) 절약하다", "options": ["아끼다", "쌓이다", "밝히다", "고치다"], "answer": 0, "explain": "प्रश्नको अर्थ: (전기를) 절약하다 भनेको बिजुली बचत गर्नु हो।\n① 아끼다 भनेको जोगाउनु वा बचत गर्नु हो, त्यसैले मिल्छ ✓\n② 쌓이다 भनेको थुप्रिनु हो, त्यसैले मिल्दैन ✗\n③ 밝히다 भनेको उज्यालो पार्नु वा खुलाउनु हो, त्यसैले मिल्दैन ✗\n④ 고치다 भनेको मर्मत गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 104"}, {"n": "105", "q": "(문제를) 풀다", "options": ["감소하다", "설명하다", "해소하다", "물어보다"], "answer": 2, "explain": "प्रश्नको अर्थ: (문제를) 풀다 भनेको समस्या हल गर्नु हो।\n① 감소하다 भनेको घट्नु हो, त्यसैले मिल्दैन ✗\n② 설명하다 भनेको स्पष्ट पार्नु हो, त्यसैले मिल्दैन ✗\n③ 해소하다 भनेको समस्या समाधान वा हल गर्नु हो, त्यसैले मिल्छ ✓\n④ 물어보다 भनेको सोध्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 105"}, {"n": "106", "q": "(짐을) 싸다", "options": ["저렴하다", "구매하다", "판매하다", "포장하다"], "answer": 3, "explain": "प्रश्नको अर्थ: (짐을) 싸다 भनेको सामान प्याक गर्नु हो।\n① 저렴하다 भनेको स हुनु हो, त्यसैले मिल्दैन ✗\n② 구매하다 भनेको किन्नु हो, त्यसैले मिल्दैन ✗\n③ 판매하다 भनेको बेचबिखन गर्नु हो, त्यसैले मिल्दैन ✗\n④ 포장하다 भनेको प्याकेजिङ गर्नु वा प्याक गर्नु हो, त्यसैले मिल्छ ✓", "label": "비슷한 말 · 책 106"}, {"n": "107", "q": "(우표를) 모으다", "options": ["수집하다", "번역하다", "단정하다", "돌려주다"], "answer": 0, "explain": "प्रश्नको अर्थ: (우표를) 모으다 भनेको हुलाक टिकट सङ्कलन गर्नु हो।\n① 수집하다 भनेको सङ्कलन गर्नु हो, त्यसैले मिल्छ ✓\n② 번역하다 भनेको अनुवाद गर्नु हो, त्यसैले मिल्दैन ✗\n③ 단정하다 भनेको सफासुग्थरा हुनु हो, त्यसैले मिल्दैन ✗\n④ 돌려주다 भनेको फिर्ता दिनु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 107"}, {"n": "108", "q": "(사람을) 뽑다", "options": ["변경하다", "보내다", "선발하다", "일하다"], "answer": 2, "explain": "प्रश्नको अर्थ: (사람을) 뽑다 भनेको मानिस छान्नु वा भर्ती गर्नु हो।\n① 변경하다 भनेको परिवर्तन गर्नु हो, त्यसैले मिल्दैन ✗\n② 보내다 भनेको पठाउनु हो, त्यसैले मिल्दैन ✗\n③ 선발하다 भनेको छनोट गर्नु वा चयन गर्नु हो, त्यसैले मिल्छ ✓\n④ 일하다 भनेको काम गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 108"}, {"n": "109", "q": "(작업복을) 입다", "options": ["착용하다", "빨래하다", "이용하다", "돌려주다"], "answer": 0, "explain": "प्रश्नको अर्थ: (작업복을) 입다 भनेको काम गर्ने पोशाक लगाउनु हो।\n① 착용하다 भनेको प्रयोग गर्नु वा लगाउनु हो, त्यसैले मिल्छ ✓\n② 빨래하다 भनेको लुगा धुनु हो, त्यसैले मिल्दैन ✗\n③ 이용하다 भनेको प्रयोग गर्नु हो तर लुगा लगाउने सन्दर्भमा 착용하다 नै मिल्छ ✗\n④ 돌려주다 भनेको फिर्ता गर्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 109"}, {"n": "110", "q": "(화폐를) 바꾸다", "options": ["출금", "환전", "대출", "환승"], "answer": 1, "explain": "प्रश्नको अर्थ: (화폐를) 바꾸다 भनेको पैसा (मुद्रा) साट्नु हो।\n① 출금 भनेको पैसा झिक्नु (विथड्र) हो, यो पैसा साट्ने कुरासँग मिलेन ✗\n② 환전 भनेको मुद्रा साट्नु (करेंसी एक्सचेन्ज) हो, यो पैसा साट्ने अर्थसँग एकदम मिल्छ ✓\n③ 대출 भनेको ऋण लिनु हो, यो पैसा साट्ने अर्थ होइन ✗\n④ 환승 भनेको गाडी वा बस साट्नु (ट्रान्सफर) हो, यो पैसासँग सम्बन्धित छैन ✗", "label": "비슷한 말 · 책 110"}, {"n": "111", "q": "(손을) 베다", "options": ["자르다", "씻다", "바르다", "깎다"], "answer": 0, "explain": "प्रश्नको अर्थ: (손을) 베다 भनेको हात काटिनु वा चिरा पर्नु हो।\n① 자르다 भनेको काट्नु हो, त्यसैले मिल्छ ✓\n② 씻다 भनेको धुनु हो, त्यसैले मिल्दैन ✗\n③ 바르다 भनेको दल्नु हो, त्यसैले मिल्दैन ✗\n④ 깎다 भनेको काट्नु हो तर 베다 सँग सिधै काट्ने अर्थमा 자르다 बढी उपयुक्त हुन्छ ✗", "label": "비슷한 말 · 책 111"}, {"n": "112", "q": "(급여를) 타다", "options": ["주다", "내다", "쓰다", "받다"], "answer": 3, "explain": "प्रश्नको अर्थ: (급여를) 타다 भनेको तलब पाउनु वा लिनु हो।\n① 주다 भनेको दिनु हो, त्यसैले मिल्दैन ✗\n② 내다 भनेको तिर्नु हो, त्यसैले मिल्दैन ✗\n③ 쓰다 भनेको प्रयोग गर्नु वा लेख्नु हो, त्यसैले मिल्दैन ✗\n④ 받다 भनेको पाउनु वा लिनु हो, त्यसैले मिल्छ ✓", "label": "비슷한 말 · 책 112"}, {"n": "113", "q": "(문을) 닫히다", "options": ["폐쇄하다", "관리하다", "판단하다", "출장하다"], "answer": 0, "explain": "प्रश्नको अर्थ: (문을) 닫히다 भनेको ढोका बन्द हुनु हो।\n① 폐쇄하다 भनेको बन्द गर्नु वा शटडाउन गर्नु हो, त्यसैले मिल्छ ✓\n② 관리하다 भनेको व्यवस्थापन गर्नु हो, त्यसैले मिल्दैन ✗\n③ 판단하다 भनेको निर्णय गर्नु हो, त्यसैले मिल्दैन ✗\n④ 출장하다 भनेको व्यापारिक भ्रमणमा जानु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 113"}, {"n": "114", "q": "(정보를) 찾다", "options": ["가입", "입학", "검색", "출금"], "answer": 2, "explain": "प्रश्नको अर्थ: (정보를) 찾다 भनेको जानकारी खोज्नु हो।\n① 가입 भनेको आबद्ध हुनु वा सदस्यता लिनु हो, त्यसैले मिल्दैन ✗\n② 입학 भनेको विद्यालयमा भर्ना हुनु हो, त्यसैले मिल्दैन ✗\n③ 검색 भनेको खोजी (सर्च) गर्नु हो, त्यसैले मिल्छ ✓\n④ 출금 भनेको पैसा झिक्नु हो, त्यसैले मिल्दैन ✗", "label": "비슷한 말 · 책 114"}, {"n": "115", "q": "(약속을) 미루다", "options": ["연기하다", "연장하다", "지각하다", "변경하다"], "answer": 0, "explain": "प्रश्नको अर्थ: (약속을) 미루다 भनेको प्रतिज्ञा वा भेटघाट सार्नु (पछाडि धकेल्नु) हो।\n① 연기하다 भनेको स्थगित गर्नु वा सार्नु हो, त्यसैले मिल्छ ✓\n② 연장하다 भनेको अवधि थप्नु हो, त्यसैले मिल्दैन ✗\n③ 지각하다 भनेको ढिलो हुनु हो, त्यसैले मिल्दैन ✗\n④ 변경하다 भनेको परिवर्तन गर्नु हो तर समय सार्ने सन्दर्भमा 연기하다 बढी मिल्छ ✗", "label": "비슷한 말 · 책 115"}, {"n": "116", "q": "(주소를) 적다", "options": ["작다", "읽다", "쓰다", "받다"], "answer": 2, "explain": "प्रश्नको अर्थ: (주소를) 적다 भनेको ठेगाना लेख्नु हो।\n① 작다 भनेको सानो हुनु हो र यो मिल्दैन ✗\n② 읽다 भनेको पढ्नु हो र यो मिल्दैन ✗\n③ 쓰다 भनेको लेख्नु हो र यो 적다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n④ 받다 भनेको पाउनु वा लिनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 116"}, {"n": "117", "q": "(불에) 데다", "options": ["유리가 박히다", "화상을 입다", "칼에 베이다", "찰과상을 입다"], "answer": 1, "explain": "प्रश्नको अर्थ: (불에) 데다 भनेको आगो वा तातो वस्तुले पोल्नु हो।\n① 유리가 박히다 भनेको सिसा गारिनु हो र यो मिल्दैन ✗\n② 화상을 입다 भनेको आगोले पोल्नु (जलाउनु) हो र यो 데다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n③ 칼에 베이다 भनेको चक्कुले काटिनु हो र यो मिल्दैन ✗\n④ 찰과상을 입다 भनेको छाला छोदिने घाउ लाग्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 117"}, {"n": "118", "q": "(사업장을) 이탈하다", "options": ["조퇴하다", "그만두다", "도망가다", "포기하다"], "answer": 1, "explain": "प्रश्नको अर्थ: (사업장을) 이탈하다 भनेको कार्यस्थल छोडेर जानु हो।\n① 조퇴하다 भनेको कामको समय सकिनुअघि नै फर्कनु हो, त्यसैले यो मिल्दैन ✗\n② 그만두다 भनेको काम छोड्नु हो, जुन कार्यस्थल छोडेर जानुसँग मिल्छ ✓\n③ 도망가다 भनेको भाग्नु हो, कार्यस्थल छोड्नुसँग मिल्छ तर भाग्ने अर्थ बलियो छ ✗\n④ 포기하다 भनेको हार मान्नु वा छोडिदिनु हो, त्यसैले यो मिल्दैन ✗\nशिक्षकको उत्तर-पत्र: 그만두다 र 도망가다 दुवै मिल्न सक्छन् — काम छोडेर जानु भनेको 그만두다 हो, तर बिना अनुमति भागेर जानु भनेको 도망가다 हो; शिक्षकले निर्णय गर्ने।", "label": "비슷한 말 · 책 118"}, {"n": "119", "q": "(작업장을) 변경하다", "options": ["알아보다", "나르다", "체류하다", "바꾸다"], "answer": 3, "explain": "प्रश्नको अर्थ: (작업장을) 변경하다 भनेको कार्यस्थल परिवर्तन गर्नु हो।\n① 알아보다 भनेको बुझ्नु वा खोजी गर्नु हो र यो मिल्दैन ✗\n② 나르다 भनेको ओसार्नु हो र यो मिल्दैन ✗\n③ 체류하다 भनेको बस्नु हो र यो मिल्दैन ✗\n④ 바꾸다 भनेको फेर्नु वा परिवर्तन गर्नु हो र यो 변경하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓", "label": "비슷한 말 · 책 119"}, {"n": "120", "q": "(편지를) 부치다", "options": ["쓰다", "받다", "읽다", "보내다"], "answer": 3, "explain": "प्रश्नको अर्थ: (편지를) 부치다 भनेको पत्र पठाउनु हो।\n① 쓰다 भनेको लेख्नु हो र यो मिल्दैन ✗\n② 받다 भनेको पाउनु हो र यो मिल्दैन ✗\n③ 읽다 भनेको पढ्नु हो र यो मिल्दैन ✗\n④ 보내다 भनेको पठाउनु हो र यो 부치다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓", "label": "비슷한 말 · 책 120"}, {"n": "121", "q": "단정하다", "options": ["답답하다", "날씬하다", "깨끗하다", "지저분하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 단정하다 भनेको सफासुग्थरा र व्यवस्थित हुनु हो।\n① 답답하다 भनेको टपक्क परेको वा दिक्क लाग्ने हुनु हो, यो मिल्दैन ✗\n② 날씬하다 भनेको पातलो वा जिउडोल मिलेको हुनु हो, यो मिल्दैन ✗\n③ 깨끗하다 भनेको सफा हुनु हो, यो 단정하다 को अर्थसँग एकदम मिल्छ ✓\n④ 지저분하다 भनेको फोहोर हुनु हो, यो विपरित अर्थ हो ✗", "label": "비슷한 말 · 책 121"}, {"n": "122", "q": "가득하다", "options": ["충분하다", "많아지다", "부족하다", "줄어들다"], "answer": 0, "explain": "प्रश्नको अर्थ: 가득하다 भनेको भरिपूर्ण हुनु हो।\n① 충분하다 भनेको पुग्दो वा पर्याप्त हुनु हो र यो 가득하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n② 많아지다 भनेको धेरै हुँदै जानु हो र यो मिल्दैन ✗\n③ 부족하다 भनेको अपूरो हुनु हो र यो मिल्दैन ✗\n④ 줄어들다 भनेको घट्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 122"}, {"n": "123", "q": "우선", "options": ["대신", "보통", "먼저", "처음"], "answer": 2, "explain": "प्रश्नको अर्थ: 우선 भनेको पहिलो प्राथमिकतामा वा पहिले हो।\n① 대신 भनेको कोही वा केहीको सट्टामा हो र यो मिल्दैन ✗\n② 보통 भनेको सामान्यतया हो र यो मिल्दैन ✗\n③ 먼저 भनेको पहिले हो र यो 우선 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n④ 처음 भनेको पहिलो पटक हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 123"}, {"n": "124", "q": "나르다", "options": ["바꾸다", "옮기다", "고생하다", "변경하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 나르다 भनेको सामान यताबाट उता ओसार्नु हो।\n① 바꾸다 भनेको परिवर्तन गर्नु हो र यो मिल्दैन ✗\n② 옮기다 भनेको सार्नु वा ओसार्नु हो र यो 나르다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n③ 고생하다 भनेको दुःख पाउनु हो र यो मिल्दैन ✗\n④ 변경하다 भनेको परिवर्तन गर्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 124"}, {"n": "125", "q": "요리하다", "options": ["장만하다", "장을 보다", "조리하다", "상을 차리다"], "answer": 2, "explain": "प्रश्नको अर्थ: 요리하다 भनेको खाना पकाउनु हो।\n① 장만하다 भनेको तयार पार्नु हो र यो मिल्दैन ✗\n② 장을 보다 भनेको बजारबाट किनमेल गर्नु हो र यो मिल्दैन ✗\n③ 조리하다 भनेको खाना बनाउनु वा पकाउनु हो र यो 요리하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n④ 상을 차리다 भनेको खानाको टेबल तयार गर्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 125"}, {"n": "126", "q": "담당하다", "options": ["맡다", "갚다", "맞다", "믿다"], "answer": 0, "explain": "प्रश्नको अर्थ: 담당하다 भनेको जिम्मा लिनु वा जिम्मेवारी बहन गर्नु हो।\n① 맡다 भनेको जिम्मा लिनु वा सम्हाल्नु हो र यो 담당하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n② 갚다 भनेको ऋण तिर्नु हो र यो मिल्दैन ✗\n③ 맞다 भनेको मिल्नु हो र यो मिल्दैन ✗\n④ 믿다 भनेको विश्वास गर्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 126"}, {"n": "127", "q": "(힘이) 세다", "options": ["어렵다", "약하다", "강하다", "무겁다"], "answer": 2, "explain": "प्रश्नको अर्थ: (힘이) 세다 भनेको शक्ति बलियो हुनु हो।\n① 어렵다 भनेको गाह्रो हुनु हो र यो मिल्दैन ✗\n② 약하다 भनेको कमजोर हुनु हो र यो विपरित शब्द हो, समानार्थक होइन ✗\n③ 강하다 भनेको कडा वा बलियो हुनु हो र यो 세다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n④ 무겁다 भनेको भारी हुनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 127"}, {"n": "128", "q": "(살이) 찌다", "options": ["얌전하다", "튼튼하다", "뚱뚱하다", "똑똑하다"], "answer": 2, "explain": "प्रश्नको अर्थ: (살이) 찌다 भनेको शरीर मोटाउनु हो।\n① 얌전하다 भनेको सोझाे हुनु हो र यो मिल्दैन ✗\n② 튼튼하다 भनेको बलियो हुनु हो र यो मिल्दैन ✗\n③ 뚱뚱하다 भनेको मोटो हुनु हो र यो (살이) 찌다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n④ 똑똑하다 भनेको बाठो हुनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 128"}, {"n": "129", "q": "(공구를) 정리하다", "options": ["고치다", "치우다", "버리다", "세우다"], "answer": 1, "explain": "प्रश्नको अर्थ: (공구를) 정리하다 भनेको औजारहरू व्यवस्थित गर्नु वा मिलाएर राख्नु हो।\n① 고치다 भनेको मर्मत गर्नु हो र यो मिल्दैन ✗\n② 치우다 भनेको सफा गर्नु वा हटाएर मिलाउनु हो र यो 정리하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n③ 버리다 भनेको फाल्नु हो र यो मिल्दैन ✗\n④ 세우다 भनेको खडा गर्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 129"}, {"n": "130", "q": "마무리하다", "options": ["끝내다", "손대다", "포기하다", "퇴근하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 마무리하다 भनेको काम अन्त्य गर्नु वा सिध्याउनु हो।\n① 끝내다 भनेको सिध्याउनु वा समाप्त गर्नु हो र यो 마무리하다 सँग मिल्दोजुल्दो अर्थ दिन्छ ✓\n② 손대다 भनेको हात हाल्नु वा सुरु गर्नु हो र यो मिल्दैन ✗\n③ 포기하다 भनेको छाड्नु वा हार मान्नु हो र यो मिल्दैन ✗\n④ 퇴근하다 भनेको कामबाट छुट्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 130"}, {"n": "131", "q": "(약을) 먹다", "options": ["착용하다", "섭취하다", "복용하다", "청결하다"], "answer": 2, "explain": "प्रश्नको अर्थ: (약을) 먹다 भनेको औषधि खानु हो।\n① 착용하다 भनेको लगाउनु हो, त्यसैले यो मिल्दैन ✗\n② 섭취하다 भनेको पौष्टिक तत्व लिनु वा खानु हो, तर औषधिको सन्दर्भमा 복용하다 प्रयोग हुन्छ ✗\n③ 복용하다 भनेको औषधि सेवन गर्नु वा खानु हो, जुन 약을 먹다 सँग एकदम मिल्छ ✓\n④ 청결하다 भनेको सफा हुनु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 131"}, {"n": "132", "q": "마치다", "options": ["치우다", "끝내다", "세우다", "버리다"], "answer": 1, "explain": "प्रश्नको अर्थ: 마치다 भनेको सिध्याउनु वा समाप्त गर्नु हो।\n① 치우다 भनेको सफा गर्नु वा हटाउनु हो, यो मिल्दैन ✗\n② 끝내다 भनेको अन्त्य गर्नु वा सिध्याउनु हो, यो उस्तै अर्थ दिन्छ ✓\n③ 세우다 भनेको खडा गर्नु वा रोक्नु हो, यो मिल्दैन ✗\n④ 버리다 भनेको फ्याँक्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 132"}, {"n": "133", "q": "(보안경을) 쓰다", "options": ["주의하다", "복용하다", "쇼핑하다", "착용하다"], "answer": 3, "explain": "प्रश्नको अर्थ: (보안경을) 쓰다 भनेको सुरक्षा चस्मा लगाउनु हो।\n① 주의하다 भनेको सचेत हुनु हो, यो मिल्दैन ✗\n② 복용하다 भनेको औषधि सेवन गर्नु हो, यो मिल्दैन ✗\n③ 쇼핑하다 भनेको किनमेल गर्नु हो, यो मिल्दैन ✗\n④ 착용하다 भनेको लगाउनु वा पहिरिनु हो, यो चस्मा वा सुरक्षा सामग्री लगाउने अर्थसँग मिल्छ ✓", "label": "비슷한 말 · 책 133"}, {"n": "134", "q": "(호텔에) 묵다", "options": ["주문하다", "전화하다", "숙박하다", "식사하다"], "answer": 2, "explain": "प्रश्नको अर्थ: (호텔에) 묵다 भनेको होटेलमा बस्नु वा बास बस्नु हो।\n① 주문하다 भनेको अर्डर गर्नु हो, यो मिल्दैन ✗\n② 전화하다 भनेको फोन गर्नु हो, यो मिल्दैन ✗\n③ 숙박하다 भनेको बास बस्नु वा होटलमा बस्नु हो, यो उस्तै अर्थ दिन्छ ✓\n④ 식사하다 भनेको खाना खानु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 134"}, {"n": "135", "q": "사고를 (막다)", "options": ["추천하다", "보호하다", "예방하다", "예약하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 사고를 (막다) भनेको दुर्घटना रोक्नु वा छेक्नु हो।\n① 추천하다 भनेको सिफारिस गर्नु हो, यो मिल्दैन ✗\n② 보호하다 भनेको संरक्षण गर्नु हो, तर यहाँ रोकथाम गर्ने अर्थमा 예방하다 हुन्छ ✗\n③ 예방하다 भनेको रोकथाम गर्नु वा बचाउनु हो, यो दुर्घटना रोक्ने अर्थसँग मिल्छ ✓\n④ 예약하다 भनेको रिजर्भ गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 135"}, {"n": "136", "q": "자동차를 (세우다)", "options": ["구입하다", "주차하다", "고장나다", "선물하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 자동차를 (세우다) भनेको गाडी रोक्नु हो।\n① 구입하다 भनेको खरिद गर्नु हो, यो मिल्दैन ✗\n② 주차하다 भनेको गाडी पार्क गर्नु वा रोक्नु हो, यो गाडी रोक्ने अर्थसँग मिल्छ ✓\n③ 고장나다 भनेको बिग्रनु हो, यो मिल्दैन ✗\n④ 선물하다 भनेको उपहार दिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 136"}, {"n": "137", "q": "초청하다", "options": ["초대하다", "고용하다", "참석하다", "준비하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 초청하다 भनेको निमन्त्रणा गर्नु हो।\n① 초대하다 भनेको पनि निमन्त्रणा गर्नु हो, यो ठ्याक्कै उस्तै अर्थ दिन्छ ✓\n② 고용하다 भनेको रोजगारी दिनु हो, यो मिल्दैन ✗\n③ 참석하다 भनेको सहभागी हुनु हो, यो मिल्दैन ✗\n④ 준비하다 भनेको तयारी गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 137"}, {"n": "138", "q": "조언하다", "options": ["준비하다", "초청하다", "충고하다", "강조하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 조언하다 भनेको सल्लाह दिनु वा सुझाव दिनु हो।\n① 준비하다 भनेको तयारी गर्नु हो, यो मिल्दैन ✗\n② 초청하다 भनेको निमन्त्रणा गर्नु हो, यो मिल्दैन ✗\n③ 충고하다 भनेको सल्लाह वा सुझाव दिनु हो, यो उस्तै अर्थ दिन्छ ✓\n④ 강조하다 भनेको जोड दिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 138"}, {"n": "139", "q": "연습하다", "options": ["준비하다", "이용하다", "훈련하다", "적용하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 연습하다 भनेको अभ्यास गर्नु हो।\n① 준비하다 भनेको तयारी गर्नु हो, यो मिल्दैन ✗\n② 이용하다 भनेको प्रयोग गर्नु हो, यो मिल्दैन ✗\n③ 훈련하다 भनेको तालिम लिनु वा अभ्यास गर्नु हो, यो मिल्छ ✓\n④ 적용하다 भनेको लागू गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 139"}, {"n": "140", "q": "지도하다", "options": ["조언하다", "인도하다", "기대하다", "요구하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 지도하다 भनेको निर्देशन दिनु वा बाटो देखाउनु हो।\n① 조언하다 भनेको सल्लाह दिनु हो, यो मिल्दैन ✗\n② 인도하다 भनेको डोऱ्याउनु वा मार्गदर्शन गर्नु हो, यो उस्तै अर्थ दिन्छ ✓\n③ 기대하다 भनेको अपेक्षा गर्नु हो, यो मिल्दैन ✗\n④ 요구하다 भनेको माग गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 140"}, {"n": "141", "q": "완료하다", "options": ["종결하다", "머무르다", "칭찬하다", "시작하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 완료하다 भनेको सम्पन्न गर्नु वा पूरा गर्नु हो।\n① 종결하다 भनेको अन्त्य गर्नु वा टुङ्ग्याउनु हो, यो पूरा गर्ने अर्थसँग मिल्छ ✓\n② 머무르다 भनेको बसोबास गर्नु हो, यो मिल्दैन ✗\n③ 칭찬하다 भनेको प्रशंसा गर्नु हो, यो मिल्दैन ✗\n④ 시작하다 भनेको सुरु गर्नु हो, यो यसको विपरीत अर्थ हुन्छ ✗", "label": "비슷한 말 · 책 141"}, {"n": "142", "q": "묘사하다", "options": ["물어보다", "설명하다", "복습하다", "면접하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 묘사하다 भनेको वर्णन गर्नु वा चित्रण गर्नु हो।\n① 물어보다 भनेको सोध्नु हो, यो मिल्दैन ✗\n② 설명하다 भनेको स्पष्ट पार्नु वा वर्णन गर्नु हो, यो मिल्छ ✓\n③ 복습하다 भनेको पुनरावलोकन गर्नु हो, यो मिल्दैन ✗\n④ 면접하다 भनेको अन्तर्वार्ता दिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 142"}, {"n": "143", "q": "보존하다", "options": ["감소하다", "설명하다", "보호하다", "사랑하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 보존하다 भनेको संरक्षण गर्नु वा जोगाएर राख्नु हो।\n① 감소하다 भनेको घट्नु हो, यो मिल्दैन ✗\n② 설명하다 भनेको वर्णन गर्नु हो, यो मिल्दैन ✗\n③ 보호하다 भनेको संरक्षण गर्नु वा बचाउनु हो, यो उस्तै अर्थ दिन्छ ✓\n④ 사랑하다 भनेको माया गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 143"}, {"n": "144", "q": "바라다", "options": ["이용하다", "기원하다", "시원하다", "지원하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 바라다 भनेको चाहनु वा आशा गर्नु हो।\n① 이용하다 भनेको प्रयोग गर्नु हो, यो मिल्दैन ✗\n② 기원하다 भनेको कामना गर्नु वा इच्छा गर्नु हो, यो चाहने अर्थसँग मिल्छ ✓\n③ 시원하다 भनेको चिसो हुनु वा आराम हुनु हो, यो मिल्दैन ✗\n④ 지원하다 भनेको सहयोग गर्नु वा आवेदन दिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 144"}, {"n": "145", "q": "도와주다", "options": ["광고하다", "결심하다", "원조하다", "거절하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 도와주다 भनेको मद्दत गर्नु हो।\n① 광고하다 भनेको विज्ञापन गर्नु हो, यो मिल्दैन ✗\n② 결심하다 भनेको निर्णय गर्नु हो, यो मिल्दैन ✗\n③ 원조하다 भनेको सहयोग गर्नु वा मद्दत गर्नु हो, यो उस्तै अर्थ दिन्छ ✓\n④ 거절하다 भनेको अस्वीकार गर्नु हो, यो यसको विपरीत अर्थ हुन्छ ✗", "label": "비슷한 말 · 책 145"}, {"n": "146", "q": "항구", "options": ["승강장", "선착장", "정류장", "축구장"], "answer": 1, "explain": "प्रश्नको अर्थ: 항구 भनेको पानीजहाजहरू रोकिने बन्दरगाह हो।\n① 승강장 भनेको लिफ्ट वा गाडी चढ्ने ठाउँ हो र यो 항구 सँग मिल्दैन ✗\n② 선착장 भनेको पानीजहाज रोकिने ठाउँ वा घाट हो, जुन 항구 सँग एकदम मिल्छ ✓\n③ 정류장 भनेको बस रोकिने ठाउँ हो र यो 항구 सँग मिल्दैन ✗\n④ 축구장 भनेको फुटबल खेल्ने मैदान हो र यो 항구 सँग मिल्दैन ✗", "label": "비슷한 말 · 책 146"}, {"n": "147", "q": "하계휴가", "options": ["연차 휴가", "경조 휴가", "동계 휴가", "유학 휴가"], "answer": 0, "explain": "प्रश्नको अर्थ: 하계휴가 भनेको गर्मीयाममा लिने बिदा हो।\n① 연차 휴가 भनेको वर्षभरिमा पाउने वार्षिक बिदा हो, जुन 하계휴가 सँग मिल्छ ✓\n② 경조 휴가 भनेको परिवारमा पर्ने सुखदुःखको कामको लागि पाइने बिदा हो र यो 하계휴가 सँग मिल्दैन ✗\n③ 동계 휴가 भनेको जाडोयाममा लिने बिदा हो र यो 하계휴가 सँग मिल्दैन ✗\n④ 유학 휴가 भनेको अध्ययनका लागि लिने बिदा हो र यो 하계휴가 सँग मिल्दैन ✗", "label": "비슷한 말 · 책 147"}, {"n": "148", "q": "나이를 (먹다)", "options": ["물다", "죽다", "얻다", "들다"], "answer": 3, "explain": "प्रश्नको अर्थ: 나이를 먹다 भनेको उमेर बढ्नु वा उमेर खानु हो।\n① 물다 भनेको टोक्नु हो र यो 나이를 먹다 सँग मिल्दैन ✗\n② 죽다 भनेको मर्नु हो र यो 나이를 먹다 सँग मिल्दैन ✗\n③ 얻다 भनेको पाउनु हो र यो 나이를 먹다 सँग मिल्दैन ✗\n④ 들다 भनेको उमेर बढ्नु भन्ने अर्थमा 나이를 들다 भनिन्छ, जुन 나이를 먹다 सँग एकदम मिल्छ ✓", "label": "비슷한 말 · 책 148"}, {"n": "149", "q": "음식을 (짓다)", "options": ["남기다", "버리다", "만들다", "드리다"], "answer": 2, "explain": "प्रश्नको अर्थ: 음식을 짓다 भनेको खाना पकाउनु (भात बनाउनु) हो।\n① 남기다 भनेको बाँकी राख्नु हो र यो मिल्दैन ✗\n② 버리다 भनेको फाल्नु हो र यो मिल्दैन ✗\n③ 만들다 भनेको बनाउनु हो र खाना बनाउने अर्थमा यो एकदम मिल्छ ✓\n④ 드리다 भनेको टक्र्याउनु वा दिनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 149"}, {"n": "150", "q": "물체를 (이동시키다)", "options": ["빌리다", "옮기다", "깨지다", "만들다"], "answer": 1, "explain": "प्रश्नको अर्थ: 물체를 이동시키다 भनेको वस्तुलाई एक ठाउँबाट अर्को ठाउँमा सार्नु हो।\n① 빌리다 भनेको ऋण लिनु वा सापटी लिनु हो र यो मिल्दैन ✗\n② 옮기다 भनेको सार्नु वाार्नु हो र वस्तु सार्ने अर्थमा यो एकदम मिल्छ ✓\n③ 깨지다 भनेको फुट्नु हो र यो मिल्दैन ✗\n④ 만들다 भनेको बनाउनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 150"}, {"n": "151", "q": "책임을 (맡기다)", "options": ["이용하다", "답답하다", "담당하다", "이탈하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 책임을 맡기다 भनेको जिम्मा लगाउनु वा जिम्मेवारी सुम्पिनु हो।\n① 이용하다 भनेको प्रयोग गर्नु हो र यो 책임을 맡기다 सँग मिल्दैन ✗\n② 답답하다 भनेको टपक्क हुनु वा दिक्क लाग्नु हो र यो 책임을 맡기다 सँग मिल्दैन ✗\n③ 담당하다 भनेको जिम्मा लिनु वा जिम्मेवारी बहन गर्नु हो, जुन 책임을 맡기다 सँग एकदम मिल्छ ✓\n④ 이탈하다 भनेको बाहिरिनु वा छुटिनु हो र यो 책임을 맡기다 सँग मिल्दैन ✗", "label": "비슷한 말 · 책 151"}, {"n": "152", "q": "과정을 (수료하다)", "options": ["필요하다", "완성하다", "신청하다", "특별하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 과정을 수료하다 भनेको पाठ्यक्रम पूरा गर्नु (सकाउनु) हो।\n① 필요하다 भनेको आवश्यक हुनु हो र यो मिल्दैन ✗\n② 완성하다 भनेको पूर्ण गर्नु वा सकाउनु हो र कोर्स पूरा गर्ने अर्थमा यो एकदम मिल्छ ✓\n③ 신청하다 भनेको आवेदन दिनु हो र यो मिल्दैन ✗\n④ 특별하다 भनेको विशेष हुनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 152"}, {"n": "153", "q": "일을 (비롯하다)", "options": ["시작하다", "서투르다", "익숙하다", "구별하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 일을 비롯하다 भनेको कामको थालनी गर्नु वा सुरु गर्नु हो।\n① 시작하다 भनेको सुरु गर्नु हो र कामको थालनी गर्ने अर्थमा यो एकदम मिल्छ ✓\n② 서투르다 भनेको नजान्नु वा कच्चा हुनु हो र यो मिल्दैन ✗\n③ 익숙하다 भनेको बानी पर्नु वा पोख्त हुनु हो र यो मिल्दैन ✗\n④ 구별하다 भनेको छुट्याउनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 153"}, {"n": "154", "q": "물이 (차갑다)", "options": ["두껍다", "무겁다", "어둡다", "사원하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 물이 차갑다 भनेको पानी चिसो हुनु हो।\n① 두껍다 भनेको बाक्लो हुनु हो र यो मिल्दैन ✗\n② 무겁다 भनेको भारी हुनु हो र यो मिल्दैन ✗\n③ 어둡다 भनेको अँध्यारो हुनु हो र यो मिल्दैन ✗\n④ 사원하다 भनेको शितल वा आनन्ददायी हुनु (चिसो हुनुको अर्थमा) हो र यो मिल्छ ✓", "label": "비슷한 말 · 책 154"}, {"n": "155", "q": "문제를 (검토하다)", "options": ["해결하다", "기억나다", "확인하다", "감소하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 문제를 검토하다 भनेको समस्याको समीक्षा गर्नु वा जाँच्नु हो।\n① 해결하다 भनेको समाधान गर्नु हो र यो मिल्दैन ✗\n② 기억나다 भनेको याद आउनु हो र यो मिल्दैन ✗\n③ 확인하다 भनेको यकिन गर्नु वा जाँच्नु हो र 검토하다 सँग मिल्छ ✓\n④ 감소하다 भनेको घट्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 155"}, {"n": "156", "q": "물건을 (반품하다)", "options": ["구입하다", "반납하다", "환불하다", "판매하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 물건을 반품하다 भनेको सामान फिर्ता गर्नु (पसलमा) हो।\n① 구입하다 भनेको किन्नु हो र यो मिल्दैन ✗\n② 반납하다 भनेको फिर्ता गर्नु (किताब आदि) हो र यो मिल्दैन ✗\n③ 환불하다 भनेको पैसा फिर्ता लिनु (सामान फिर्ता गरेर) हो र 반품하다 को समान अर्थमा यो एकदम मिल्छ ✓\n④ 판매하다 भनेको बिक्री गर्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 156"}, {"n": "157", "q": "문제를 (방지하다)", "options": ["준비하다", "정리하다", "예방하다", "가능하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 문제를 방지하다 भनेको समस्या रोक्नु वा बचाउनु हो।\n① 준비하다 भनेको तयारी गर्नु हो र यो मिल्दैन ✗\n② 정리하다 भनेको व्यवस्थापन गर्नु हो र यो मिल्दैन ✗\n③ 예방하다 भनेको रोकथाप गर्नु वा बचाउनु हो र 방지하다 को समान अर्थमा यो एकदम मिल्छ ✓\n④ 가능하다 भनेको सम्भव हुनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 157"}, {"n": "158", "q": "차를 (타다)", "options": ["환승하다", "승차하다", "환불하다", "하차하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 차를 타다 भनेको गाडी चढ्नु हो।\n① 환승하다 भनेको गाडी फेर्नु हो र यो मिल्दैन ✗\n② 승차하다 भनेको गाडीमा चढ्नु हो र 차를 타다 को समान अर्थमा यो एकदम मिल्छ ✓\n③ 환불하다 भनेको पैसा फिर्ता गर्नु हो र यो मिल्दैन ✗\n④ 하차하다 भनेको गाडीबाट ओत्रनु हो र यो विपरीतार्थक हो ✗", "label": "비슷한 말 · 책 158"}, {"n": "159", "q": "폐기물을 (버리다)", "options": ["바꾸다", "쌓이다", "치우다", "밀리다"], "answer": 2, "explain": "प्रश्नको अर्थ: 폐기물을 버리다 भनेको फोहोरमैला फाल्नु हो।\n① 바꾸다 भनेको फेर्नु हो र यो मिल्दैन ✗\n② 쌓이다 भनेको थुप्रिनु हो र यो मिल्दैन ✗\n③ 치우다 भनेको सफा गर्नु वा हटाउनु हो, फोहोर हटाउने अर्थमा यो मिल्छ ✓\n④ 밀리다 भनेको पछि सर्नु वा थुप्रिनु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 159"}, {"n": "160", "q": "상처가 (낫다)", "options": ["치료하다", "복용하다", "치유되다", "어지럽다"], "answer": 2, "explain": "प्रश्नको अर्थ: 상처가 낫다 भनेको घाउ निको हुनु हो।\n① 치료하다 भनेको उपचार गर्नु हो र यो मिल्दैन ✗\n② 복용하다 भनेको औषधि खानु हो र यो मिल्दैन ✗\n③ 치유되다 भनेको निको हुनु वा स्वास्थ्य लाभ हुनु हो र 상처가 낫다 को समान अर्थमा यो एकदम मिल्छ ✓\n④ 어지럽다 भनेको रिङ्गटा लाग्नु हो र यो मिल्दैन ✗", "label": "비슷한 말 · 책 160"}, {"n": "161", "q": "문제가 (발생하다)", "options": ["고생하다", "해소하다", "사용하다", "일어나다"], "answer": 3, "explain": "प्रश्नको अर्थ: 문제가 (발생하다) भनेको समस्या उत्पन्न हुनु वा घट्नु हो।\n① 고생하다 भनेको दुःख पाउनु हो, यो मिल्दैन ✗\n② 해소하다 भनेको समाधान गर्नु वा हटाउनु हो, यो मिल्दैन ✗\n③ 사용하다 भनेको प्रयोग गर्नु हो, यो मिल्दैन ✗\n④ 일어나다 भनेको घट्नु वा उत्पन्न हुनु हो, त्यसैले यो मिल्छ ✓", "label": "비슷한 말 · 책 161"}, {"n": "162", "q": "얼굴이 (닮다)", "options": ["나쁘다", "비슷하다", "멋있다", "따뜻하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 얼굴이 (닮다) भनेको अनुहार मिल्नु वा उस्तै हुनु हो।\n① 나쁘다 भनेको नराम्रो हुनु हो, यो मिल्दैन ✗\n② 비슷하다 भनेको उस्तै हुनु हो, त्यसैले यो मिल्छ ✓\n③ 멋있다 भनेको आकर्षक हुनु हो, यो मिल्दैन ✗\n④ 따뜻하다 भनेको न्यानो हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 162"}, {"n": "163", "q": "질서를 (준수하다)", "options": ["지키다", "어기다", "힘들다", "미루다"], "answer": 0, "explain": "प्रश्नको अर्थ: 질서를 (준수하다) भनेको नियम पालना गर्नु हो।\n① 지키다 भनेको पालना गर्नु वा बचाउनु हो, त्यसैले यो मिल्छ ✓\n② 어기다 भनेको उल्लङ्घन गर्नु हो, यो मिल्दैन ✗\n③ 힘들다 भनेको गाह्रो हुनु हो, यो मिल्दैन ✗\n④ 미루다 भनेको पछि सार्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 163"}, {"n": "164", "q": "도움을(부탁하다)", "options": ["필요하다", "설명하다", "당부하다", "물어보다"], "answer": 2, "explain": "प्रश्नको अर्थ: 도움을(부탁하다) भनेको सहयोग अनुरोध गर्नु हो।\n① 필요하다 भनेको आवश्यक हुनु हो, यो मिल्दैन ✗\n② 설명하다 भनेको व्याख्या गर्नु हो, यो मिल्दैन ✗\n③ 당부하다 भनेको अनुरोध गर्नु वा आग्रह गर्नु हो, त्यसैले यो मिल्छ ✓\n④ 물어보다 भनेको सोध्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 164"}, {"n": "165", "q": "승리하다", "options": ["박히다", "닫히다", "살리다", "이기다"], "answer": 3, "explain": "प्रश्नको अर्थ: 승리하다 भनेको विजय हुनु वा जित्नु हो।\n① 박히다 भनेको गाडिनु वा अड्कनु हो, यो मिल्दैन ✗\n② 닫히다 भनेको बन्द हुनु हो, यो मिल्दैन ✗\n③ 살리다 भनेको बचाउनु हो, यो मिल्दैन ✗\n④ 이기다 भनेको जित्नु हो, त्यसैले यो मिल्छ ✓", "label": "비슷한 말 · 책 165"}, {"n": "166", "q": "태어나다", "options": ["출석하다", "귀국하다", "출생하다", "통화하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 태어나다 भनेको जन्मनु हो।\n① 출석하다 भनेको हाजिरी हुनु हो, यो मिल्दैन ✗\n② 귀국하다 भनेको स्वदेश फर्कनु हो, यो मिल्दैन ✗\n③ 출생하다 भनेको जन्मिनु हो, त्यसैले यो मिल्छ ✓\n④ 통화하다 भनेको फोनमा कुरा गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 166"}, {"n": "167", "q": "은퇴하다", "options": ["결혼하다", "졸업하다", "퇴직하다", "취직하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 은퇴하다 भनेको सेवानिवृत्त हुनु (कामबाट बिदा लिनु) हो।\n① 결혼하다 भनेको विवाह गर्नु हो, यो मिल्दैन ✗\n② 졸업하다 भनेको स्नातक हुनु हो, यो मिल्दैन ✗\n③ 퇴직하다 भनेको जागिरबाट अवकाश पाउनु हो, त्यसैले यो मिल्छ ✓\n④ 취직하다 भनेको काम पाउनु वा जागिर खानु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 167"}, {"n": "168", "q": "보고싶다", "options": ["사귀다", "빠지다", "아쉽다", "그립다"], "answer": 3, "explain": "प्रश्नको अर्थ: 보고싶다 भनेको भेट्न चाहनु वा याद आउनु हो।\n① 사귀다 भनेको साथी बन्नु हो, यो मिल्दैन ✗\n② 빠지다 भनेको छुट्नु वा पस्नु हो, यो मिल्दैन ✗\n③ 아쉽다 भनेको खल्लो वा पछुतो लाग्नु हो, यो मिल्दैन ✗\n④ 그립다 भनेको सम्झना आउनु वा तड्पिनु हो, त्यसैले यो मिल्छ ✓", "label": "비슷한 말 · 책 168"}, {"n": "169", "q": "지급하다", "options": ["빼다", "팔다", "얻다", "내다"], "answer": 3, "explain": "प्रश्नको अर्थ: 지급하다 भनेको भुक्तानी दिनु वा उपलब्ध गराउनु हो।\n① 빼다 भनेको घटाउनु वा निकाल्नु हो, यो मिल्दैन ✗\n② 팔다 भनेको बेच्नु हो, यो मिल्दैन ✗\n③ 얻다 भनेको पाउनु हो, यो मिल्दैन ✗\n④ 내다 भनेको तिर्नु वा दिनु हो, त्यसैले यो मिल्छ ✓", "label": "비슷한 말 · 책 169"}, {"n": "170", "q": "성실하다", "options": ["상실하다", "조용하다", "정직하다", "한가하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 성실하다 भनेको इमानदार र मेहनती हुनु हो।\n① 상실하다 भनेको गुमाउनु हो, यो मिल्दैन ✗\n② 조용하다 भनेको शान्त हुनु हो, यो मिल्दैन ✗\n③ 정직하다 भनेको इमानदार हुनु हो, त्यसैले यो मिल्छ ✓\n④ 한가하다 भनेको फुर्सदिला हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 170"}, {"n": "171", "q": "뵙다", "options": ["보내다", "만나다", "때리다", "데리다"], "answer": 1, "explain": "प्रश्नको अर्थ: 뵙다 भनेको भेट्नु हो (आदरार्थी शब्द)।\n① 보내다 भनेको पठाउनु हो, यो मिल्दैन ✗\n② 만나다 भनेको भेट्नु हो, त्यसैले यो मिल्छ ✓\n③ 때리다 भनेको पिट्नु हो, यो मिल्दैन ✗\n④ 데리다 भनेको साथमा लिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 171"}, {"n": "172", "q": "돌보다", "options": ["보살피다", "중요하다", "마련하다", "대접하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 돌보다 भनेको हेरचाह गर्नु हो।\n① 보살피다 भनेको स्याहार्नु वा हेरचाह गर्नु हो, त्यसैले यो मिल्छ ✓\n② 중요하다 भनेको महत्त्वपूर्ण हुनु हो, यो मिल्दैन ✗\n③ 마련하다 भनेको तयार पार्नु हो, यो मिल्दैन ✗\n④ 대접하다 भनेको आतिथ्य सत्कार गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 172"}, {"n": "173", "q": "추측하다", "options": ["조사하다", "예측하다", "요청하다", "축하하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 추측하다 भनेको अनुमान गर्नु हो।\n① 조사하다 भनेको अनुसन्धान वा जाँच गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 예측하다 भनेको पूर्वअनुमान वा अनुमान गर्नु हो, जुन 추측하다 सँग एकदम मिल्छ ✓\n③ 요청하다 भनेको अनुरोध गर्नु हो, त्यसैले यो मिल्दैन ✗\n④ 축하하다 भनेको बधाई दिनु हो, त्यसैले यो मिल्दैन ✗", "label": "비슷한 말 · 책 173"}, {"n": "174", "q": "체류하다", "options": ["거주하다", "거절하다", "갱신하다", "배치되다"], "answer": 0, "explain": "प्रश्नको अर्थ: 체류하다 भनेको बसोबास गर्नु हो।\n① 거주하다 भनेको बसोबास गर्नु वा बस्नु हो, त्यसैले यो मिल्छ ✓\n② 거절하다 भनेको अस्वीकार गर्नु हो, यो मिल्दैन ✗\n③ 갱신하다 भनेको नवीकरण गर्नु हो, यो मिल्दैन ✗\n④ 배치되다 भनेको खटाइनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 174"}, {"n": "175", "q": "취급하다", "options": ["선발하다", "조작하다", "최소하다", "이용하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 취급하다 भनेको व्यवहार गर्नु वा कारोबार गर्नु हो।\n① 선발하다 भनेको छान्नु हो, यो मिल्दैन ✗\n② 조작하다 भनेको सञ्चालन गर्नु वा बिगार्नु हो, यो मिल्दैन ✗\n③ 최소하다 भनेको न्यूनतम हुनु हो, यो मिल्दैन ✗\n④ 이용하다 भनेको प्रयोग वा उपयोग गर्नु हो, त्यसैले यो मिल्छ ✓", "label": "비슷한 말 · 책 175"}, {"n": "176", "q": "추천하다", "options": ["손대다", "원하다", "외우다", "권하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 추천하다 भनेको सिफारिस गर्नु वा सल्लाह दिनु हो।\n① 손대다 भनेको हात हाल्नु वा छुनु हो, यो मिल्दैन ✗\n② 원하다 भनेको चाहनु हो, यो मिल्दैन ✗\n③ 외우다 भनेको कण्ठ गर्नु वा याद गर्नु हो, यो मिल्दैन ✗\n④ 권하다 भनेको सिफारिस गर्नु वा सुझाव दिनु हो, यो मिलेको अर्थ हो ✓", "label": "비슷한 말 · 책 176"}, {"n": "177", "q": "창피하다", "options": ["어지럽다", "부끄럽다", "쓰러지다", "시끄럽다"], "answer": 1, "explain": "प्रश्नको अर्थ: 창피하다 भनेको लज्जित हुनु वा बेइज्जत हुनु हो।\n① 어지럽다 भनेको चक्कर लाग्नु वा अस्तव्यस्त हुनु हो, यो मिल्दैन ✗\n② 부끄럽다 भनेको लज्जित हुनु वा लाज मान्नु हो, यो मिलेको अर्थ हो ✓\n③ 쓰러지다 भनेको लड्नु वा ढल्नु हो, यो मिल्दैन ✗\n④ 시끄럽다 भनेको कोलाहल हुनु वा हल्ला हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 177"}, {"n": "178", "q": "경고하다", "options": ["정보하다", "안내하다", "주의하다", "수령하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 경고하다 भनेको चेतावनी दिनु हो।\n① 정보하다 भनेको जानकारी दिनु हो, यो मिल्दैन ✗\n② 안내하다 भनेको जानकारी गराउनु वा बाटो देखाउनु हो, यो मिल्दैन ✗\n③ 주의하다 भनेको सावधानी अपनाउनु वा सतर्क गराउनु हो, यो मिलेको अर्थ हो ✓\n④ 수령하다 भनेको बुझ्नु वा प्राप्त गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 178"}, {"n": "179", "q": "진찰하다", "options": ["검진하다", "연구하다", "사과하다", "자유롭다"], "answer": 0, "explain": "प्रश्नको अर्थ: 진찰하다 भनेको स्वास्थ्य परीक्षण गर्नु वा डाक्टरले जाँच्नु हो।\n① 검진하다 भनेको स्वास्थ्य जाँच गर्नु हो, यो मिलेको अर्थ हो ✓\n② 연구하다 भनेको अनुसन्धान गर्नु हो, यो मिल्दैन ✗\n③ 사과하다 भनेको माफी माग्नु हो, यो मिल्दैन ✗\n④ 자유롭다 भनेको स्वतन्त्र हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 179"}, {"n": "180", "q": "공부하다", "options": ["운동하다", "독서하다", "숙제하다", "요리하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 공부하다 भनेको पढ्नु वा अध्ययन गर्नु हो।\n① 운동하다 भनेको व्यायाम गर्नु हो, यो मिल्दैन ✗\n② 독서하다 भनेको किताब पढ्नु हो, यो मिलेको अर्थ हो ✓\n③ 숙제하다 भनेको गृहकार्य गर्नु हो, यो मिल्दैन ✗\n④ 요리하다 भनेको खाना पकाउनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 180"}, {"n": "181", "q": "시험에 (통과하다)", "options": ["참여하다", "떨어지다", "합격하다", "독서하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 통과하다 भनेको परीक्षा उत्तीर्ण गर्नु वा पास हुनु हो।\n① 참여하다 भनेको सहभागी हुनु हो, यो मिल्दैन ✗\n② 떨어지다 भनेको अनुत्तीर्ण हुनु वा फेल हुनु हो, यो मिल्दैन ✗\n③ 합격하다 भनेको पास हुनु वा उत्तीर्ण हुनु हो, यो मिलेको अर्थ हो ✓\n④ 독서하다 भनेको किताब पढ्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 181"}, {"n": "182", "q": "가스가 (새다)", "options": ["누출되다", "인하되다", "폭발하다", "붕괴하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 새다 भनेको ग्यास चुहिने वा बाहिर निस्कने हो।\n① 누출되다 भनेको लिक हुनु वा चुहिने हुनु हो, यो मिलेको अर्थ हो ✓\n② 인하되다 भनेको मूल्य घट्नु हो, यो मिल्दैन ✗\n③ 폭발하다 भनेको विष्फोट हुनु हो, यो मिल्दैन ✗\n④ 붕괴하다 भनेको भत्कनु वा ढल्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 182"}, {"n": "183", "q": "실력이 (늘다)", "options": ["향상하다", "집중하다", "인상되다", "허용하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 늘다 भनेको सीप वा क्षमता बढाउनु वा अगाडि बढ्नु हो।\n① 향상하다 भनेको सुधार हुनु वा प्रगत हुनु हो, यो मिलेको अर्थ हो ✓\n② 집중하다 भनेको एकाग्र हुनु हो, यो मिल्दैन ✗\n③ 인상되다 भनेको मूल्य बढ्नु हो, यो मिल्दैन ✗\n④ 허용하다 भनेको अनुमति दिनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 183"}, {"n": "184", "q": "시험에 (실패하다)", "options": ["떨어지다", "합격하다", "접수하다", "넘어지다"], "answer": 0, "explain": "प्रश्नको अर्थ: 실패하다 भनेको परीक्षामा असफल हुनु वा फेल हुनु हो।\n① 떨어지다 भनेको अनुत्तीर्ण हुनु वा फेल हुनु हो, यो मिलेको अर्थ हो ✓\n② 합격하다 भनेको उत्तीर्ण हुनु हो, यो मिल्दैन ✗\n③ 접수하다 भनेको दर्ता गर्नु हो, यो मिल्दैन ✗\n④ 넘어지다 भनेको लड्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 184"}, {"n": "185", "q": "물고기를 (잡다)", "options": ["요리하다", "운동하다", "낚시하다", "독서하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 잡다 भनेको माछा मार्नु हो।\n① 요리하다 भनेको खाना पकाउनु हो, यो मिल्दैन ✗\n② 운동하다 भनेको व्यायाम गर्नु हो, यो मिल्दैन ✗\n③ 낚시하다 भनेको माछा मार्नु (बल्छी थापेर) हो, यो मिलेको अर्थ हो ✓\n④ 독서하다 भनेको किताब पढ्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 185"}, {"n": "186", "q": "얼굴이 (닮다)", "options": ["나쁘다", "비슷하다", "멋있다", "따뜻하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 닮다 भनेको मुहार वा रूप उस्तै हुनु हो।\n① 나쁘다 भनेको नराम्रो हुनु हो, यो मिल्दैन ✗\n② 비슷하다 भनेको उस्तै हुनु वा मिल्दोजुल्दो हुनु हो, यो मिलेको अर्थ हो ✓\n③ 멋있다 भनेको राम्रो हुनु वा आकर्षक हुनु हो, यो मिल्दैन ✗\n④ 따뜻하다 भनेको न्यानो हुनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 186"}, {"n": "187", "q": "질병을 (예방하다)", "options": ["검진하다", "치료하다", "대처하다", "독서하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 예방하다 भनेको रोग रोकथाम गर्नु वा बचाउनु हो।\n① 검진하다 भनेको स्वास्थ्य परीक्षण गर्नु हो, यो मिल्दैन ✗\n② 치료하다 भनेको उपचार गर्नु हो, यो मिलेको अर्थ हो ✓\n③ 대처하다 भनेको सामना गर्नु वा समाधान गर्नु हो, यो मिल्दैन ✗\n④ 독서하다 भनेको किताब पढ्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 187"}, {"n": "188", "q": "보험료를 (내다)", "options": ["청구하다", "납입하다", "착용하다", "소멸되다"], "answer": 1, "explain": "प्रश्नको अर्थ: 내다 भनेको बीमा शुल्क तिर्नु वा बुझाउनु हो।\n① 청구하다 भनेको दाबी गर्नु हो, यो मिल्दैन ✗\n② 납입하다 भनेको पैसा तिर्नु वा बुझाउनु हो, यो मिलेको अर्थ हो ✓\n③ 착용하다 भनेको लगाउनु वा पहिरिनु हो, यो मिल्दैन ✗\n④ 소멸되다 भनेको नष्ट हुनु वा हराउनु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 188"}, {"n": "189", "q": "노래를 (하다)", "options": ["누르다", "배우다", "부르다", "외우다"], "answer": 2, "explain": "प्रश्नको अर्थ: 하다 भनेको गीत गाउनु हो।\n① 누르다 भनेको थिच्नु हो, यो मिल्दैन ✗\n② 배우다 भनेको सिक्नु हो, यो मिल्दैन ✗\n③ 부르다 भनेको गाउनु हो, यो मिलेको अर्थ हो ✓\n④ 외우다 भनेको कण्ठ गर्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 189"}, {"n": "190", "q": "철근을 (절단하다)", "options": ["바르다", "자르다", "나르다", "붙이다"], "answer": 1, "explain": "प्रश्नको अर्थ: 절단하다 भनेको काट्नु हो (जस्तै रड आदि)।\n① 바르다 भनेको लगाउनु वा सीधा हुनु हो, यो मिल्दैन ✗\n② 자르다 भनेको काट्नु हो, यो मिलेको अर्थ हो ✓\n③ 나르다 भनेको बोक्नु वा ओसार्नु हो, यो मिल्दैन ✗\n④ 붙이다 भनेको टाँस्नु हो, यो मिल्दैन ✗", "label": "비슷한 말 · 책 190"}, {"n": "191", "q": "제품을 (분류하다)", "options": ["운반하다", "선별하다", "구입하다", "판매하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 제품을 (분류하다) भनेको सामान छुट्याउनु वा वर्गीकरण गर्नु हो।\n① 운반하다 भनेको सामान बोकेर एक ठाउँबाट अर्को ठाउँमा सार्नु हो। ✗\n② 선별하다 भनेको सामानहरू छानेर छुट्याउनु हो, जुन 분류하다 सँग एकदम मिल्छ। ✓\n③ 구입하다 भनेको सामान किन्नु हो। ✗\n④ 판매하다 भनेको सामान बेच्नु हो। ✗", "label": "비슷한 말 · 책 191"}, {"n": "192", "q": "선물을 (드리다)", "options": ["주다", "받다", "싸다", "사다"], "answer": 0, "explain": "प्रश्नको अर्थ: 선물을 (드리다) भनेको उपहार दिनु हो।\n① 주다 भनेको दिनु हो, जुन 드리다 को समान अर्थ दिन्छ। ✓\n② 받다 भनेको लिनु वा पाउनु हो। ✗\n③ 싸다 भनेको प्याक गर्नु हो। ✗\n④ 사다 भनेको किन्नु हो। ✗", "label": "비슷한 말 · 책 192"}, {"n": "193", "q": "소포를 (택배하다)", "options": ["배송하다", "포장하다", "교환하다", "환불하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 소포를 (택배하다) भनेको पार्सल कुरियर गर्नु वा पठाउनु हो।\n① 배송하다 भनेको डेलिभर गर्नु वा पठाउनु हो, जुन 택배하다 सँग मिल्छ। ✓\n② 포장하다 भनेको प्याकेज गर्नु हो। ✗\n③ 교환하다 भनेको साटासाट गर्नु हो। ✗\n④ 환불하다 भनेको पैसा फिर्ता लिनु हो। ✗", "label": "비슷한 말 · 책 193"}, {"n": "194", "q": "못을 (뽑다)", "options": ["박다", "꽂다", "빼다", "잡다"], "answer": 2, "explain": "प्रश्नको अर्थ: 못을 (뽑다) भनेको किल्ला वा काटी निकाल्नु हो।\n① 박다 भनेको किल्ला ठोक्नु वा गाड्नु हो र यो उल्टो अर्थ दिने शब्द हो ✗\n② 꽂다 भनेको केही कुरामा घुसाउनु वा अड्याउनु हो र यो मिल्दैन ✗\n③ 빼다 भनेको कुनै कुरा बाहिर निकाल्नु हो र यो उस्तै अर्थ दिने शब्द हो ✓\n④ 잡다 भनेको समात्नु हो र यो मिल्दैन ✗\nशिक्षकको उत्तर-पत्र: यहाँ 뽑다 र 빼다 दुवैको अर्थ निकाल्नु भन्ने हुन्छ, तर EPS परीक्षामा यसको सही उत्तर 빼다 मानिन्छ।", "label": "비슷한 말 · 책 194"}, {"n": "195", "q": "자리를 (차지하다)", "options": ["잡다", "편하다", "떠나다", "양보하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 자리를 (차지하다) भनेको ठाउँ ओगट्नु वा कब्जा गर्नु हो।\n① 잡다 भनेको समात्नु वा ओगट्नु हो र यो एकदम मिल्दोजुल्दो अर्थ दिने शब्द हो ✓\n② 편하다 भनेको सहज वा आराम हुनु हो र यो मिलेन ✗\n③ 떠나다 भनेको छाडेर जानु हो र यो उल्टो अर्थ जस्तै हुन्छ ✗\n④ 양보하다 भनेको छाडिदिनु वा त्याग गर्नु हो र यो उल्टो अर्थ हो ✗", "label": "비슷한 말 · 책 195"}, {"n": "196", "q": "철을 (잇다)", "options": ["작동하다", "집중하다", "연결하다", "접근하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 철을 (잇다) भनेको फलाम जोड्नु हो।\n① 작동하다 भनेको मेसिन सञ्चालन हुनु हो। ✗\n② 집중하다 भनेको एकाग्र हुनु हो। ✗\n③ 연결하다 भनेको जोड्नु वा सम्पर्क गर्नु हो, जुन 잇다 सँग मिल्छ। ✓\n④ 접근하다 भनेको नजिक जानु हो। ✗", "label": "비슷한 말 · 책 196"}, {"n": "197", "q": "보험금을 (청구하다)", "options": ["입금하다", "요구하다", "사용하다", "지급하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 보험금을 (청구하다) भनेको बिमा दाबी गर्नु (माग्नु) हो।\n① 입금하다 भनेको खातामा पैसा जम्मा गर्नु हो। ✗\n② 요구하다 भनेको माग गर्नु हो, जुन 청구하다 सँग मिल्छ। ✓\n③ 사용하다 भनेको प्रयोग गर्नु हो। ✗\n④ 지급하다 भनेको भुक्तानी गर्नु हो। ✗", "label": "비슷한 말 · 책 197"}, {"n": "198", "q": "불을 (소화하다)", "options": ["끄다", "크다", "나다", "접다"], "answer": 0, "explain": "प्रश्नको अर्थ: 불을 (소화하다) भनेको आगो निभाउनु हो।\n① 끄다 भनेको निभाउनु हो, जुन 소화하다 सँग मिल्छ। ✓\n② 크다 भनेको ठूलो हुनु हो। ✗\n③ 나다 भनेको उत्पन्न हुनु हो। ✗\n④ 접다 भनेको पट्याउनु हो। ✗", "label": "비슷한 말 · 책 198"}, {"n": "199", "q": "팔을 (들다)", "options": ["돌리다", "내리다", "다치다", "올리다"], "answer": 3, "explain": "प्रश्नको अर्थ: 팔을 (들다) भनेको हात उठाउनु हो।\n① 돌리다 भनेको घुमाउनु हो। ✗\n② 내리다 भनेको तल झार्नु हो। ✗\n③ 다치다 भनेको चोट लाग्नु हो। ✗\n④ 올리다 भनेको माथि उठाउनु हो, जुन 들다 सँग मिल्छ। ✓", "label": "비슷한 말 · 책 199"}, {"n": "200", "q": "(가격이) 오르다", "options": ["선택되다", "인상되다", "변화하다", "유지되다"], "answer": 1, "explain": "प्रश्नको अर्थ: (가격이) 오르다 भनेको मूल्य बढ्नु हो।\n① 선택되다 भनेको छनौट हुनु हो। ✗\n② 인상되다 भनेको मूल्य वृद्धि हुनु हो, जुन 오르다 सँग मिल्छ। ✓\n③ 변화하다 भनेको परिवर्तन हुनु हो। ✗\n④ 유지되다 भनेको कायम रहनु हो। ✗", "label": "비슷한 말 · 책 200"}];
-
-const PER_PAGE = 20;
-const TOTAL = QUESTIONS.length;
-const SET_ID = 'eps-antonym-similar';
-const answers = {}; // question index -> chosen option index
-let page = 0;
-let submitted = false;
-let reviewFilter = 'all';
-
-// --- progress auto-save (localStorage) ---
-// Saved per set (key includes SET_ID), so each set file keeps its own
-// progress. Wrapped in try/catch: if the browser blocks storage, the quiz
-// still works, it just won't remember progress.
-const STORE_KEY = 'eps-quiz-' + SET_ID;
-function storeAvailable() {
-  try { localStorage.setItem('__eps_test__', '1'); localStorage.removeItem('__eps_test__'); return true; }
-  catch (e) { return false; }
+const SETS = [{"key": "eps-quiz-eps-antonym-set-05"}, {"key": "eps-quiz-eps-antonym-set-06"}, {"key": "eps-quiz-eps-antonym-set-07"}, {"key": "eps-quiz-eps-antonym-set-08"}];
+function answered(key){
+  try{
+    const raw = localStorage.getItem(key);
+    if(!raw) return 0;
+    const d = JSON.parse(raw);
+    if(!d || !d.answers) return 0;
+    return Math.min(50, Object.keys(d.answers).length);
+  }catch(e){ return 0; }
 }
-const storeOK = storeAvailable();
-function saveProgress() {
-  if (!storeOK) return;
-  try { localStorage.setItem(STORE_KEY, JSON.stringify({ answers: answers, page: page })); } catch (e) {}
-}
-function loadProgress() {
-  if (!storeOK) return;
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    if (data && data.answers) {
-      Object.keys(data.answers).forEach(k => { answers[k] = data.answers[k]; });
-      if (typeof data.page === 'number' && data.page >= 0 && data.page < Math.ceil(TOTAL / PER_PAGE)) page = data.page;
+function refresh(){
+  let total = 0;
+  SETS.forEach(function(s, i){
+    const n = answered(s.key);
+    total += n;
+    const bar = document.getElementById('bar-' + i);
+    const txt = document.getElementById('txt-' + i);
+    const cta = document.getElementById('cta-' + i);
+    if(bar) bar.style.width = (n * 2) + '%';
+    if(txt) txt.textContent = n === 0 ? 'Not started' : (n === 50 ? 'Completed \u2713' : n + '/50 answered');
+    if(cta){
+      cta.textContent = n === 0 ? 'Start \u2192' : (n === 50 ? 'Review \u2192' : 'Continue \u2192');
+      cta.classList.toggle('done', n === 50);
     }
-  } catch (e) {}
-}
-function clearProgress() {
-  if (storeOK) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
-}
-loadProgress();
-
-const $ = (id) => document.getElementById(id);
-const circled = ['①','②','③','④'];
-
-function updateProgress() {
-  const done = Object.keys(answers).length;
-  $('progressBar').style.width = (done / TOTAL * 100) + '%';
-  $('progressText').textContent = done + ' / ' + TOTAL + ' answered';
-  $('submitHint').textContent = done === TOTAL ? 'All answered — ready to submit!' : (TOTAL - done) + ' unanswered (counted wrong on submit).';
-}
-
-// Renders "① <option text>" into `el`, wrapping the FIRST occurrence of
-// the underlined substring (if any) in <span class="ul"> so it gets a real
-// CSS underline — never a combining mark (U+0332 renders as tofu boxes on
-// some devices). Uses text nodes only, never innerHTML, so option text is
-// never parsed as markup. Questions without an "underlined" field (e.g.
-// the 600-question quiz) render plain text exactly as before.
-function renderOptionText(el, prefix, opt, under) {
-  el.appendChild(document.createTextNode(prefix + ' '));
-  const u = under || '';
-  const idx = u ? opt.indexOf(u) : -1;
-  if (idx < 0) {
-    el.appendChild(document.createTextNode(opt));
-    return;
-  }
-  if (idx > 0) el.appendChild(document.createTextNode(opt.slice(0, idx)));
-  const span = document.createElement('span');
-  span.className = 'ul';
-  span.appendChild(document.createTextNode(u));
-  el.appendChild(span);
-  if (idx + u.length < opt.length) {
-    el.appendChild(document.createTextNode(opt.slice(idx + u.length)));
-  }
-}
-
-function renderPage() {
-  const list = $('questionList');
-  list.innerHTML = '';
-  const start = page * PER_PAGE;
-  const end = Math.min(start + PER_PAGE, TOTAL);
-  for (let i = start; i < end; i++) {
-    const q = QUESTIONS[i];
-    const card = document.createElement('div');
-    card.className = 'q-card' + (answers[i] !== undefined ? ' answered' : '');
-    card.innerHTML =
-      '<div class="q-num">Question ' + q.n + '</div>' +
-      (q.label ? '<span class="q-label"></span>' : '') +
-      '<div class="q-text"></div>' +
-      '<div class="options"></div>';
-    card.querySelector('.q-text').textContent = q.q;
-    const lab = card.querySelector('.q-label');
-    if (lab) lab.textContent = q.label;
-    const opts = card.querySelector('.options');
-    q.options.forEach((opt, oi) => {
-      const label = document.createElement('label');
-      if (answers[i] === oi) label.classList.add('selected');
-      const input = document.createElement('input');
-      input.type = 'radio';
-      input.name = 'q' + i;
-      input.checked = answers[i] === oi;
-      input.addEventListener('change', () => {
-        answers[i] = oi;
-        card.classList.add('answered');
-        card.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
-        label.classList.add('selected');
-        updateProgress();
-        saveProgress();
-      });
-      const span = document.createElement('span');
-      renderOptionText(span, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
-      label.appendChild(input);
-      label.appendChild(span);
-      opts.appendChild(label);
-    });
-    list.appendChild(card);
-  }
-  $('pageInfo').textContent = 'Page ' + (page + 1) + ' of ' + Math.ceil(TOTAL / PER_PAGE) + '  (Q' + QUESTIONS[start].n + '–Q' + QUESTIONS[end - 1].n + ')';
-  $('prevBtn').disabled = page === 0;
-  $('nextBtn').disabled = end >= TOTAL;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function submitQuiz() {
-  const unanswered = TOTAL - Object.keys(answers).length;
-  if (unanswered > 0 && !confirm(unanswered + ' question(s) still unanswered — they will count as wrong. Submit anyway?')) return;
-  submitted = true;
-  let score = 0;
-  QUESTIONS.forEach((q, i) => { if (answers[i] === q.answer) score++; });
-  const pct = Math.round(score / TOTAL * 100);
-  $('scoreBig').textContent = score + ' / ' + TOTAL;
-  $('scorePct').textContent = pct + '% correct';
-  $('scoreMsg').textContent =
-    pct >= 90 ? 'Excellent! EPS-TOPIK ready. 🎉' :
-    pct >= 70 ? 'Very good! Keep polishing the weak ones.' :
-    pct >= 50 ? 'Good start — review the wrong ones below and try again.' :
-    'Keep practicing — the explanations below will help.';
-  $('quizView').classList.add('hidden');
-  $('submitBar').classList.add('hidden');
-  $('resultView').classList.remove('hidden');
-  renderReview();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Renders the explanation as a structured list: the explanation string is
-// lines separated by "\n" — first line is the question's own meaning
-// ("प्रश्नको अर्थ: ..."), then one line per option ("① <word> ... ✓/✗").
-// Lines render as separate rows; the ✓ line gets a green tint and the ✓/✗
-// marker is coloured. Explanations without line breaks (fallback prose)
-// render as a single paragraph, exactly as before. Uses text nodes only,
-// never innerHTML, so explanation text is never parsed as markup.
-function renderExplain(box, explain) {
-  const lines = (explain || '').split('\n').map(s => s.trim()).filter(Boolean);
-  if (lines.length <= 1) {
-    const b = document.createElement('b');
-    b.textContent = 'किन? ';
-    box.appendChild(b);
-    const s = document.createElement('span');
-    s.textContent = explain;
-    box.appendChild(s);
-    return;
-  }
-  const label = document.createElement('div');
-  label.className = 'explain-label';
-  label.textContent = 'व्याख्या';
-  box.appendChild(label);
-  lines.forEach((ln, li) => {
-    const d = document.createElement('div');
-    if (li === 0 && ln.indexOf('प्रश्नको अर्थ') === 0) {
-      d.className = 'explain-stem';
-      d.textContent = ln;
-      box.appendChild(d);
-      return;
-    }
-    if (ln.indexOf('शिक्षकको उत्तर-पत्र:') === 0) {
-      d.className = 'exp-note';
-      d.textContent = ln;
-      box.appendChild(d);
-      return;
-    }
-    const mark = ln.endsWith('✓') ? '✓' : (ln.endsWith('✗') ? '✗' : '');
-    const body = mark ? ln.slice(0, -1).trim() : ln;
-    d.className = 'exp-line' + (mark === '✓' ? ' exp-ok' : '');
-    d.appendChild(document.createTextNode(body + (mark ? ' ' : '')));
-    if (mark) {
-      const m = document.createElement('span');
-      m.className = 'exp-mark ' + (mark === '✓' ? 'ok' : 'no');
-      m.textContent = mark;
-      d.appendChild(m);
-    }
-    box.appendChild(d);
   });
+  const st = document.getElementById('sumText');
+  if(st) st.textContent = total + '/200 answered';
+  const sb = document.getElementById('sumBar');
+  if(sb) sb.style.width = (total / 2) + '%';
 }
-
-function renderReview() {
-  const list = $('reviewList');
-  list.innerHTML = '';
-  QUESTIONS.forEach((q, i) => {
-    const mine = answers[i];
-    const ok = mine === q.answer;
-    if (reviewFilter === 'wrong' && ok) return;
-    if (reviewFilter === 'correct' && !ok) return;
-    const card = document.createElement('div');
-    card.className = 'review-card ' + (ok ? 'correct' : 'wrong');
-    card.innerHTML =
-      '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + (q.label ? ' · ' + q.label : '') + '</div>' +
-      '<div class="q-text"></div>' +
-      '<div class="rev-opts"></div>' +
-      '<div class="explain"></div>';
-    card.querySelector('.q-text').textContent = q.q;
-    const optsBox = card.querySelector('.rev-opts');
-    if (mine === undefined) {
-      const note = document.createElement('div');
-      note.className = 'rev-no-answer';
-      note.textContent = 'उत्तर दिएनौ';
-      optsBox.appendChild(note);
-    }
-    q.options.forEach((opt, oi) => {
-      const row = document.createElement('div');
-      row.className = 'rev-opt';
-      if (oi === q.answer) row.classList.add('rev-opt-correct');
-      if (mine !== undefined && oi === mine && mine !== q.answer) row.classList.add('rev-opt-mine-wrong');
-      const text = document.createElement('span');
-      text.className = 'rev-text';
-      renderOptionText(text, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
-      row.appendChild(text);
-      if (oi === q.answer) {
-        const b = document.createElement('span');
-        b.className = 'badge badge-correct';
-        b.textContent = '✓ सही उत्तर';
-        row.appendChild(b);
-      }
-      if (mine !== undefined && oi === mine) {
-        const b = document.createElement('span');
-        b.className = 'badge ' + (mine === q.answer ? 'badge-mine' : 'badge-mine-wrong');
-        b.textContent = '→ तिम्रो उत्तर';
-        row.appendChild(b);
-      }
-      optsBox.appendChild(row);
-    });
-    renderExplain(card.querySelector('.explain'), q.explain);
-    list.appendChild(card);
-  });
-  if (!list.children.length) {
-    list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No questions in this filter.</p>';
-  }
-}
-
-$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderPage(); saveProgress(); } });
-$('nextBtn').addEventListener('click', () => { if ((page + 1) * PER_PAGE < TOTAL) { page++; renderPage(); saveProgress(); } });
-$('submitBtn').addEventListener('click', submitQuiz);
-$('clearBtn').addEventListener('click', () => {
-  if (!confirm('Sabai answers clear garne? Saved progress pani delete hunchha.')) return;
-  Object.keys(answers).forEach(k => delete answers[k]);
-  clearProgress();
-  page = 0;
-  renderPage(); updateProgress();
-  window.scrollTo({ top: 0 });
-});
-$('retryBtn').addEventListener('click', () => {
-  Object.keys(answers).forEach(k => delete answers[k]);
-  clearProgress();
-  submitted = false; page = 0; reviewFilter = 'all';
-  document.querySelectorAll('.filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
-  $('resultView').classList.add('hidden');
-  $('quizView').classList.remove('hidden');
-  $('submitBar').classList.remove('hidden');
-  renderPage(); updateProgress();
-  window.scrollTo({ top: 0 });
-});
-$('reviewTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-document.querySelectorAll('.filters button').forEach(b => {
-  b.addEventListener('click', () => {
-    reviewFilter = b.dataset.filter;
-    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('active', x === b));
-    renderReview();
-  });
-});
-
-renderPage();
-updateProgress();
+document.addEventListener('DOMContentLoaded', refresh);
+window.addEventListener('pageshow', refresh);
 </script>
 </body>
 </html>
