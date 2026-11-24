@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+<title>EPS-TOPIK 반대말 + 비슷한 말 Quiz — Set 02 (Q51–Q100)</title>
+<style>
+  :root {
+    --primary: #a78bfa;
+    --primary-dark: #c4b5fd;
+    --primary-soft: rgba(124,58,237,.22);
+    --accent: #6366f1;
+    --accent-soft: rgba(99,102,241,.18);
+    --green: #34d399;
+    --green-bg: rgba(16,185,129,.16);
+    --red: #fb7185;
+    --red-bg: rgba(244,63,94,.14);
+    --bg: #0b0b16;
+    --card: #171725;
+    --text: #f2f1fa;
+    --muted: #9d9db4;
+    --border: rgba(255,255,255,.09);
+    --shadow: 0 2px 8px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.35);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,.5);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Plus Jakarta Sans", "Noto Sans KR", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); background-image: radial-gradient(700px 340px at 50% -5%, rgba(99,102,241,.14), transparent 60%); background-attachment: fixed; color: var(--text); line-height: 1.6; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); color: #d6c9ff; font-weight: 800; font-size: .92rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; border: 1px solid rgba(255,255,255,.12); margin-bottom: 14px; transition: all .15s; }
+  .back-btn:hover { background: rgba(255,255,255,.14); transform: translateY(-1px); }
+  header { background: #312e81; color: #fff; padding: 20px 16px 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,.1); box-shadow: 0 4px 20px rgba(0,0,0,.35); }
+  .header-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+  header h1 { font-size: 1.4rem; line-height: 1.25; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
+  header p { opacity: .92; font-size: .9rem; margin-top: 4px; }
+  .progress-wrap { margin-top: 14px; background: rgba(0,0,0,.35); border-radius: 999px; height: 10px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,.4); }
+  .progress-bar { height: 100%; background: #a5b4fc; width: 0%; transition: width .3s; border-radius: 999px; box-shadow: 0 0 12px rgba(165,180,252,.6); }
+  .progress-text { font-size: .85rem; font-weight: 700; margin-top: 8px; opacity: .97; }
+  .autosave-note { font-size: .78rem; margin-top: 3px; opacity: .8; }
+  main { max-width: 760px; margin: 0 auto; padding: 22px 16px 90px; }
+  .q-card { position: relative; background: #1a1a2c; border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px 24px; margin-bottom: 18px; box-shadow: var(--shadow); transition: box-shadow .2s; }
+  .q-card::before { content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 4px; background: #6366f1; border-radius: 0 0 6px 6px; }
+  .q-card:hover { box-shadow: var(--shadow-lg); }
+  .q-card.answered { border-color: rgba(167,139,250,.55); }
+  .q-card.answered::after { content: "✓"; position: absolute; top: 16px; right: 16px; width: 28px; height: 28px; border-radius: 50%; background: #059669; color: #fff; font-weight: 800; font-size: .95rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,.45); }
+  .q-num { display: inline-block; font-size: .92rem; font-weight: 800; color: #fff; background: #4f46e5; padding: 7px 18px; border-radius: 999px; letter-spacing: .04em; box-shadow: 0 2px 10px rgba(79,70,229,.4); }
+  .q-label { display: inline-block; font-size: .82rem; font-weight: 700; color: #c4b5fd; background: rgba(99,102,241,.18); border: 1px solid rgba(167,139,250,.4); padding: 6px 12px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+  .q-text { font-size: 1.16rem; white-space: pre-line; margin: 14px 0 18px; line-height: 1.85; font-weight: 500; color: #f2f1fa; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.06); border-radius: 14px; padding: 16px 18px; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .options label { display: flex; align-items: flex-start; gap: 12px; padding: 13px 15px; border: 2px solid rgba(255,255,255,.09); border-radius: 14px; margin-bottom: 0; cursor: pointer; transition: all .15s; font-size: 1.04rem; font-weight: 500; background: #1e1e30; color: #f2f1fa; }
+  .options label:hover { border-color: #8b5cf6; background: #232338; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(99,102,241,.3); }
+  .options label::before { content: ""; flex: none; width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; border: 2px solid #7c7ca0; background: transparent; transition: all .15s; }
+  .options label.selected { background: var(--accent-soft); border-color: #a78bfa; box-shadow: 0 4px 18px rgba(99,102,241,.4); }
+  .options label.selected::before { border-color: #a78bfa; background: #a78bfa; box-shadow: inset 0 0 0 4px #1e1e30; }
+  .options input { position: absolute; opacity: 0; pointer-events: none; }
+  .ul { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; text-decoration-color: #a5b4fc; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 20px; flex-wrap: wrap; }
+  .pager .page-info { font-weight: 700; color: var(--muted); }
+  button { font: inherit; cursor: pointer; border: none; border-radius: 999px; padding: 12px 24px; font-weight: 700; }
+  .btn-primary { background: #4f46e5; color: #fff; box-shadow: 0 4px 18px rgba(79,70,229,.4); transition: transform .15s, box-shadow .15s, filter .15s; }
+  .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.1); box-shadow: 0 8px 24px rgba(79,70,229,.45); }
+  .btn-primary:disabled { background: #2a2a3d; color: #77778e; cursor: not-allowed; box-shadow: none; }
+  .btn-ghost { background: rgba(255,255,255,.06); color: #d6c9ff; border: 2px solid rgba(255,255,255,.12); }
+  .btn-ghost:hover { border-color: #8b5cf6; background: rgba(124,58,237,.2); }
+  .submit-bar { position: sticky; bottom: 0; background: rgba(11,11,22,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 16px; display: flex; justify-content: center; box-shadow: 0 -4px 24px rgba(0,0,0,.5); }
+  .submit-bar .inner { max-width: 760px; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .submit-bar .hint { color: var(--muted); font-size: .9rem; }
+  /* Results */
+  .score-card { background: #1e1b3a; border: 1px solid rgba(255,255,255,.1); border-radius: 24px; padding: 34px 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow-lg); }
+  .score-card .big { font-size: 3rem; font-weight: 800; line-height: 1.05; color: #a5b4fc; }
+  .score-card .pct { font-size: 1.15rem; color: #c9c6e0; margin-top: 6px; font-weight: 700; }
+  .score-card .msg { margin-top: 10px; font-size: 1rem; color: #e6e4f5; }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filters button { padding: 9px 18px; }
+  .filters button.active { background: #4f46e5; color: #fff; border-color: transparent; box-shadow: 0 2px 12px rgba(79,70,229,.35); }
+  .review-card { background: #1a1a2c; border: 1px solid var(--border); border-radius: 20px; padding: 22px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .review-card.correct { border-left: 5px solid #10b981; }
+  .review-card.wrong { border-left: 5px solid #f43f5e; }
+  .verdict { display: inline-block; font-weight: 800; font-size: .9rem; margin-bottom: 8px; padding: 4px 14px; border-radius: 999px; color: #fff; }
+  .verdict.ok { background: #059669; }
+  .verdict.no { background: #e11d48; }
+  .review-card .ans-line { margin: 4px 0; }
+  .review-card .ans-line b { font-weight: 700; }
+  .review-card .ans-line .mine-wrong { color: var(--red); }
+  .review-card .ans-line .right { color: var(--green); }
+  .rev-opts { margin: 10px 0 4px; }
+  .rev-opt { display: flex; align-items: flex-start; gap: 8px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.09); border-radius: 12px; margin-bottom: 6px; font-size: .98rem; line-height: 1.6; background: #1e1e30; }
+  .rev-opt-correct { background: var(--green-bg); border-color: #10b981; }
+  .rev-opt-mine-wrong { background: var(--red-bg); border-color: #f43f5e; }
+  .rev-opt .rev-text { flex: 1; }
+  .rev-opt .badge { flex: none; font-size: .78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+  .badge-correct { background: #059669; color: #fff; }
+  .badge-mine { background: #059669; color: #fff; }
+  .badge-mine-wrong { background: #e11d48; color: #fff; }
+  .rev-no-answer { color: var(--muted); font-size: .9rem; margin: 4px 0 8px; }
+  .explain { background: #12101f; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px 18px; margin-top: 14px; font-size: .97rem; color: #d9d7ea; }
+  .explain b { color: #d6c9ff; }
+  .explain-label { font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #a78bfa; margin-bottom: 10px; }
+  .explain-stem { background: rgba(99,102,241,.18); border-left: 4px solid #a78bfa; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; line-height: 1.75; color: #f2f1fa; }
+  .exp-line { padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.07); line-height: 1.75; border-radius: 8px; }
+  .exp-line:first-of-type { border-top: none; }
+  .exp-line.exp-ok { background: var(--green-bg); border-top: none; }
+  .exp-mark { font-weight: 800; margin-left: 4px; }
+  .exp-mark.ok { color: #34d399; }
+  .exp-mark.no { color: #fb7185; }
+  .exp-note { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.4); border-left: 4px solid #f59e0b; border-radius: 10px; padding: 12px 14px; margin-top: 12px; line-height: 1.75; color: #fde9c8; }
+  .hidden { display: none; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 20px; }
+  @media (max-width: 520px) {
+    header h1 { font-size: 1.1rem; }
+    .q-text { font-size: 1.05rem; }
+    .submit-bar .hint { display: none; }
+    .score-card .big { font-size: 2.4rem; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 12px 12px 10px; }
+    .back-btn { padding: 6px 12px; font-size: .82rem; margin-bottom: 8px; }
+    header h1 { font-size: 1.08rem; line-height: 1.25; }
+    header p { font-size: .75rem; line-height: 1.35; }
+    .progress-wrap { margin-top: 8px; height: 6px; }
+    .progress-text { font-size: .74rem; margin-top: 5px; }
+    .autosave-note { font-size: .68rem; margin-top: 2px; }
+    main { padding: 16px 12px 80px; }
+    .q-card { padding: 18px; border-radius: 16px; }
+    .options label { padding: 11px 12px; font-size: 1rem; }
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="back-btn">&larr; Back to All Sets</a>
+    <h1>EPS-TOPIK 문제은행 Quiz</h1>
+    <p>Set 2 of 8 &bull; Questions 51–100 &bull; 50 questions &bull; 반대말 (Antonyms) &bull; EPS-TOPIK &mdash; answers are AI-researched (no answer key in the book) &bull; Explanations in Nepali</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 / 50 answered</div>
+    <div class="autosave-note">Progress will be auto-saved.</div>
+  </div>
+</header>
+
+<main id="quizView">
+  <div id="questionList"></div>
+  <div class="pager">
+    <button class="btn-ghost" id="prevBtn">&larr; Previous</button>
+    <span class="page-info" id="pageInfo"></span>
+    <button class="btn-ghost" id="nextBtn">Next &rarr;</button>
+  </div>
+</main>
+
+<div class="submit-bar" id="submitBar">
+  <div class="inner">
+    <span class="hint" id="submitHint">Answer all 50, then submit.</span>
+    <div style="display:flex; gap:8px; flex:none;">
+      <button class="btn-ghost" id="clearBtn" style="padding:11px 16px;">Clear all</button>
+      <button class="btn-primary" id="submitBtn">Submit Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main id="resultView" class="hidden">
+  <div class="score-card">
+    <div class="big" id="scoreBig"></div>
+    <div class="pct" id="scorePct"></div>
+    <div class="msg" id="scoreMsg"></div>
+    <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn-primary" id="retryBtn">Try Again</button>
+      <button class="btn-ghost" id="reviewTopBtn">Back to top</button>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="btn-ghost active" data-filter="all">All questions</button>
+    <button class="btn-ghost" data-filter="wrong">Wrong only</button>
+    <button class="btn-ghost" data-filter="correct">Correct only</button>
+  </div>
+  <div id="reviewList"></div>
+</main>
+
+<script>
+const QUESTIONS = [{"n": "51", "q": "기억하다", "options": ["물어보다", "잊어버리다", "입어보다", "잃어버리다"], "answer": 1, "explain": "प्रश्नको अर्थ: 기억하다 भनेको सम्झिनु हो।\n① 물어보다 भनेको सोध्नु हो र यो सम्झिनु को विपरीत शब्द होइन ✗\n② 잊어버리다 भनेको बिर्सनु हो र यो सम्झिनु को एकदम सही विपरीत शब्द हो ✓\n③ 입어보다 भनेको लगाएर हेर्नु हो र यो सम्झिनु को विपरीत शब्द होइन ✗\n④ 잃어버리다 भनेको हराउनु हो र यो सम्झिनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 51"}, {"n": "52", "q": "대출하다", "options": ["입금하다", "빌려주다", "출금하다", "반납하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 대출하다 भनेको ऋण लिनु वा किताब आदि उधारो लैजानु हो।\n① 입금하다 भनेको पैसा जम्मा गर्नु हो र यो ऋण लिनु को विपरीत शब्द होइन ✗\n② 빌려주다 भनेको ऋण दिनु वा सापटी दिनु हो र यो यसको मिल्दोजुल्दो अर्थ हो ✗\n③ 출금하다 भनेको पैसा झिक्नु हो र यो ऋण लिनु को विपरीत शब्द होइन ✗\n④ 반납하다 भनेको फिर्ता गर्नु हो र यो उधारो लैजानु को एकदम सही विपरीत शब्द हो ✓", "label": "반대말 · 책 52"}, {"n": "53", "q": "지저분하다", "options": ["깨끗하다", "더럽다", "청소하다", "외롭다"], "answer": 0, "explain": "प्रश्नको अर्थ: 지저분하다 भनेको फोरै हुनु हो।\n① 깨끗하다 भनेको सफा हुनु हो र यो फोहर हुनु को एकदम सही विपरीत शब्द हो ✓\n② 더럽다 भनेको फोहर हुनु हो र यो यसको पर्यायवाची शब्द हो ✗\n③ 청소하다 भनेको सरसफाइ गर्नु हो र यो फोहर हुनु को विपरीत शब्द होइन ✗\n④ 외롭다 भनेको एक्लो हुनु हो र यो फोहर हुनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 53"}, {"n": "54", "q": "날씬하다", "options": ["멋있다", "뚱뚱하다", "예쁘다", "튼튼하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 날씬하다 भनेको पातलो वा जिस्म मिलेको हुनु हो।\n① 멋있다 भनेको आकर्षक वा राम्रो हुनु हो र यो पातलो हुनु को विपरीत शब्द होइन ✗\n② 뚱뚱하다 भनेको मोटा हुनु हो र यो पातलो हुनु को एकदम सही विपरीत शब्द हो ✓\n③ 예쁘다 भनेको सुन्दर हुनु हो र यो पातलो हुनु को विपरीत शब्द होइन ✗\n④ 튼튼하다 भनेको बलियो हुनु हो र यो पातलो हुनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 54"}, {"n": "55", "q": "한가하다", "options": ["고프다", "바쁘다", "아프다", "답하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 한가하다 भनेको फुर्सद हुनु हो।\n① 고프다 भनेको भोक लाग्नु हो र यो फुर्सद हुनु को विपरीत शब्द होइन ✗\n② 바쁘다 भनेको व्यस्त हुनु हो र यो फुर्सद हुनु को एकदम सही विपरीत शब्द हो ✓\n③ 아프다 भनेको बिरामी हुनु वा दुख्नु हो र यो फुर्सद हुनु को विपरीत शब्द होइन ✗\n④ 답하다 भनेको उत्तर दिनु हो र यो फुर्सद हुनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 55"}, {"n": "56", "q": "부족하다", "options": ["부드럽다", "불편하다", "충분하다", "복잡하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 부족하다 भनेको अपूरो वा नपुग्दो हुनु हो।\n① 부드럽다 भनेको नरम हुनु हो र यो नपुग्दो हुनु को विपरीत शब्द होइन ✗\n② 불편하다 भनेको असहज हुनु हो र यो नपुग्दो हुनु को विपरीत शब्द होइन ✗\n③ 충분하다 भनेको पर्याप्त वा पुग्दो हुनु हो र यो नपुग्दो हुनु को एकदम सही विपरीत शब्द हो ✓\n④ 복잡하다 भनेको भिडभाड वा जटिल हुनु हो र यो नपुग्दो हुनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 56"}, {"n": "57", "q": "익숙하다", "options": ["모자라다", "도착하다", "기대하다", "서투르다"], "answer": 3, "explain": "प्रश्नको अर्थ: 익숙하다 भनेको बानी परेको वा पोख्त हुनु हो।\n① 모자라다 भनेको नपुग्नु हो र यो बानी परेको को विपरीत शब्द होइन ✗\n② 도착하다 भनेको पुग्नु हो र यो बानी परेको को विपरीत शब्द होइन ✗\n③ 기대하다 भनेको आशा गर्नु हो र यो बानी परेको को विपरीत शब्द होइन ✗\n④ 서투르다 भनेको अनाडी वा पोख्त नभएको हुनु हो र यो बानी परेको को एकदम सही विपरीत शब्द हो ✓", "label": "반대말 · 책 57"}, {"n": "58", "q": "어둡다", "options": ["넓다", "밝다", "삶다", "맑다"], "answer": 1, "explain": "प्रश्नको अर्थ: 어둡다 भनेको अँध्यारो हुनु हो।\n① 넓다 भनेको फराकिलो हुनु हो र यो अँध्यारो को विपरीत शब्द होइन ✗\n② 밝다 भनेको उज्यालो हुनु हो र यो अँध्यारो को एकदम सही विपरीत शब्द हो ✓\n③ 삶다 भनेको उमाल्नु हो र यो अँध्यारो को विपरीत शब्द होइन ✗\n④ 맑다 भनेको सफा वा निर्मल हुनु हो र यो अँध्यारो को विपरीत शब्द होइन ✗", "label": "반대말 · 책 58"}, {"n": "59", "q": "조용하다", "options": ["미끄럽다", "상쾌하다", "시끄럽다", "우울하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 조용하다 भनेको शान्त हुनु हो।\n① 미끄럽다 भनेको चिप्लो हुनु हो, जुन यसको उल्टो अर्थ होइन। ✗\n② 상쾌하다 भनेको ताजा वा रमाइलो हुनु हो, जुन यसको उल्टो अर्थ होइन। ✗\n③ 시끄럽다 भनेको कोलाहलपूर्ण वा हल्ला हुनु हो, जुन 조용하다 को एकदम उल्टो अर्थ हो। ✓\n④ 우울하다 भनेको खिन्न वा दुखी हुनु हो, जुन यसको उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 59"}, {"n": "60", "q": "강하다", "options": ["약하다", "무겁다", "착하다", "차갑다"], "answer": 0, "explain": "प्रश्नको अर्थ: 강하다 भनेको बलियो वा कडा हुनु हो।\n① 약하다 भनेको कमजोर हुनु हो र यो बलियो हुनु को एकदम सही विपरीत शब्द हो ✓\n② 무겁다 भनेको भारी हुनु हो र यो बलियो हुनु को विपरीत शब्द होइन ✗\n③ 착하다 भनेको दयालु हुनु हो र यो बलियो हुनु को विपरीत शब्द होइन ✗\n④ 차갑다 भनेको चिसो हुनु हो र यो बलियो हुनु को विपरीत शब्द होइन ✗", "label": "반대말 · 책 60"}, {"n": "61", "q": "맑다", "options": ["덥다", "흐리다", "좋다", "흐르다"], "answer": 1, "explain": "प्रश्नको अर्थ: 맑다 भनेको सफा हुनु (विशेष गरी मौसम सफा हुनु) हो।\n① 덥다 भनेको तातो हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n② 흐리다 भनेको बादल लागेर धमिलो हुनु हो, यो 맑다 को एकदम सही विपरीतार्थक शब्द हो ✓\n③ 좋다 भनेको राम्रो हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 흐르다 भनेको बग्नु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 61"}, {"n": "62", "q": "환영", "options": ["방문", "환승", "만남", "송별"], "answer": 3, "explain": "प्रश्नको अर्थ: 환영 भनेको स्वागत गर्नु हो।\n① 방문 भनेको भ्रमण गर्नु वा भेट्न जानु हो, यो विपरीतार्थक शब्द होइन ✗\n② 환승 भनेको गाडी परिवर्तन गर्नु (ट्रान्सफर हुनु) हो, यो विपरीतार्थक शब्द होइन ✗\n③ 만남 भनेको भेटघाट हो, यो विपरीतार्थक शब्द होइन ✗\n④ 송별 भनेको बिदाइ गर्नु हो, यो 환영 को एकदम सही विपरीतार्थक शब्द हो ✓", "label": "반대말 · 책 62"}, {"n": "63", "q": "합법", "options": ["불법", "장점", "방법", "만점"], "answer": 0, "explain": "प्रश्नको अर्थ: 합법 भनेको कानुनी (वैधानिक) हुनु हो।\n① 불법 भनेको गैरकानूनी (अवैध) हुनु हो, यो 합법 को एकदम सही विपरीतार्थक शब्द हो ✓\n② 장점 भनेको राम्रो पक्ष (गुण) हो, यो विपरीतार्थक शब्द होइन ✗\n③ 방법 भनेको तरिका (उपाय) हो, यो विपरीतार्थक शब्द होइन ✗\n④ 만점 भनेको पूर्ण अङ्क हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 63"}, {"n": "64", "q": "마지막", "options": ["우선", "원래", "처음", "차이"], "answer": 2, "explain": "प्रश्नको अर्थ: 마지막 भनेको अन्तिम हो।\n① 우선 भनेको पहिलो प्राथमिकतामा वा पहिले हो, यो विपरीतार्थक शब्द होइन ✗\n② 원래 भनेको मूल रूपमा वा पहिलेदेखिको हो, यो विपरीतार्थक शब्द होइन ✗\n③ 처음 भनेको पहिलो वा सुरु हो, यो 마지막 को एकदम सही विपरीतार्थक शब्द हो ✓\n④ 차이 भनेको भिन्नता हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 64"}, {"n": "65", "q": "마르다", "options": ["얼다", "젖다", "벌다", "맞다"], "answer": 1, "explain": "प्रश्नको अर्थ: 마르다 भनेको सुक्नु हो।\n① 얼다 भनेको जम्नु हो, यो विपरीतार्थक शब्द होइन ✗\n② 젖다 भनेको भिज्नु हो, यो 마르다 को एकदम सही विपरीतार्थक शब्द हो ✓\n③ 벌다 भनेको कमाउनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 맞다 भनेको मिल्नु हो, यो विपरीतार्थक शब्द होइन ✗\nशिक्षकको उत्तर-पत्र: किताबमा यो प्रश्न ६६ नम्बर भनेर छापिएको छ, तर सही नम्बर ६५ हो — किताबले ६५ नम्बर छोडेको छ।", "label": "반대말 · 책 65"}, {"n": "66", "q": "입구", "options": ["출구", "해고", "입장", "치수"], "answer": 0, "explain": "प्रश्नको अर्थ: 입구 भनेको छिर्ने बाटो (प्रवेशद्वार) हो।\n① 출구 भनेको निस्कने बाटो (बाहिरिने द्वार) हो, यो 입구 को एकदम सही विपरीतार्थक शब्द हो ✓\n② 해고 भनेको कामबाट निकाल्नु (बर्खास्त) हो, यो विपरीतार्थक शब्द होइन ✗\n③ 입장 भनेको प्रवेश गर्नु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 치수 भनेको नाप वा साइज हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 66"}, {"n": "67", "q": "진행하다", "options": ["점검하다", "정지하다", "살펴보다", "복잡하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 진행하다 भनेको अगाडि बढाउनु वा सञ्चालन गर्नु हो।\n① 점검하다 भनेको जाँच गर्नु हो, यो विपरीतार्थक शब्द होइन ✗\n② 정지하다 भनेको रोक्नु वा स्थगित गर्नु हो, यो 진행하다 को एकदम सही विपरीतार्थक शब्द हो ✓\n③ 살펴보다 भनेको राम्ररी हेर्नु वा अवलोकन गर्नु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 복잡하다 भनेको जटिल वा भिडभाड हुनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 67"}, {"n": "68", "q": "빠르다", "options": ["이르다", "미루다", "느리다", "부르다"], "answer": 2, "explain": "प्रश्नको अर्थ: 빠르다 भनेको छिटो हुनु हो।\n① 이르다 भनेको छिटो हुनु वा पुग्नु हो, यो विपरीतार्थक शब्द होइन ✗\n② 미루다 भनेको पछि सार्नु हो, यो विपरीतार्थक शब्द होइन ✗\n③ 느리다 भनेको ढिलो हुनु हो, यो 빠르다 को एकदम सही विपरीतार्थक शब्द हो ✓\n④ 부르다 भनेको बोलाउनु वा पेट भरिनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 68"}, {"n": "69", "q": "나누다", "options": ["모으다", "바르다", "부치다", "나르다"], "answer": 0, "explain": "प्रश्नको अर्थ: 나누다 भनेको बाँड्नु हो।\n① 모으다 भनेको जम्मा गर्नु हो, यो 나누다 को एकदम सही विपरीतार्थक शब्द हो ✓\n② 바르다 भनेको लगाउनु वा सिधा हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n③ 부치다 भनेको पठाउनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 나르다 भनेको बोकेर सार्नु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 69"}, {"n": "70", "q": "안전", "options": ["단정", "손전", "조심", "위험"], "answer": 3, "explain": "प्रश्नको अर्थ: 안전 भनेको सुरक्षा (सुरक्षित) हो।\n① 단정 भनेको सफासुग्थरी हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n② 손전 भनेको टर्चलाइट हो, यो विपरीतार्थक शब्द होइन ✗\n③ 조심 भनेको सावधानी अपनाउनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 위험 भनेको खतरा हो, यो 안전 को एकदम सही विपरीतार्थक शब्द हो ✓", "label": "반대말 · 책 70"}, {"n": "71", "q": "포함하다", "options": ["포장하다", "설명하다", "제외하다", "특별하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 포함하다 भनेको समावेश गर्नु हो।\n① 포장하다 भनेको प्याकिङ गर्नु हो, यो विपरीतार्थक शब्द होइन ✗\n② 설명하다 भनेको व्याख्या गर्नु हो, यो विपरीतार्थक शब्द होइन ✗\n③ 제외하다 भनेको बाहिर राख्नु (छुट्याउनु) हो, यो 포함하다 को एकदम सही विपरीतार्थक शब्द हो ✓\n④ 특별하다 भनेको विशेष हुनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 71"}, {"n": "72", "q": "집중하다", "options": ["생각하다", "딴짓하다", "잊어먹다", "넘어가다"], "answer": 1, "explain": "प्रश्नको अर्थ: 집중하다 भनेको ध्यान केन्द्रित गर्नु हो।\n① 생각하다 भनेको सोच्नु हो, यो विपरीतार्थक शब्द होइन ✗\n② 딴짓하다 भनेको ध्यान नदिई अर्को काम गर्नु (बेवास्ता गर्नु) हो, यो 집중하다 को एकदम सही विपरीतार्थक शब्द हो ✓\n③ 잊어먹다 भनेको बिर्सनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 넘어가다 भनेको पार गर्नु वा पास हुनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 72"}, {"n": "73", "q": "재미있다", "options": ["지루하다", "즐겁다", "어지럽다", "신나다"], "answer": 0, "explain": "प्रश्नको अर्थ: 재미있다 भनेको रमाइलो हुनु हो।\n① 지루하다 भनेको दिक्कलाग्दो हुनु हो, यो 재미있다 को एकदम सही विपरीतार्थक शब्द हो ✓\n② 즐겁다 भनेको खुसी हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n③ 어지럽다 भनेको चक्कर लाग्नु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 신나다 भनेको जोसिलो वा उत्साहित हुनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 73"}, {"n": "74", "q": "꺼내다", "options": ["깨다", "잠그다", "담다", "까다"], "answer": 2, "explain": "प्रश्नको अर्थ: 꺼내다 भनेको बाहिर निकाल्नु हो।\n① 깨다 भनेको फुटाउनु वा ब्युझिनु हो, यो विपरीतार्थक शब्द होइन ✗\n② 잠그다 भनेको बन्द गर्नु (ताला लगाउनु) हो, यो विपरीतार्थक शब्द होइन ✗\n③ 담다 भनेको भित्र हाल्नु (राख्नु) हो, यो 꺼내다 को एकदम सही विपरीतार्थक शब्द हो ✓\n④ 까다 भनेको बोक्रा ताछ्नु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 74"}, {"n": "75", "q": "무겁다", "options": ["두껍다", "가볍다", "어둡다", "무섭다"], "answer": 1, "explain": "प्रश्नको अर्थ: 무겁다 भनेको भारी हुनु हो।\n① 두껍다 भनेको बाक्लो हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n② 가볍다 भनेको हलुका हुनु हो, यो 무겁다 को एकदम सही विपरीतार्थक शब्द हो ✓\n③ 어둡다 भनेको अँध्यारो हुनु हो, यो विपरीतार्थक शब्द होइन ✗\n④ 무섭다 भनेको डराउनु हो, यो विपरीतार्थक शब्द होइन ✗", "label": "반대말 · 책 75"}, {"n": "76", "q": "일출", "options": ["입금", "인간", "나물", "일몰"], "answer": 3, "explain": "प्रश्नको अर्थ: 일출 भनेको सूर्योदय हुनु वा घाम उदाउनु हो।\n① 입금 भनेको बैंकमा पैसा जम्मा गर्नु हो, त्यसैले यो विपरीतार्थक शब्द होइन ✗\n② 인간 भनेको मानिस हो, त्यसैले यो विपरीतार्थक शब्द होइन ✗\n③ 나물 भनेको खानेकुरा वा तरकारीको सागपात हो, त्यसैले यो विपरीतार्थक शब्द होइन ✗\n④ 일몰 भनेको सूर्यास्त हुनु वा घाम अस्ताउनु हो, त्यसैले यो 일출 को एकदम सही विपरीतार्थक शब्द हो ✓", "label": "반대말 · 책 76"}, {"n": "77", "q": "잊다", "options": ["일어나다", "증가하다", "기억하다", "연기하다"], "answer": 2, "explain": "प्रश्नको अर्थ: 잊다 भनेको बिर्सनु हो।\n① 일어나다 भनेको उठ्नु वा घाम आदि उदाउनु हो, त्यसैले यो मिल्दैन ✗\n② 증가하다 भनेको बढ्नु हो, त्यसैले यो मिल्दैन ✗\n③ 기억하다 भनेको सम्झिनु हो, जुन बिर्सनुको एकदम विपरित शब्द हो ✓\n④ 연기하다 भनेको स्थगित गर्नु वा नाटक खेल्नु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 77"}, {"n": "78", "q": "찬성", "options": ["참석", "허락", "반대", "이별"], "answer": 2, "explain": "प्रश्नको अर्थ: 찬성 भनेको सहमति वा समर्थन जनाउनु हो।\n① 참석 भनेको उपस्थित हुनु हो, त्यसैले यो मिल्दैन ✗\n② 허락 भनेको अनुमति दिनु हो, त्यसैले यो मिल्दैन ✗\n③ 반대 भनेको असहमति वा बिरोध गर्नु हो, जुन सहमति को एकदम विपरित शब्द हो ✓\n④ 이별 भनेको छुट्टिनु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 78"}, {"n": "79", "q": "다르다", "options": ["맞다", "같다", "갚다", "낫다"], "answer": 1, "explain": "प्रश्नको अर्थ: 다르다 भनेको फरक हुनु हो।\n① 맞다 भनेको मिल्नु वा सही हुनु हो, त्यसैले यो मिल्दैन ✗\n② 같다 भनेको उस्तै वा समान हुनु हो, जुन फरक हुनुको एकदम विपरित शब्द हो ✓\n③ 갚다 भनेको ऋण तिर्नु वा बदला दिनु हो, त्यसैले यो मिल्दैन ✗\n④ 낫다 भनेको निको हुनु वा राम्रो हुनु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 79"}, {"n": "80", "q": "잃다", "options": ["싶다", "잊다", "치다", "얻다"], "answer": 3, "explain": "प्रश्नको अर्थ: 잃다 भनेको हराउनु वा गुमाउनु हो।\n① 싶다 भनेको चाहनु हो, त्यसैले यो मिल्दैन ✗\n② 잊다 भनेको बिर्सनु हो, त्यसैले यो मिल्दैन ✗\n③ 치다 भनेको प्रहार गर्नु वा कुट्नु हो, त्यसैले यो मिल्दैन ✗\n④ 얻다 भनेको पाउनु वा प्राप्त गर्नु हो, जुन गुमाउनुको एकदम विपरित शब्द हो ✓", "label": "반대말 · 책 80"}, {"n": "81", "q": "가르다", "options": ["합치다", "잠그다", "손대다", "바꾸다"], "answer": 0, "explain": "प्रश्नको अर्थ: 가르다 भनेको छुट्याउनु वा विभाजन गर्नु हो।\n① 합치다 भनेको एकै ठाउँमा मिसाउनु वा जोड्नु हो, जुन छुट्याउनुको एकदम विपरित शब्द हो ✓\n② 잠그다 भनेको बन्द गर्नु वा ताल्चा लगाउनु हो, त्यसैले यो मिल्दैन ✗\n③ 손대다 भनेको हात हाल्नु वा छुनु हो, त्यसैले यो मिल्दैन ✗\n④ 바꾸다 भनेको फेर्नु वा बदल्नु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 81"}, {"n": "82", "q": "음주", "options": ["금식", "조식", "금주", "안주"], "answer": 2, "explain": "प्रश्नको अर्थ: 음주 भनेको मदिरा सेवन गर्नु वा रक्सी पिउनु हो।\n① 금식 भनेको उपवास बस्नु वा खाना नखानु हो, त्यसैले यो मिल्दैन ✗\n② 조식 भनेको बिहानको खाना हो, त्यसैले यो मिल्दैन ✗\n③ 금주 भनेको मदिरा सेवन नगर्नु वा रक्सी नपिउनु हो, जुन रक्सी पिउनुको एकदम विपरित शब्द हो ✓\n④ 안주 भनेको मदिरासँग खाने परिकार हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 82"}, {"n": "83", "q": "즐겁다", "options": ["기쁘다", "반갑다", "맞잡다", "괴롭다"], "answer": 3, "explain": "प्रश्नको अर्थ: 즐겁다 भनेको रमाइलो हुनु वा खुसी हुनु हो।\n① 기쁘다 भनेको खुसी हुनु हो, त्यसैले यो मिल्दैन ✗\n② 반갑다 भनेको खुसीको कुरा हुनु वा स्वागतयोग्य हुनु हो, त्यसैले यो मिल्दैन ✗\n③ 맞잡다 भनेको हात समात्नु हो, त्यसैले यो मिल्दैन ✗\n④ 괴롭다 भनेको दुख्नु वा कष्ट हुनु हो, जुन रमाइलो हुनुको एकदम विपरित शब्द हो ✓", "label": "반대말 · 책 83"}, {"n": "84", "q": "멀다", "options": ["가깝다", "무겁다", "차갑다", "아깝다"], "answer": 0, "explain": "प्रश्नको अर्थ: 멀다 भनेको टाढा हुनु हो।\n① 가깝다 भनेको नजिक हुनु हो, जुन टाढा हुनुको एकदम विपरित शब्द हो ✓\n② 무겁다 भनेको भारी हुनु हो, त्यसैले यो मिल्दैन ✗\n③ 차갑다 भनेको चिसो हुनु हो, त्यसैले यो मिल्दैन ✗\n④ 아깝다 भनेको अमूल्य लाग्नु वा खेर गएकोमा पछुतो लाग्नु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 84"}, {"n": "85", "q": "이기다", "options": ["참다", "지다", "줄다", "치다"], "answer": 1, "explain": "प्रश्नको अर्थ: 이기다 भनेको जित्नु हो।\n① 참다 भनेको सहन गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 지다 भनेको हार्नु हो, जुन जित्नुको एकदम विपरित शब्द हो ✓\n③ 줄다 भनेको घट्नु हो, त्यसैले यो मिल्दैन ✗\n④ 치다 भनेको हान्नु वा कुट्नु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 85"}, {"n": "86", "q": "좋아하다", "options": ["발생하다", "멀어지다", "싫어하다", "나빠지다"], "answer": 2, "explain": "प्रश्नको अर्थ: 좋아하다 भनेको मन पराउनु हो।\n① 발생하다 भनेको उत्पन्न हुनु वा घटेको घटना हुनु हो, त्यसैले यो मिल्दैन ✗\n② 멀어지다 भनेको टाढिनु हो, त्यसैले यो मिल्दैन ✗\n③ 싫어하다 भनेको मन नपराउनु वा घृणा गर्नु हो, जुन मन पराउनुको एकदम विपरित शब्द हो ✓\n④ 나빠지다 भनेको नराम्रो हुँदै जानु हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 86"}, {"n": "87", "q": "예습하다", "options": ["예약하다", "연습하다", "대답하다", "복습하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 예습하다 भनेको पूर्वतयारी गर्नु वा पाठ पढेर आउनु हो।\n① 예약하다 भनेको बुकिङ गर्नु वा रिजर्भ गर्नु हो, त्यसैले यो मिल्दैन ✗\n② 연습하다 भनेको अभ्यास गर्नु हो, त्यसैले यो मिल्दैन ✗\n③ 대답하다 भनेको उत्तर दिनु हो, त्यसैले यो मिल्दैन ✗\n④ 복습하다 भनेको पुनरावृत्ति गर्नु वा पढेको कुरा दोहोर्याउनु हो, जुन पूर्वतयारी गर्नुको एकदम विपरित शब्द हो ✓", "label": "반대말 · 책 87"}, {"n": "88", "q": "연초", "options": ["월말", "연말", "월차", "연차"], "answer": 1, "explain": "प्रश्नको अर्थ: 연초 भनेको सालको सुरु वा वर्षको सुरुको समय हो।\n① 월말 भनेको महिनाको अन्त्य हो, त्यसैले यो मिल्दैन ✗\n② 연말 भनेको सालको अन्त्य वा वर्षको अन्तिम समय हो, जुन वर्षको सुरुको एकदम विपरित शब्द हो ✓\n③ 월차 भनेको मासिक बिदा हो, त्यसैले यो मिल्दैन ✗\n④ 연차 भनेको वार्षिक बिदा हो, त्यसैले यो मिल्दैन ✗", "label": "반대말 · 책 88"}, {"n": "89", "q": "활발하다", "options": ["얌전하다", "부지런하다", "조용하다", "친절하다"], "answer": 0, "explain": "प्रश्नको अर्थ: 활발하다 भनेको चञ्चल वा मिलनसार हुनु हो।\n① 얌전하다 भनेको सोझो वा शान्त हुनु हो, जुन एकदम विपरीत अर्थ दिन्छ ✓\n② 부지런하다 भनेको मेहनती हुनु हो, यो विपरीत होइन ✗\n③ 조용하다 भनेको शान्त हुनु हो, यो पनि विपरीत हो तर 얌전하다 बढी उपयुक्त विपरीत शब्द हो ✗\n④ 친절하다 भनेको दयालु हुनु हो, यो विपरीत होइन ✗", "label": "반대말 · 책 89"}, {"n": "90", "q": "무료", "options": ["참조", "비료", "요금", "유료"], "answer": 3, "explain": "प्रश्नको अर्थ: 무료 भनेको निःशुल्क वा पैसा नलाग्ने हो।\n① 참조 भनेको सन्दर्भ लिनु वा हेर्नु हो, त्यसैले यो मिल्दैन ✗\n② 비료 भनेको मल (खेतीमा हाल्ने) हो, त्यसैले यो मिल्दैन ✗\n③ 요금 भनेको शुल्क वा पैसा हो, त्यसैले यो मिल्दैन ✗\n④ 유료 भनेको शुल्क लाग्ने वा पैसा तिर्नुपर्ने हो, जुन निःशुल्क को एकदम विपरित शब्द हो ✓", "label": "반대말 · 책 90"}, {"n": "91", "q": "부자", "options": ["인간", "건강", "가난", "모기"], "answer": 2, "explain": "प्रश्नको अर्थ: 부자 भनेको धनी व्यक्ति हो।\n① 인간 भनेको मानव हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 건강 भनेको स्वास्थ्य हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 가난 भनेको गरीबी वा गरीब हो, जुन धनीको एकदम उल्टो अर्थ हो। ✓\n④ 모기 भनेको लामखुट्टे हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 91"}, {"n": "92", "q": "엉망이다", "options": ["간단하다", "진행되다", "정돈되다", "망가지다"], "answer": 2, "explain": "प्रश्नको अर्थ: 엉망이다 भनेको लथालिङ्ग वा अस्तव्यस्त हुनु हो।\n① 간단하다 भनेको सरल हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 진행되다 भनेको अगाडि बढ्नु वा प्रगति हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 정돈되다 भनेको मिलाइएको वा व्यवस्थित हुनु हो, जुन अस्तव्यस्त हुनुको एकदम उल्टो अर्थ हो। ✓\n④ 망가지다 भनेको बिग्रिनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 92"}, {"n": "93", "q": "맞다", "options": ["틀리다", "던지다", "만지다", "생기다"], "answer": 0, "explain": "प्रश्नको अर्थ: 맞다 भनेको मिल्नु वा सही हुनु हो।\n① 틀리다 भनेको गलत हुनु वा नमिल्नु हो, जुन सही हुनुको एकदम उल्टो अर्थ हो। ✓\n② 던지다 भनेको फ्याँक्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 만지다 भनेको छुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 생기다 भनेको उत्पन्न हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 93"}, {"n": "94", "q": "힘들다", "options": ["알맞다", "어렵다", "외롭다", "편하다"], "answer": 3, "explain": "प्रश्नको अर्थ: 힘들다 भनेको गाह्रो हुनु वा दुखदायी हुनु हो।\n① 알맞다 भनेको उपयुक्त हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 어렵다 भनेको गाह्रो हुनु हो, जुन उस्तै अर्थ हो। ✗\n③ 외롭다 भनेको एकलो महसुस हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 편하다 भनेको सजिलो वा आरामदायी हुनु हो, जुन गाह्रो हुनुको एकदम उल्टो अर्थ हो। ✓", "label": "반대말 · 책 94"}, {"n": "95", "q": "간단하다", "options": ["어지럽다", "착용하다", "자세하다", "어울리다"], "answer": 2, "explain": "प्रश्नको अर्थ: 간단하다 भनेको सरल वा छोटकरी हुनु हो।\n① 어지럽다 भनेको रिङ्गाउनु वा अस्तव्यस्त हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 착용하다 भनेको प्रयोग गर्नु वा लगाउनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 자세하다 भनेको विस्तृत वा विवरणसहित हुनु हो, जुन सरल वा छोटकरी हुनुको एकदम उल्टो अर्थ हो। ✓\n④ 어울리다 भनेको सुहाउनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 95"}, {"n": "96", "q": "일어서다", "options": ["갈아타다", "쓰러지다", "입어보다", "나빠지다"], "answer": 1, "explain": "प्रश्नको अर्थ: 일어서다 भनेको उठ्नु वा उभिनु हो।\n① 갈아타다 भनेको गाडी परिवर्तन गर्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 쓰러지다 भनेको लड्नु वा ढल्नु हो, जुन उठ्नु वा उभिनुको एकदम उल्टो अर्थ हो। ✓\n③ 입어보다 भनेको कपडा लगाएर हेर्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 나빠지다 भनेको खराब हुनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 96"}, {"n": "97", "q": "일찍", "options": ["잠깐", "빨리", "늦게", "참깐"], "answer": 2, "explain": "प्रश्नको अर्थ: 일찍 भनेको सवेरै वा समयमै हो।\n① 잠깐 भनेको एकछिन हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 빨리 भनेको छिटो हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 늦게 भनेको ढिलो गरी हो, जुन सवेरै वा समयमै हुनुको एकदम उल्टो अर्थ हो। ✓\n④ 참깐 भनेको गलत शब्द हो, त्यसैले यो सही होइन। ✗", "label": "반대말 · 책 97"}, {"n": "98", "q": "아프다", "options": ["낫다", "젖다", "짓다", "얻다"], "answer": 0, "explain": "प्रश्नको अर्थ: 아프다 भनेको दुख्नु वा बिरामी हुनु हो।\n① 낫다 भनेको निको हुनु हो, जुन बिरामी हुनुको एकदम उल्टो अर्थ हो। ✓\n② 젖다 भनेको भिज्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 짓다 भनेको बनाउनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 얻다 भनेको प्राप्त गर्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 98"}, {"n": "99", "q": "입국", "options": ["퇴직", "출근", "퇴근", "출국"], "answer": 3, "explain": "प्रश्नको अर्थ: 입국 भनेको देश प्रवेश गर्नु हो।\n① 퇴직 भनेको अवकाश लिनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 출근 भनेको काममा जानु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n③ 퇴근 भनेको कामबाट फर्कनु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 출국 भनेको देशबाट बाहिरिनु हो, जुन देश प्रवेश गर्नुको एकदम उल्टो अर्थ हो। ✓", "label": "반대말 · 책 99"}, {"n": "100", "q": "비싸다", "options": ["구입하다", "저렴하다", "판단하다", "판매하다"], "answer": 1, "explain": "प्रश्नको अर्थ: 비싸다 भनेको महँगो हुनु हो।\n① 구입하다 भनेको किन्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n② 저렴하다 भनेको सस्तो हुनु हो, जुन महँगो हुनुको एकदम उल्टो अर्थ हो। ✓\n③ 판단하다 भनेको निर्णय वा मूल्याङ्कन गर्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗\n④ 판매하다 भनेको बेच्नु हो, त्यसैले यो उल्टो अर्थ होइन। ✗", "label": "반대말 · 책 100"}];
+
+const PER_PAGE = 20;
+const TOTAL = QUESTIONS.length;
+const SET_ID = 'eps-antonym-set-02';
+const answers = {}; // question index -> chosen option index
+let page = 0;
+let submitted = false;
+let reviewFilter = 'all';
+
+// --- progress auto-save (localStorage) ---
+// Saved per set (key includes SET_ID), so each set file keeps its own
+// progress. Wrapped in try/catch: if the browser blocks storage, the quiz
+// still works, it just won't remember progress.
+const STORE_KEY = 'eps-quiz-' + SET_ID;
+function storeAvailable() {
+  try { localStorage.setItem('__eps_test__', '1'); localStorage.removeItem('__eps_test__'); return true; }
+  catch (e) { return false; }
+}
+const storeOK = storeAvailable();
+function saveProgress() {
+  if (!storeOK) return;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify({ answers: answers, page: page })); } catch (e) {}
+}
+function loadProgress() {
+  if (!storeOK) return;
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.answers) {
+      Object.keys(data.answers).forEach(k => { answers[k] = data.answers[k]; });
+      if (typeof data.page === 'number' && data.page >= 0 && data.page < Math.ceil(TOTAL / PER_PAGE)) page = data.page;
+    }
+  } catch (e) {}
+}
+function clearProgress() {
+  if (storeOK) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+}
+loadProgress();
+
+const $ = (id) => document.getElementById(id);
+const circled = ['①','②','③','④'];
+
+function updateProgress() {
+  const done = Object.keys(answers).length;
+  $('progressBar').style.width = (done / TOTAL * 100) + '%';
+  $('progressText').textContent = done + ' / ' + TOTAL + ' answered';
+  $('submitHint').textContent = done === TOTAL ? 'All answered — ready to submit!' : (TOTAL - done) + ' unanswered (counted wrong on submit).';
+}
+
+// Renders "① <option text>" into `el`, wrapping the FIRST occurrence of
+// the underlined substring (if any) in <span class="ul"> so it gets a real
+// CSS underline — never a combining mark (U+0332 renders as tofu boxes on
+// some devices). Uses text nodes only, never innerHTML, so option text is
+// never parsed as markup. Questions without an "underlined" field (e.g.
+// the 600-question quiz) render plain text exactly as before.
+function renderOptionText(el, prefix, opt, under) {
+  el.appendChild(document.createTextNode(prefix + ' '));
+  const u = under || '';
+  const idx = u ? opt.indexOf(u) : -1;
+  if (idx < 0) {
+    el.appendChild(document.createTextNode(opt));
+    return;
+  }
+  if (idx > 0) el.appendChild(document.createTextNode(opt.slice(0, idx)));
+  const span = document.createElement('span');
+  span.className = 'ul';
+  span.appendChild(document.createTextNode(u));
+  el.appendChild(span);
+  if (idx + u.length < opt.length) {
+    el.appendChild(document.createTextNode(opt.slice(idx + u.length)));
+  }
+}
+
+function renderPage() {
+  const list = $('questionList');
+  list.innerHTML = '';
+  const start = page * PER_PAGE;
+  const end = Math.min(start + PER_PAGE, TOTAL);
+  for (let i = start; i < end; i++) {
+    const q = QUESTIONS[i];
+    const card = document.createElement('div');
+    card.className = 'q-card' + (answers[i] !== undefined ? ' answered' : '');
+    card.innerHTML =
+      '<div class="q-num">Question ' + q.n + '</div>' +
+      (q.label ? '<span class="q-label"></span>' : '') +
+      '<div class="q-text"></div>' +
+      '<div class="options"></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const lab = card.querySelector('.q-label');
+    if (lab) lab.textContent = q.label;
+    const opts = card.querySelector('.options');
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement('label');
+      if (answers[i] === oi) label.classList.add('selected');
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q' + i;
+      input.checked = answers[i] === oi;
+      input.addEventListener('change', () => {
+        answers[i] = oi;
+        card.classList.add('answered');
+        card.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+        label.classList.add('selected');
+        updateProgress();
+        saveProgress();
+      });
+      const span = document.createElement('span');
+      renderOptionText(span, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      label.appendChild(input);
+      label.appendChild(span);
+      opts.appendChild(label);
+    });
+    list.appendChild(card);
+  }
+  $('pageInfo').textContent = 'Page ' + (page + 1) + ' of ' + Math.ceil(TOTAL / PER_PAGE) + '  (Q' + QUESTIONS[start].n + '–Q' + QUESTIONS[end - 1].n + ')';
+  $('prevBtn').disabled = page === 0;
+  $('nextBtn').disabled = end >= TOTAL;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitQuiz() {
+  const unanswered = TOTAL - Object.keys(answers).length;
+  if (unanswered > 0 && !confirm(unanswered + ' question(s) still unanswered — they will count as wrong. Submit anyway?')) return;
+  submitted = true;
+  let score = 0;
+  QUESTIONS.forEach((q, i) => { if (answers[i] === q.answer) score++; });
+  const pct = Math.round(score / TOTAL * 100);
+  $('scoreBig').textContent = score + ' / ' + TOTAL;
+  $('scorePct').textContent = pct + '% correct';
+  $('scoreMsg').textContent =
+    pct >= 90 ? 'Excellent! EPS-TOPIK ready. 🎉' :
+    pct >= 70 ? 'Very good! Keep polishing the weak ones.' :
+    pct >= 50 ? 'Good start — review the wrong ones below and try again.' :
+    'Keep practicing — the explanations below will help.';
+  $('quizView').classList.add('hidden');
+  $('submitBar').classList.add('hidden');
+  $('resultView').classList.remove('hidden');
+  renderReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Renders the explanation as a structured list: the explanation string is
+// lines separated by "\n" — first line is the question's own meaning
+// ("प्रश्नको अर्थ: ..."), then one line per option ("① <word> ... ✓/✗").
+// Lines render as separate rows; the ✓ line gets a green tint and the ✓/✗
+// marker is coloured. Explanations without line breaks (fallback prose)
+// render as a single paragraph, exactly as before. Uses text nodes only,
+// never innerHTML, so explanation text is never parsed as markup.
+function renderExplain(box, explain) {
+  const lines = (explain || '').split('\n').map(s => s.trim()).filter(Boolean);
+  if (lines.length <= 1) {
+    const b = document.createElement('b');
+    b.textContent = 'किन? ';
+    box.appendChild(b);
+    const s = document.createElement('span');
+    s.textContent = explain;
+    box.appendChild(s);
+    return;
+  }
+  const label = document.createElement('div');
+  label.className = 'explain-label';
+  label.textContent = 'व्याख्या';
+  box.appendChild(label);
+  lines.forEach((ln, li) => {
+    const d = document.createElement('div');
+    if (li === 0 && ln.indexOf('प्रश्नको अर्थ') === 0) {
+      d.className = 'explain-stem';
+      d.textContent = ln;
+      box.appendChild(d);
+      return;
+    }
+    if (ln.indexOf('शिक्षकको उत्तर-पत्र:') === 0) {
+      d.className = 'exp-note';
+      d.textContent = ln;
+      box.appendChild(d);
+      return;
+    }
+    const mark = ln.endsWith('✓') ? '✓' : (ln.endsWith('✗') ? '✗' : '');
+    const body = mark ? ln.slice(0, -1).trim() : ln;
+    d.className = 'exp-line' + (mark === '✓' ? ' exp-ok' : '');
+    d.appendChild(document.createTextNode(body + (mark ? ' ' : '')));
+    if (mark) {
+      const m = document.createElement('span');
+      m.className = 'exp-mark ' + (mark === '✓' ? 'ok' : 'no');
+      m.textContent = mark;
+      d.appendChild(m);
+    }
+    box.appendChild(d);
+  });
+}
+
+function renderReview() {
+  const list = $('reviewList');
+  list.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const mine = answers[i];
+    const ok = mine === q.answer;
+    if (reviewFilter === 'wrong' && ok) return;
+    if (reviewFilter === 'correct' && !ok) return;
+    const card = document.createElement('div');
+    card.className = 'review-card ' + (ok ? 'correct' : 'wrong');
+    card.innerHTML =
+      '<div class="verdict ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + ' — Question ' + q.n + (q.label ? ' · ' + q.label : '') + '</div>' +
+      '<div class="q-text"></div>' +
+      '<div class="rev-opts"></div>' +
+      '<div class="explain"></div>';
+    card.querySelector('.q-text').textContent = q.q;
+    const optsBox = card.querySelector('.rev-opts');
+    if (mine === undefined) {
+      const note = document.createElement('div');
+      note.className = 'rev-no-answer';
+      note.textContent = 'उत्तर दिएनौ';
+      optsBox.appendChild(note);
+    }
+    q.options.forEach((opt, oi) => {
+      const row = document.createElement('div');
+      row.className = 'rev-opt';
+      if (oi === q.answer) row.classList.add('rev-opt-correct');
+      if (mine !== undefined && oi === mine && mine !== q.answer) row.classList.add('rev-opt-mine-wrong');
+      const text = document.createElement('span');
+      text.className = 'rev-text';
+      renderOptionText(text, circled[oi], opt, (q.underlined && q.underlined[oi]) || '');
+      row.appendChild(text);
+      if (oi === q.answer) {
+        const b = document.createElement('span');
+        b.className = 'badge badge-correct';
+        b.textContent = '✓ सही उत्तर';
+        row.appendChild(b);
+      }
+      if (mine !== undefined && oi === mine) {
+        const b = document.createElement('span');
+        b.className = 'badge ' + (mine === q.answer ? 'badge-mine' : 'badge-mine-wrong');
+        b.textContent = '→ तिम्रो उत्तर';
+        row.appendChild(b);
+      }
+      optsBox.appendChild(row);
+    });
+    renderExplain(card.querySelector('.explain'), q.explain);
+    list.appendChild(card);
+  });
+  if (!list.children.length) {
+    list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No questions in this filter.</p>';
+  }
+}
+
+$('prevBtn').addEventListener('click', () => { if (page > 0) { page--; renderPage(); saveProgress(); } });
+$('nextBtn').addEventListener('click', () => { if ((page + 1) * PER_PAGE < TOTAL) { page++; renderPage(); saveProgress(); } });
+$('submitBtn').addEventListener('click', submitQuiz);
+$('clearBtn').addEventListener('click', () => {
+  if (!confirm('Sabai answers clear garne? Saved progress pani delete hunchha.')) return;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  page = 0;
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('retryBtn').addEventListener('click', () => {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  clearProgress();
+  submitted = false; page = 0; reviewFilter = 'all';
+  document.querySelectorAll('.filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  $('resultView').classList.add('hidden');
+  $('quizView').classList.remove('hidden');
+  $('submitBar').classList.remove('hidden');
+  renderPage(); updateProgress();
+  window.scrollTo({ top: 0 });
+});
+$('reviewTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.querySelectorAll('.filters button').forEach(b => {
+  b.addEventListener('click', () => {
+    reviewFilter = b.dataset.filter;
+    document.querySelectorAll('.filters button').forEach(x => x.classList.toggle('active', x === b));
+    renderReview();
+  });
+});
+
+renderPage();
+updateProgress();
+</script>
+</body>
+</html>
