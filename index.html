@@ -6,32 +6,74 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-<title>EPS-TOPIK 반대말 + 비슷한 말 Quiz — All 8 Sets</title>
-<style>body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:#0b0b16;background-image:radial-gradient(700px 340px at 50% -5%,rgba(99,102,241,.14),transparent 60%);background-attachment:fixed;color:#f2f1fa;margin:0;padding:28px 16px 40px}
-.wrap{max-width:760px;margin:0 auto}
-h1{font-size:1.6rem;font-weight:800;line-height:1.25;color:#a5b4fc}
-p.sub{color:#9d9db4}
-a.set{display:block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:18px 20px;margin-bottom:12px;text-decoration:none;color:#f2f1fa;box-shadow:0 2px 8px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
-a.set:hover{transform:translateY(-2px);border-color:#8b5cf6;box-shadow:0 10px 30px rgba(99,102,241,.35)}
-a.set b{font-size:1.08rem;color:#a5b4fc}
-a.set span{float:right;color:#9d9db4;font-weight:600}
+<title>EPS-TOPIK 반대말 + 비슷한 말 Quiz — Choose a Section</title>
+<style>body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:#0b0b16;color:#f2f1fa;margin:0;padding:0}
+header{background:#312e81;padding:26px 16px 22px;text-align:center}
+header h1{font-size:1.55rem;font-weight:800;line-height:1.25;margin:0;color:#fff}
+header p{color:#c7d2fe;margin:8px 0 0;font-size:.95rem}
+.wrap{max-width:760px;margin:0 auto;padding:28px 16px 40px}
+p.lead{color:#9d9db4;text-align:center;margin:0 0 22px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+a.card{display:block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:26px 22px;text-decoration:none;color:#f2f1fa;box-shadow:0 2px 8px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);transition:transform .15s,border-color .15s}
+a.card:hover{transform:translateY(-2px);border-color:#4f46e5}
+a.card .ko{font-size:1.7rem;font-weight:800;color:#a5b4fc}
+a.card .en{font-size:1.05rem;font-weight:700;margin-top:4px}
+a.card .count{color:#9d9db4;font-weight:600;margin-top:6px}
+a.card .go{display:inline-block;background:#4f46e5;color:#fff;font-weight:800;padding:10px 20px;border-radius:999px;margin-top:16px}
+.more{margin-top:30px;border-top:1px solid rgba(255,255,255,.09);padding-top:18px}
+.more h2{font-size:1rem;color:#a5b4fc;margin:0 0 10px}
+.more a{color:#c7d2fe}
+.sets{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.sets a{display:inline-block;background:#1a1a2c;border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:7px 14px;text-decoration:none;font-size:.85rem;font-weight:600}
+.sets a:hover{border-color:#4f46e5}
+p.note{color:#9d9db4;font-size:.88rem;line-height:1.5;margin-top:24px}
 footer{text-align:center;color:#9d9db4;font-size:.82rem;padding:20px}
+@media (max-width:600px){
+header{padding:18px 12px 16px}
+header h1{font-size:1.25rem}
+.wrap{padding:20px 12px 32px}
+.cards{grid-template-columns:1fr;gap:12px}
+a.card{padding:20px 18px}
+a.card .ko{font-size:1.45rem}
+}
 </style>
 </head>
 <body>
+<header>
+<h1>EPS-TOPIK 반대말 + 비슷한 말 Quiz</h1>
+<p>Choose a section &mdash; whichever you pick starts from question 1.</p>
+</header>
 <div class="wrap">
-<h1>EPS-TOPIK 반대말 + 비슷한 말 Quiz — 400 Questions</h1>
-<p class="sub">반대말 (opposite words, Q1–200) and 비슷한 말 (similar words, Q201–400). 400 questions in 8 sets. Each set has its own Submit + score + Nepali explanations. Pick a set and start.</p>
-<a class="set" href="set-01-q1-50.html"><b>Set 01 — 반대말 (Antonyms) — Questions 1–50</b><span>50 questions</span></a>
-<a class="set" href="set-02-q51-100.html"><b>Set 02 — 반대말 (Antonyms) — Questions 51–100</b><span>50 questions</span></a>
-<a class="set" href="set-03-q101-150.html"><b>Set 03 — 반대말 (Antonyms) — Questions 101–150</b><span>50 questions</span></a>
-<a class="set" href="set-04-q151-200.html"><b>Set 04 — 반대말 (Antonyms) — Questions 151–200</b><span>50 questions</span></a>
-<a class="set" href="set-05-q201-250.html"><b>Set 05 — 비슷한 말 (Synonyms) — Questions 201–250</b><span>50 questions</span></a>
-<a class="set" href="set-06-q251-300.html"><b>Set 06 — 비슷한 말 (Synonyms) — Questions 251–300</b><span>50 questions</span></a>
-<a class="set" href="set-07-q301-350.html"><b>Set 07 — 비슷한 말 (Synonyms) — Questions 301–350</b><span>50 questions</span></a>
-<a class="set" href="set-08-q351-400.html"><b>Set 08 — 비슷한 말 (Synonyms) — Questions 351–400</b><span>50 questions</span></a>
-<a class="set" href="full-quiz.html"><b>Full Quiz — All 400 Questions</b><span>400 questions</span></a>
-<p class="sub">This book has NO printed answer key — all answers and explanations are AI-researched in Nepali. Book defect corrected: in the antonym section the book prints 마르다 as number 66, but the book skipped 65 — 마르다 is book 65 and 입구 (printed 66) is book 66; the quiz numbers questions sequentially by position. Each question shows its section (반대말 / 비슷한 말) and book number.</p>
+<p class="lead">Opposite words (반대말) or similar words (비슷한 말) &mdash; 200 questions each.</p>
+<div class="cards">
+<a class="card" href="antonym.html">
+<div class="ko">반대말</div>
+<div class="en">Opposite Words</div>
+<div class="count">200 questions</div>
+<span class="go">Start from Q1 &rarr;</span>
+</a>
+<a class="card" href="synonym.html">
+<div class="ko">비슷한 말</div>
+<div class="en">Similar Words</div>
+<div class="count">200 questions</div>
+<span class="go">Start from Q1 &rarr;</span>
+</a>
+</div>
+<div class="more">
+<h2>More ways to practise</h2>
+<a href="full-quiz.html">All 400 questions (full quiz)</a>
+<div class="sets">
+<a href="set-01-q1-50.html">Set 01 · Q1–50</a>
+<a href="set-02-q51-100.html">Set 02 · Q51–100</a>
+<a href="set-03-q101-150.html">Set 03 · Q101–150</a>
+<a href="set-04-q151-200.html">Set 04 · Q151–200</a>
+<a href="set-05-q201-250.html">Set 05 · Q201–250</a>
+<a href="set-06-q251-300.html">Set 06 · Q251–300</a>
+<a href="set-07-q301-350.html">Set 07 · Q301–350</a>
+<a href="set-08-q351-400.html">Set 08 · Q351–400</a>
+</div>
+</div>
+<p class="note">This book has NO printed answer key &mdash; all answers and explanations are AI-researched in Nepali. Book defect corrected: in the antonym section the book prints 마르다 as number 66, but the book skipped 65 &mdash; 마르다 is book 65 and 입구 (printed 66) is book 66; each section numbers its questions sequentially from 1. Each question shows its section (반대말 / 비슷한 말) and book number.</p>
 </div>
 </body>
 </html>
